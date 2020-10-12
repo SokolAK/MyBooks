@@ -11,13 +11,9 @@ public class BookMapper {
 
         bookDto.setId(book.getId());
         bookDto.setTitle(book.getTitle());
-        bookDto.setSubTitle(book.getSubTitle());
+        bookDto.setSubtitle(book.getSubtitle());
         bookDto.setYear(book.getYear());
-/*        bookDto.setAuthors(
-                book.getAuthors().stream()
-                .map(Author::toString)
-                .collect(Collectors.toList())
-        );*/
+        bookDto.setCity(book.getCity());
         bookDto.setAuthors(book.getAuthors().stream()
                 .map(Author::toString)
                 .collect(Collectors.joining("; ")));

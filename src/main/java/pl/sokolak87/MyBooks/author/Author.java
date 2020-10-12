@@ -20,7 +20,7 @@ public class Author {
     private String firstName;
     private String middleName;
     private String lastName;
-    private String sufix;
+    private String suffix;
 
     @ManyToMany(mappedBy = "authors")
     private List<Book> books = new ArrayList<>();
@@ -46,7 +46,7 @@ public class Author {
             stringBuilder.append(middleName);
         }
 
-        if(!sufix.isBlank()) {
+        if(!suffix.isBlank()) {
             stringBuilder.append(" ");
             stringBuilder.append(getPrefix());
         }

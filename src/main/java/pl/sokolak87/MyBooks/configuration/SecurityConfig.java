@@ -15,11 +15,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth
             .inMemoryAuthentication()
             .withUser("admin")
-            .password("admin")
+            .password("{noop}admin")
             .authorities("ROLE_ADMIN")
             .and()
             .withUser("guest")
-            .password("guest")
+            .password("{noop}guest")
             .authorities("ROLE_GUEST")
         ;
     }
@@ -27,8 +27,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-            .authorizeRequests()
-            .antMatchers("/", "/**").permitAll()
+                .authorizeRequests()
+                .antMatchers("/", "/**").permitAll()
         ;
 
         http.csrf().disable();

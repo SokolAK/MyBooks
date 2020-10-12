@@ -16,8 +16,8 @@ public class Book {
     private Long id;
 
     private String title;
-    private String subTitle;
-
+    private String subtitle;
+    private String city;
     private Integer year;
 
     @ManyToMany(fetch = FetchType.EAGER)
