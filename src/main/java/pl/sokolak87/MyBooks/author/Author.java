@@ -1,6 +1,6 @@
 package pl.sokolak87.MyBooks.author;
 
-import lombok.*;
+import lombok.Data;
 import pl.sokolak87.MyBooks.book.Book;
 
 import javax.persistence.*;
@@ -16,40 +16,15 @@ public class Author {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(columnDefinition = "varchar(20) default ''")
     private String prefix;
+    @Column(columnDefinition = "varchar(20) default ''")
     private String firstName;
+    @Column(columnDefinition = "varchar(20) default ''")
     private String middleName;
+    @Column(columnDefinition = "varchar(50) default ''")
     private String lastName;
-    private String suffix;
 
     @ManyToMany(mappedBy = "authors")
     private List<Book> books = new ArrayList<>();
-
-    @Override
-    public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-
-        if(!prefix.isBlank()) {
-            stringBuilder.append(getPrefix());
-            stringBuilder.append(" ");
-        }
-
-        stringBuilder.append(lastName);
-
-        if(!firstName.isBlank()) {
-            stringBuilder.append(" ");
-            stringBuilder.append(firstName);
-        }
-
-        if(!middleName.isBlank()) {
-            stringBuilder.append(" ");
-            stringBuilder.append(middleName);
-        }
-
-        if(!suffix.isBlank()) {
-            stringBuilder.append(" ");
-            stringBuilder.append(getPrefix());
-        }
-        return stringBuilder.toString();
-    }
 }

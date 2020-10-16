@@ -1,67 +1,124 @@
 package pl.sokolak87.MyBooks.ui;
 
 import com.vaadin.flow.component.checkbox.Checkbox;
+import com.vaadin.flow.component.contextmenu.MenuItem;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.menubar.MenuBar;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
+import com.vaadin.flow.function.ValueProvider;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 import pl.sokolak87.MyBooks.book.BookDto;
 import pl.sokolak87.MyBooks.book.BookService;
 
-@Component
-@Scope("prototype")
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import static pl.sokolak87.MyBooks.author.AuthorDto.authorsListToString;
+import static pl.sokolak87.MyBooks.utils.StringUtil.lowerAndCapitalizeFirst;
+
+
 @Route(value = "", layout = MainLayout.class)
 @PageTitle("Books | MyBooks")
 public class BooksView extends VerticalLayout {
 
     private final BookService bookService;
     private final Grid<BookDto> grid = new Grid<>(BookDto.class);
-    private TextField filterTextField = new TextField();
-    private Checkbox shortViewButton = new Checkbox();
+    private final TextField txtFilter = new TextField();
+    private final MenuBar mnuMenuBar = new MenuBar();
+    private final Checkbox chkShortNotation = new Checkbox();
+    private final Map<String, Boolean> columnList = new LinkedHashMap<>();
 
     public BooksView(BookService bookService) {
         this.bookService = bookService;
-        addClassName("list-view");
+        addClassName("book-view");
         setSizeFull();
 
-        configureShortViewButton();
-        configureFilterField();
+        initColumnList();
+        configureTxtField();
+        configureChkShortNotation();
+        configureMnuMenuBar();
         configureGrid();
 
-        add(shortViewButton, filterTextField, grid);
+        HorizontalLayout horizontalLayout = new HorizontalLayout();
+        horizontalLayout.setDefaultVerticalComponentAlignment(Alignment.CENTER);
+        horizontalLayout.add(txtFilter, mnuMenuBar, chkShortNotation);
+
+        add(horizontalLayout, grid);
         updateList();
+    }
+
+    private void configureChkShortNotation() {
+        chkShortNotation.setLabel(getTranslation("shortNotation"));
+        chkShortNotation.setValue(false);
+        chkShortNotation.addClickListener(e -> this.configureGrid());
     }
 
     private void configureGrid() {
         grid.addClassName("book-grid");
         grid.setSizeFull();
+        grid.setColumns();
+
+        columnList.entrySet().stream()
+                .filter(Map.Entry::getValue)
+                .forEach(e -> addGridColumn(e.getKey()));
+
         grid.getColumns().forEach(col -> col.setAutoWidth(true));
-
-        if(shortViewButton.getValue())
-            grid.setColumns("id", "title", "authors", "year");
-        else
-            grid.setColumns("id", "title", "subtitle", "authors", "year");
-        grid.addColumn("city");
     }
 
-    private void configureShortViewButton() {
-        shortViewButton.setLabel("Short View");
-        shortViewButton.setValue(false);
-        shortViewButton.addValueChangeListener(e -> configureGrid());
+    private void addGridColumn(String key) {
+        Grid.Column<BookDto> column;
+        if (key.equals("authors")) {
+            ValueProvider<BookDto, String> valueProvider = b -> authorsListToString(b.getAuthors(), chkShortNotation.getValue());
+            column = grid.addColumn(valueProvider).setComparator(valueProvider);
+        } else {
+            column = grid.addColumn(key);
+        }
+        column.setHeader(lowerAndCapitalizeFirst(getTranslation(key)));
     }
 
-    private void configureFilterField() {
-        filterTextField.setPlaceholder("Filter by phrase...");
-        filterTextField.setClearButtonVisible(true);
-        filterTextField.setValueChangeMode(ValueChangeMode.LAZY);
-        filterTextField.addValueChangeListener(e -> updateList());
+    private void configureTxtField() {
+        txtFilter.setPlaceholder(getTranslation("filterByPhrase"));
+        txtFilter.setClearButtonVisible(true);
+        txtFilter.setValueChangeMode(ValueChangeMode.LAZY);
+        txtFilter.addValueChangeListener(e -> updateList());
+        txtFilter.setWidth("50em");
     }
 
     private void updateList() {
-        grid.setItems(bookService.findAll(filterTextField.getValue()));
+        grid.setItems(bookService.findAll(txtFilter.getValue(), columnList));
+    }
+
+    private void initColumnList() {
+        columnList.put("id", false);
+        columnList.put("title", true);
+        columnList.put("subtitle", false);
+        columnList.put("authors", true);
+        columnList.put("year", true);
+        columnList.put("city", false);
+        columnList.put("edition", true);
+        columnList.put("volume", true);
+    }
+
+    private void configureMnuMenuBar() {
+        MenuItem columns = mnuMenuBar.addItem(getTranslation("columns"));
+        columnList.forEach((columnName, isChecked) -> {
+                    MenuItem item = columns
+                            .getSubMenu()
+                            .addItem(lowerAndCapitalizeFirst(getTranslation(columnName)));
+                    item.setCheckable(true);
+                    item.setChecked(isChecked);
+                    item.addClickListener(e -> {
+                                boolean currentValue = columnList.get(columnName);
+                                columnList.put(columnName, !currentValue);
+                                configureGrid();
+                                updateList();
+                            }
+                    );
+                }
+        );
     }
 }

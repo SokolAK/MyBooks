@@ -13,11 +13,11 @@
 
 
 ## Technologies
-* [Java OpenJDK 14] (https://openjdk.java.net/projects/jdk/14/)
-* [Spring Boot 2.3.4] (https://spring.io/projects/spring-boot)
-* [PostgreSQL 12.4] (https://www.postgresql.org/)
-* [Vaadin 14.3.7] (https://vaadin.com/)
-* [Lombok 1.18.14] (https://projectlombok.org/)
+* [Java OpenJDK 14](https://openjdk.java.net/projects/jdk/14/)
+* [Spring Boot 2.3.4](https://spring.io/projects/spring-boot)
+* [PostgreSQL 12.4](https://www.postgresql.org/)
+* [Vaadin 14.3.7](https://vaadin.com/)
+* [Lombok 1.18.14](https://projectlombok.org/)
 
 ## Setup
 
@@ -30,4 +30,4 @@ Project is: _in progress_
 
 
 ## Contact
-Created by [@sokolak87] (https://github.com/sokolak87)
+Created by [@sokolak87](https://github.com/sokolak87)

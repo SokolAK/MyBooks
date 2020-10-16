@@ -1,7 +1,9 @@
 package pl.sokolak87.MyBooks.book;
 
-import pl.sokolak87.MyBooks.author.Author;
+import pl.sokolak87.MyBooks.author.AuthorDto;
+import pl.sokolak87.MyBooks.author.AuthorMapper;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class BookMapper {
@@ -14,9 +16,13 @@ public class BookMapper {
         bookDto.setSubtitle(book.getSubtitle());
         bookDto.setYear(book.getYear());
         bookDto.setCity(book.getCity());
-        bookDto.setAuthors(book.getAuthors().stream()
-                .map(Author::toString)
-                .collect(Collectors.joining("; ")));
+        bookDto.setVolume(book.getVolume());
+        bookDto.setEdition(book.getEdition());
+
+        List<AuthorDto> authors = book.getAuthors().stream()
+                .map(AuthorMapper::toDto)
+                .collect(Collectors.toList());
+        bookDto.setAuthors(authors);
 
         return bookDto;
     }

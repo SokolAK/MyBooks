@@ -24,7 +24,7 @@ public class AuthorService {
         if (stringFilter == null || stringFilter.isEmpty()) {
             return findAll();
         } else {
-            return authorRepo.search(stringFilter).stream()
+            return authorRepo.findAllContainingPhrase(stringFilter).stream()
                     .map(AuthorMapper::toDto)
                     .collect(Collectors.toList());
         }

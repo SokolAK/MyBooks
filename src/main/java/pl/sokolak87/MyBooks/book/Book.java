@@ -15,10 +15,18 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(columnDefinition = "varchar(512) default ''")
     private String title;
+    @Column(columnDefinition = "varchar(512) default ''")
     private String subtitle;
+    @Column(columnDefinition = "varchar(30) default ''")
     private String city;
-    private Integer year;
+    @Column(columnDefinition = "varchar(15) default ''")
+    private String year;
+    @Column(columnDefinition = "varchar(5) default ''")
+    private String volume;
+    @Column(columnDefinition = "varchar(255) default ''")
+    private String edition;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "book_author",
@@ -26,4 +34,11 @@ public class Book {
             inverseJoinColumns = @JoinColumn(name = "author_id")
     )
     private List<Author> authors = new ArrayList<>();
+
+/*    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "book_publisher",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "publisher_id")
+    )
+    private List<Publisher> publishers = new ArrayList<>();*/
 }

@@ -1,4 +1,5 @@
-spring.profiles.active: dev
+spring:
+  profiles.active: dev
 
 ---
 
@@ -6,6 +7,9 @@ spring:
   profiles: dev
   h2.console.enabled: true
   datasource.url: jdbc:h2:mem:/.MyBooks
+  jpa:
+    show-sql: true
+    properties.hibernate.format_sql: true
 
 ---
 
@@ -13,8 +17,8 @@ spring:
   profiles: prod
   datasource:
     url: jdbc:postgresql://localhost:5432/mybooks
-    username: postgres
-    password: root
+    username: mybooksadmin
+    password: supaplex
     driverClassName: org.postgresql.Driver
     initialization-mode: always
   jpa:

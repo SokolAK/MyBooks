@@ -3,6 +3,7 @@ package pl.sokolak87.MyBooks.book;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -20,13 +21,15 @@ public class BookService {
                 .collect(Collectors.toList());
     }
 
-    public List<BookDto> findAll(String stringFilter) {
-        if (stringFilter == null || stringFilter.isEmpty()) {
+    public List<BookDto> findAll(String phrase, Map<String, Boolean> columnList) {
+        if (phrase == null || phrase.isEmpty()) {
             return findAll();
         } else {
-            return bookRepo.search(stringFilter).stream()
+            return bookRepo.findAllContainingPhrase(phrase, columnList).stream()
                     .map(BookMapper::toDto)
                     .collect(Collectors.toList());
         }
     }
+
+
 }

@@ -1,6 +1,10 @@
 package pl.sokolak87.MyBooks.book;
 
 import lombok.Data;
+import pl.sokolak87.MyBooks.author.AuthorDto;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 public class BookDto {
@@ -8,7 +12,8 @@ public class BookDto {
     private String title;
     private String subtitle;
     private String city;
-    private Integer year;
-    private String authors;
-    //private List<String> authors = new ArrayList<>();
+    private String year;
+    private String volume;
+    private String edition;
+    private List<AuthorDto> authors = new ArrayList<>();
 }

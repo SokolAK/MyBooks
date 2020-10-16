@@ -11,7 +11,6 @@ public class AuthorMapper {
         authorDto.setFirstName(author.getFirstName());
         authorDto.setMiddleName(author.getMiddleName());
         authorDto.setLastName(author.getLastName());
-        authorDto.setSuffix(author.getSuffix());
         return authorDto;
     }
 }
