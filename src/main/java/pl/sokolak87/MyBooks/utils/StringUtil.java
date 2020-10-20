@@ -25,11 +25,9 @@ public class StringUtil {
     public static Set<String> convertPhraseToSubPhrases(String phrase) {
         Set<String> collect = Stream.of(phrase
                 .toLowerCase()
-                //.replaceAll("\\.|;", "")
                 .split(" "))
                 .map(sp -> "%" + sp + "%")
                 .collect(Collectors.toSet());
-        System.out.println(collect);
         return collect;
     }
 }

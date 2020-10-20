@@ -1,4 +1,4 @@
-package pl.sokolak87.MyBooks.book;
+package pl.sokolak87.MyBooks.model.book;
 
 import java.util.List;
 import java.util.Map;

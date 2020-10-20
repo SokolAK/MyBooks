@@ -1,11 +1,11 @@
-package pl.sokolak87.MyBooks.book;
+package pl.sokolak87.MyBooks.model.book;
 
 import lombok.Data;
-import pl.sokolak87.MyBooks.author.Author;
+import pl.sokolak87.MyBooks.model.author.Author;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Data
 @Entity
@@ -33,7 +33,7 @@ public class Book {
             joinColumns = @JoinColumn(name = "book_id"),
             inverseJoinColumns = @JoinColumn(name = "author_id")
     )
-    private List<Author> authors = new ArrayList<>();
+    private Set<Author> authors = new LinkedHashSet<>();
 
 /*    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "book_publisher",
@@ -41,4 +41,19 @@ public class Book {
             inverseJoinColumns = @JoinColumn(name = "publisher_id")
     )
     private List<Publisher> publishers = new ArrayList<>();*/
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Book)) return false;
+
+        Book book = (Book) o;
+
+        return id.equals(book.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
 }

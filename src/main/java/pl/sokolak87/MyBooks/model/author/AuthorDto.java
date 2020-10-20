@@ -1,8 +1,8 @@
-package pl.sokolak87.MyBooks.author;
+package pl.sokolak87.MyBooks.model.author;
 
 import lombok.Data;
 
-import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import static pl.sokolak87.MyBooks.utils.StringUtil.getInitial;
@@ -49,8 +49,8 @@ public class AuthorDto {
         return stringBuilder.toString();
     }
 
-    public static String authorsListToString(List<AuthorDto> list, boolean shortForm) {
-        return list.stream()
+    public static String authorsSetToString(Set<AuthorDto> set, boolean shortForm) {
+        return set.stream()
                 .map(a -> a.toString(shortForm))
                 .collect(Collectors.joining("; "));
     }

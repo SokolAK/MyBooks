@@ -1,4 +1,4 @@
-package pl.sokolak87.MyBooks.book;
+package pl.sokolak87.MyBooks.model.book;
 
 import org.springframework.stereotype.Service;
 
@@ -32,4 +32,8 @@ public class BookService {
     }
 
 
+    public String test(String s) {
+        System.out.println(s);
+        return s;
+    }
 }

@@ -1,9 +1,9 @@
-package pl.sokolak87.MyBooks.book;
+package pl.sokolak87.MyBooks.model.book;
 
-import pl.sokolak87.MyBooks.author.AuthorDto;
-import pl.sokolak87.MyBooks.author.AuthorMapper;
+import pl.sokolak87.MyBooks.model.author.AuthorDto;
+import pl.sokolak87.MyBooks.model.author.AuthorMapper;
 
-import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class BookMapper {
@@ -19,9 +19,9 @@ public class BookMapper {
         bookDto.setVolume(book.getVolume());
         bookDto.setEdition(book.getEdition());
 
-        List<AuthorDto> authors = book.getAuthors().stream()
+        Set<AuthorDto> authors = book.getAuthors().stream()
                 .map(AuthorMapper::toDto)
-                .collect(Collectors.toList());
+                .collect(Collectors.toSet());
         bookDto.setAuthors(authors);
 
         return bookDto;

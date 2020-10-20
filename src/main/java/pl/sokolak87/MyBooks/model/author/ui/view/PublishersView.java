@@ -1,8 +1,9 @@
-package pl.sokolak87.MyBooks.ui;
+package pl.sokolak87.MyBooks.model.author.ui.view;
 
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import pl.sokolak87.MyBooks.model.author.ui.MainLayout;
 
 @Route(value = "publishers", layout = MainLayout.class)
 @PageTitle("Publishers | MyBooks")
