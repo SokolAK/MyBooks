@@ -1,4 +1,4 @@
-package pl.sokolak87.MyBooks.model.author.ui;
+package pl.sokolak87.MyBooks.ui;
 
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.dom.ThemeList;

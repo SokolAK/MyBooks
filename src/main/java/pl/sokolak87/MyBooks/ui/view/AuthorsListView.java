@@ -1,4 +1,4 @@
-package pl.sokolak87.MyBooks.model.author.ui.view;
+package pl.sokolak87.MyBooks.ui.view;
 
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
@@ -12,47 +12,45 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import pl.sokolak87.MyBooks.model.author.AuthorDto;
 import pl.sokolak87.MyBooks.model.author.AuthorService;
-import pl.sokolak87.MyBooks.model.author.ui.MainLayout;
-import pl.sokolak87.MyBooks.model.author.ui.form.AuthorForm;
-import pl.sokolak87.MyBooks.model.author.ui.form.FormDialog;
+import pl.sokolak87.MyBooks.ui.MainLayout;
+import pl.sokolak87.MyBooks.ui.form.AuthorForm;
+import pl.sokolak87.MyBooks.ui.form.Form;
+import pl.sokolak87.MyBooks.ui.form.DialogWindow;
 
 import java.util.stream.Stream;
 
-import static pl.sokolak87.MyBooks.model.author.ui.TextFormatter.header;
+import static pl.sokolak87.MyBooks.ui.TextFormatter.header;
 
 
 @Route(value = "authors", layout = MainLayout.class)
 @PageTitle("Authors | MyBooks")
-public class AuthorsView extends VerticalLayout {
+public class AuthorsListView extends VerticalLayout {
 
     private final AuthorService authorService;
-    private final AuthorForm authorForm = new AuthorForm();
+    //private final AuthorForm authorForm = new AuthorForm();
     private final Grid<AuthorDto> grid = new Grid<>(AuthorDto.class);
     private final TextField txtFilter = new TextField();
     //private Button btnAddAuthor;
     //private FormDialog formDialog;
 
-    public AuthorsView(AuthorService authorService) {
+    public AuthorsListView(AuthorService authorService) {
         this.authorService = authorService;
         addClassName("author-view");
         setSizeFull();
 
-        authorForm.addListener(AuthorForm.DeleteEvent.class, this::deleteAuthor);
-        authorForm.addListener(AuthorForm.SaveEvent.class, this::saveAuthor);
-
-        configureGrid();
-
         add(getToolbar(), grid);
+        configureGrid();
         updateList();
     }
 
     private HorizontalLayout getToolbar() {
         HorizontalLayout horizontalLayout = new HorizontalLayout();
         horizontalLayout.setDefaultVerticalComponentAlignment(Alignment.CENTER);
-
         configureTxtFilter();
-        Button btnAddAuthor = new Button(header("addAuthor"), click -> addAuthor());
+        Button btnAddAuthor = new Button(new Icon(VaadinIcon.PLUS), click -> addAuthor());
 
+        horizontalLayout.setWidthFull();
+        horizontalLayout.expand(txtFilter);
         horizontalLayout.add(txtFilter, btnAddAuthor);
         return  horizontalLayout;
     }
@@ -68,7 +66,6 @@ public class AuthorsView extends VerticalLayout {
     private void configureGrid() {
         grid.addClassName("author-grid");
         grid.setSizeFull();
-        grid.setColumns();
 
 /*        GridContextMenu<AuthorDto> contextMenu = new GridContextMenu<>(grid);
         contextMenu.addGridContextMenuOpenedListener(e -> e.getItem().ifPresentOrElse(i -> {
@@ -84,25 +81,33 @@ public class AuthorsView extends VerticalLayout {
             }
         }, contextMenu::close));*/
 
-        addEntityColumns();
-
         grid.addItemDoubleClickListener(e -> {
+            grid.select(e.getItem());
+            AuthorForm authorForm = new AuthorForm(e.getItem(), Form.FormMode.EDIT);
             authorForm.setAuthor(e.getItem());
-            new FormDialog(authorForm).open();
+            authorForm.addListener(AuthorForm.DeleteEvent.class, this::deleteAuthor);
+            authorForm.addListener(AuthorForm.SaveEvent.class, this::saveAuthor);
+            new DialogWindow(authorForm, header("editAuthor")).open();
         });
+
+        updateGrid();
     }
 
-    private void addEditColumn() {
+
+/*    private void addEditColumn() {
         grid.addComponentColumn(author -> {
             Button edit = new Button(new Icon(VaadinIcon.EDIT));
             edit.addClassName("edit");
             edit.addClickListener(e -> {
+                AuthorForm authorForm = new AuthorForm(Form.FormMode.EDIT);
                 authorForm.setAuthor(author);
-                new FormDialog(authorForm).open();
+                authorForm.addListener(AuthorForm.DeleteEvent.class, this::deleteAuthor);
+                authorForm.addListener(AuthorForm.SaveEvent.class, this::saveAuthor);
+                new FormDialog(authorForm, "").open();
             });
             return edit;
         });
-    }
+    }*/
 
 
 
@@ -115,21 +120,29 @@ public class AuthorsView extends VerticalLayout {
 
     private void updateList() {
         grid.setItems(authorService.findAll(txtFilter.getValue()));
+        updateGrid();
+    }
+
+    private void updateGrid() {
+        grid.setColumns();
+        addEntityColumns();
     }
 
     private void deleteAuthor(AuthorForm.DeleteEvent e) {
-        authorService.delete(e.getAuthor());
+        authorService.delete(e.getDto(AuthorDto.class));
         updateList();
     }
 
     private void saveAuthor(AuthorForm.SaveEvent e) {
-        authorService.save(e.getAuthor());
+        authorService.save(e.getDto(AuthorDto.class));
         updateList();
     }
 
-    void addAuthor() {
+    private void addAuthor() {
         grid.asSingleSelect().clear();
+        AuthorForm authorForm = new AuthorForm(Form.FormMode.ADD);
         authorForm.setAuthor(new AuthorDto());
-        new FormDialog(authorForm).open();
+        authorForm.addListener(AuthorForm.SaveEvent.class, this::saveAuthor);
+        new DialogWindow(authorForm, header("addAuthor")).open();
     }
 }

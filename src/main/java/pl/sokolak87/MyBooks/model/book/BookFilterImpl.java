@@ -53,7 +53,7 @@ public class BookFilterImpl implements BookFilter {
 
         String row = "CONCAT(" + columns + ")";
         String conditions = subPhrases.stream()
-                .map(s -> row + " LIKE '" + s + "'")
+                .map(s -> row + " LIKE '%" + s + "%'")
                 .collect(Collectors.joining(" AND "));
 
         String subSql = "SELECT b.id FROM Book b " +
@@ -99,10 +99,10 @@ public class BookFilterImpl implements BookFilter {
                 Stream.of("prefix", "firstName", "middleName", "lastName")
                         .forEach(columnName -> subPredicates.add(columnTextContainsPhrase(columnName, subPhrase, bookAuthors)));
             }
-            Predicate predicate = cb.or(subPredicates.toArray(new Predicate[0]));
+            Predicate predicate = cb.or(subPredicates.toArray(Predicate[]::new));
             predicates.add(predicate);
         }
-        Predicate finalPredicate = cb.and(predicates.toArray(new Predicate[0]));
+        Predicate finalPredicate = cb.and(predicates.toArray(Predicate[]::new));
         Subquery<Long> sq = cq.subquery(Long.class);
         sq.select(book.get("id"))
                 .where(finalPredicate)
@@ -112,6 +112,6 @@ public class BookFilterImpl implements BookFilter {
 
     private Predicate columnTextContainsPhrase(String columnName, String phrase, Path<?> path) {
         Expression<String> columnText = cb.lower(path.get(columnName).as(String.class));
-        return cb.like(columnText, phrase);
+        return cb.like(columnText, "%" + phrase.toLowerCase() + "%");
     }
 }

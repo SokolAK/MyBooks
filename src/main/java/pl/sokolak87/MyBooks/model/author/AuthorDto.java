@@ -1,19 +1,25 @@
 package pl.sokolak87.MyBooks.model.author;
 
 import lombok.Data;
+import pl.sokolak87.MyBooks.model.Dto;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import static pl.sokolak87.MyBooks.utils.StringUtil.getInitial;
 
 @Data
-public class AuthorDto {
+public class AuthorDto implements Dto {
     private Long id;
-    private String prefix;
-    private String firstName;
-    private String middleName;
-    private String lastName;
+    private String prefix = "";
+    private String firstName = "";
+    private String middleName = "";
+    @NotNull
+    @NotEmpty
+    private String lastName = "";
+
 
     @Override
     public String toString() {
@@ -53,5 +59,16 @@ public class AuthorDto {
         return set.stream()
                 .map(a -> a.toString(shortForm))
                 .collect(Collectors.joining("; "));
+    }
+
+
+    public static AuthorDto copy(AuthorDto original) {
+        AuthorDto copy = new AuthorDto();
+        copy.setId(original.getId());
+        copy.setPrefix(original.getPrefix());
+        copy.setFirstName(original.getFirstName());
+        copy.setMiddleName(original.getMiddleName());
+        copy.setLastName(original.getLastName());
+        return copy;
     }
 }

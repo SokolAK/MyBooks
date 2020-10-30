@@ -1,5 +1,3 @@
-/* Main layout */
-
 a[highlight] {
     font-weight: bold;
     text-decoration: underline;
@@ -14,8 +12,6 @@ a[highlight] {
     margin: var(--lumo-space-m);
 }
 
-
-/* List view */
 .list-view .content {
     display: flex;
 }
@@ -39,4 +35,8 @@ a[highlight] {
 .dashboard-view .contact-stats {
     font-size: 4em;
     margin: 1em 0;
+}
+
+.book-details .section-header {
+    font-weight: bold;
 }

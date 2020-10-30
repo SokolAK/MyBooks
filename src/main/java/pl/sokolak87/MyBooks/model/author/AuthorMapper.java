@@ -1,9 +1,11 @@
 package pl.sokolak87.MyBooks.model.author;
 
+import org.springframework.stereotype.Service;
 
+@Service
 public class AuthorMapper {
 
-    static public AuthorDto toDto(Author author) {
+    public AuthorDto toDto(Author author) {
         AuthorDto authorDto = new AuthorDto();
         authorDto.setId(author.getId());
         authorDto.setPrefix(author.getPrefix());
@@ -13,7 +15,7 @@ public class AuthorMapper {
         return authorDto;
     }
 
-    static public Author toEntity(AuthorDto authorDto) {
+    public Author toEntity(AuthorDto authorDto) {
         Author author = new Author();
         author.setId(authorDto.getId());
         author.setPrefix(authorDto.getPrefix());

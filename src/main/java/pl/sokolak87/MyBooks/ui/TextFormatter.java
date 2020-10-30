@@ -1,4 +1,4 @@
-package pl.sokolak87.MyBooks.model.author.ui;
+package pl.sokolak87.MyBooks.ui;
 
 import com.vaadin.flow.component.Text;
 
@@ -15,6 +15,10 @@ public class TextFormatter {
 
     public static String label(String text) {
         return component.getTranslation(text);
+    }
+
+    public static String uppercase(String text) {
+        return component.getTranslation(text).toUpperCase();
     }
 }
 

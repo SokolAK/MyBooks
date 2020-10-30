@@ -16,9 +16,11 @@ spring:
 spring:
   profiles: prod
   datasource:
-    url: jdbc:postgresql://localhost:5432/mybooks
+    url: jdbc:postgresql://postgres:5432/mybooks
     username: mybooksadmin
     password: supaplex
+    #username: postgres
+    #password: root
     driverClassName: org.postgresql.Driver
     initialization-mode: always
   jpa:

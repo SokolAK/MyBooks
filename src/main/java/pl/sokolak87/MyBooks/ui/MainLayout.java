@@ -1,4 +1,4 @@
-package pl.sokolak87.MyBooks.model.author.ui;
+package pl.sokolak87.MyBooks.ui;
 
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
@@ -14,14 +14,14 @@ import com.vaadin.flow.router.HighlightConditions;
 import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.server.PWA;
 import com.vaadin.flow.theme.lumo.Lumo;
-import pl.sokolak87.MyBooks.model.author.ui.view.AuthorsView;
-import pl.sokolak87.MyBooks.model.author.ui.view.BooksView;
-import pl.sokolak87.MyBooks.model.author.ui.view.PublishersView;
+import pl.sokolak87.MyBooks.ui.view.AuthorsListView;
+import pl.sokolak87.MyBooks.ui.view.BooksListView;
+import pl.sokolak87.MyBooks.ui.view.PublishersListView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static pl.sokolak87.MyBooks.model.author.ui.TextFormatter.header;
+import static pl.sokolak87.MyBooks.ui.TextFormatter.header;
 
 
 @PWA(
@@ -46,9 +46,9 @@ public class MainLayout extends AppLayout {
         H1 logo = new H1("MyBooks");
         logo.addClassName("logo");
 
-        Button logoutButton = new Button(header("MainLayout.logout"), new Icon(VaadinIcon.SIGN_OUT));
+        Button logoutButton = new Button(new Icon(VaadinIcon.SIGN_OUT));
         logoutButton.addClickListener(click -> getUI().ifPresent(u -> u.getPage().setLocation("/logout")));
-        Button toggleThemeVariantButton = new Button(header("MainLayout.toggleTheme"), new Icon(VaadinIcon.MOON));
+        Button toggleThemeVariantButton = new Button(new Icon(VaadinIcon.MOON));
         toggleThemeVariantButton.addClickListener(click -> ThemeUtil.toggleThemeVariant());
 
         HorizontalLayout header = new HorizontalLayout(new DrawerToggle(), logo, toggleThemeVariantButton, logoutButton);
@@ -62,9 +62,9 @@ public class MainLayout extends AppLayout {
     private void createDrawer() {
         List<RouterLink> routerLinks = new ArrayList<>();
 
-        routerLinks.add(new RouterLink(header("MainLayout.books"), BooksView.class));
-        routerLinks.add(new RouterLink(header("MainLayout.authors"), AuthorsView.class));
-        routerLinks.add(new RouterLink(header("MainLayout.publishers"), PublishersView.class));
+        routerLinks.add(new RouterLink(header("MainLayout.books"), BooksListView.class));
+        routerLinks.add(new RouterLink(header("MainLayout.authors"), AuthorsListView.class));
+        routerLinks.add(new RouterLink(header("MainLayout.publishers"), PublishersListView.class));
 
         routerLinks.forEach(l -> l.setHighlightCondition(HighlightConditions.sameLocation()));
         addToDrawer(new VerticalLayout(routerLinks.toArray(new RouterLink[0])));
