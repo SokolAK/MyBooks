@@ -19,7 +19,6 @@ import pl.sokolak87.MyBooks.model.book.BookDto;
 import pl.sokolak87.MyBooks.model.book.BookService;
 import pl.sokolak87.MyBooks.ui.MainLayout;
 import pl.sokolak87.MyBooks.ui.form.BookDetails;
-import pl.sokolak87.MyBooks.ui.form.BookFormAuthor;
 import pl.sokolak87.MyBooks.ui.form.DialogWindow;
 
 import java.util.LinkedHashMap;
@@ -86,12 +85,18 @@ public class BooksListView extends VerticalLayout {
         //authorForm.setAuthor(e);
         //authorForm.addListener(AuthorForm.DeleteEvent.class, this::deleteAuthor);
         //authorForm.addListener(AuthorForm.SaveEvent.class, this::saveAuthor);
-        bookDetails.addListener(BookFormAuthor.SaveEvent.class, this::saveBook);
+        bookDetails.addListener(BookDetails.SaveEvent.class, this::saveBook);
+        bookDetails.addListener(BookDetails.DeleteEvent.class, this::deleteBook);
         new DialogWindow(bookDetails, header("bookDetails")).open();
     }
 
     private void saveBook(BookDetails.SaveEvent e) {
         bookService.save(e.getDto(BookDto.class));
+        updateList();
+    }
+
+    private void deleteBook(BookDetails.DeleteEvent e) {
+        bookService.delete(e.getDto(BookDto.class));
         updateList();
     }
 
@@ -139,7 +144,7 @@ public class BooksListView extends VerticalLayout {
 
     private void addBook() {
         grid.asSingleSelect().clear();
-        new DialogWindow(new BookFormAuthor(new BookDto(), authorService), header("addAuthor")).open();
+        openBookDetails(new BookDto());
     }
 
     private Grid.Column addGridColumn(String key) {

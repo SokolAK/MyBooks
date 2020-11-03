@@ -7,10 +7,11 @@ import pl.sokolak87.MyBooks.model.book.Book;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -27,8 +28,8 @@ public class Author extends AbstractEntity {
     @Column(columnDefinition = "varchar(50) default ''")
     private String lastName = "";
 
-    @ManyToMany(mappedBy = "authors")
-    private List<Book> books = new ArrayList<>();
+    @ManyToMany(mappedBy = "authors", fetch = FetchType.EAGER)
+    private Set<Book> books = new HashSet<>();
 
 /*    public void addBook(Book book) {
         this.books.add(book);

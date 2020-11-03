@@ -52,7 +52,8 @@ public class AuthorsListView extends VerticalLayout {
         horizontalLayout.setWidthFull();
         horizontalLayout.expand(txtFilter);
         horizontalLayout.add(txtFilter, btnAddAuthor);
-        return  horizontalLayout;
+
+        return horizontalLayout;
     }
 
     private void configureTxtFilter() {

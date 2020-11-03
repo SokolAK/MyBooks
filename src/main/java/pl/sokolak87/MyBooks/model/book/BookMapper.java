@@ -2,21 +2,21 @@ package pl.sokolak87.MyBooks.model.book;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.sokolak87.MyBooks.model.AbstractEntity;
 import pl.sokolak87.MyBooks.model.author.AuthorDto;
 import pl.sokolak87.MyBooks.model.author.AuthorMapper;
-import pl.sokolak87.MyBooks.model.author.AuthorService;
+import pl.sokolak87.MyBooks.model.author.AuthorRepo;
 
-import java.util.LinkedHashSet;
-import java.util.Set;
-import java.util.stream.Collectors;
+import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class BookMapper {
 
     @Autowired
-    private AuthorMapper authorMapper;
+    private AuthorRepo authorRepo;
     @Autowired
-    private AuthorService authorService;
+    private AuthorMapper authorMapper;
 
     public BookDto toDto(Book book) {
         BookDto bookDto = new BookDto();
@@ -29,10 +29,11 @@ public class BookMapper {
         bookDto.setVolume(book.getVolume());
         bookDto.setEdition(book.getEdition());
 
-        Set<AuthorDto> authors = book.getAuthors().stream()
-                .map(authorMapper::toDto)
-                .collect(Collectors.toCollection(LinkedHashSet::new));
-        bookDto.setAuthors(authors);
+        book.getAuthors().stream()
+                .map(AbstractEntity::getId)
+                .map(id -> authorRepo.findById(id))
+                .flatMap(Optional::stream)
+                .forEach(a -> bookDto.getAuthors().add(authorMapper.toDto(a)));
 
         return bookDto;
     }
@@ -47,23 +48,19 @@ public class BookMapper {
         book.setVolume(bookDto.getVolume());
         book.setEdition(bookDto.getEdition());
 
-/*       List<Author> authors = bookDto.getAuthors().stream()
-                .map(authorMapper::toEntity)
-                .collect(Collectors.toList());
-       book.setAuthors(authors);*/
-
-/*        bookDto.getAuthors().stream()
-                .map(a -> {
-                    Optional<AuthorDto> existingAuthor = authorService.find(a);
-                    return existingAuthor.orElse(authorService.save(a));
-                })
-                .map(authorMapper::toEntity)
-                .forEach(book::addAuthor);*/
-
+        //saved authors
         bookDto.getAuthors().stream()
-                .map(a -> authorService.find(a).orElse(authorService.save(a)))
-                .map(authorMapper::toEntity)
-                .forEach(book::addAuthor);
+                .map(AuthorDto::getId)
+                .filter(Objects::nonNull)
+                .map(id -> authorRepo.findById(id))
+                .flatMap(Optional::stream)
+                .forEach(a -> book.getAuthors().add(a));
+        //new authors
+        bookDto.getAuthors().stream()
+                .filter(a -> a.getId() == null)
+                .map(a -> authorMapper.toEntity(a))
+                .map(a -> authorRepo.save(a))
+                .forEach(a -> book.getAuthors().add(a));
 
         return book;
     }

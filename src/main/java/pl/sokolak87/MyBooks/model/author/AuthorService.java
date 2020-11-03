@@ -53,6 +53,12 @@ public class AuthorService {
         return author.map(authorMapper::toDto);
     }
 
+    public AuthorDto save(AuthorDto authorDto) {
+        Author author = authorMapper.toEntity(authorDto);
+        Optional<Author> existingAuthor = authorRepo.findOne(Example.of(author));
+        return authorMapper.toDto(existingAuthor.orElseGet(() -> authorRepo.save(author)));
+    }
+
     @Transactional
     public void delete(AuthorDto authorDto) {
         Optional<Author> author = authorRepo.findById(authorDto.getId());
@@ -63,15 +69,8 @@ public class AuthorService {
         });
     }
 
-    public AuthorDto save(AuthorDto authorDto) {
-        Author authorEntity = authorMapper.toEntity(authorDto);
-        Optional<Author> existingAuthor = authorRepo.findOne(Example.of(authorEntity));
-        //Optional<Author> existingAuthor = authorRepo.findById(authorDto.getId());
-        return authorMapper.toDto(existingAuthor.orElseGet(() -> authorRepo.save(authorEntity)));
-    }
-
     @Transactional
-    public void checkAndRemoveOrphan(AuthorDto authorDto) {
+    public void deleteOrphan(AuthorDto authorDto) {
         Optional<Author> author = authorRepo.findById(authorDto.getId());
         author.ifPresent(a -> {
             if (a.getBooks().size() == 0) {

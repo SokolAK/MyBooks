@@ -4,8 +4,8 @@ import lombok.Data;
 import pl.sokolak87.MyBooks.model.Dto;
 import pl.sokolak87.MyBooks.model.author.AuthorDto;
 
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 public class BookDto implements Dto {
@@ -16,7 +16,8 @@ public class BookDto implements Dto {
     private String year = "";
     private String volume = "";
     private String edition = "";
-    private Set<AuthorDto> authors = new LinkedHashSet<>();
+    //private Set<AuthorDto> authors = new LinkedHashSet<>();
+    private List<AuthorDto> authors = new ArrayList<>();
 
     public static BookDto copy(BookDto original) {
         BookDto copy = new BookDto();
@@ -27,7 +28,7 @@ public class BookDto implements Dto {
         copy.setCity(original.getCity());
         copy.setVolume(original.getVolume());
         copy.setEdition(original.getEdition());
-        copy.setAuthors(new LinkedHashSet<>());
+        copy.setAuthors(new ArrayList<>());
         original.getAuthors().forEach(oa -> copy.getAuthors().add(AuthorDto.copy(oa)));
         return copy;
     }

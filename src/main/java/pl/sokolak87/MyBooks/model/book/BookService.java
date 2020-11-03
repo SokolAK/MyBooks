@@ -3,7 +3,7 @@ package pl.sokolak87.MyBooks.model.book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.sokolak87.MyBooks.model.author.AuthorMapper;
-import pl.sokolak87.MyBooks.model.author.AuthorService;
+import pl.sokolak87.MyBooks.model.author.AuthorRepo;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -17,7 +17,7 @@ public class BookService {
     private final BookRepo bookRepo;
     private final BookMapper bookMapper;
     @Autowired
-    private AuthorService authorService;
+    private AuthorRepo authorRepo;
     @Autowired
     private AuthorMapper authorMapper;
 
@@ -45,21 +45,58 @@ public class BookService {
 
     @Transactional
     public BookDto save(BookDto bookDto) {
-        if(bookDto.getId() != null) {
+        if (bookDto.getId() != null) {
+            Optional<Book> book = bookRepo.findById(bookDto.getId());
+            book.ifPresent(b -> delete(bookDto));
+        }
+        Book book = bookMapper.toEntity(bookDto);
+        return bookMapper.toDto(bookRepo.save(book));
+    }
+
+    @Transactional
+    public void delete(BookDto bookDto) {
+        Optional<Book> book = bookRepo.findById(bookDto.getId());
+        book.ifPresent(b -> {
+            b.getAuthors().stream()
+                    .peek(a -> a.getBooks().remove(b))
+                    .filter(a -> a.getBooks().size() == 0)
+                    .forEach(a -> authorRepo.delete(a));
+            b.getAuthors().clear();
+            bookRepo.delete(b);
+        });
+    }
+
+/*    @Transactional
+    public BookDto save(BookDto bookDto) {
+        updateAuthors(bookDto);
+        return bookMapper.toDto(bookRepo.save(bookMapper.toEntity(bookDto)));
+    }
+
+    @Transactional
+    public void delete(BookDto bookDto) {
+        deleteAuthors(bookDto);
+        bookRepo.delete(bookMapper.toEntity(bookDto));
+    }
+
+    private void deleteAuthors(BookDto bookDto) {
+        bookDto.getAuthors().clear();
+        updateAuthors(bookDto);
+    }
+
+    private void updateAuthors(BookDto bookDto) {
+        if (bookDto.getId() != null) {
             Optional<Book> book = bookRepo.findById(bookDto.getId());
             book.ifPresent(b -> b.getAuthors().stream()
                     .filter(a -> !bookDto.getAuthors().contains(authorMapper.toDto(a)))
-                    .peek(a -> a.removeBook(b))
+                    .peek(a -> a.getBooks().remove(b))
                     .map(authorMapper::toDto)
-                    .forEach(authorService::checkAndRemoveOrphan));
+                    .forEach(authorService::deleteOrphan));
         }
-
-        return bookMapper.toDto(bookRepo.save(bookMapper.toEntity(bookDto)));
+    }*/
 
 /*
         Author authorEntity = authorMapper.toEntity(authorDto);
         Optional<Author> existingAuthor = authorRepo.findOne(Example.of(authorEntity));
         //Optional<Author> existingAuthor = authorRepo.findById(authorDto.getId());
         return authorMapper.toDto(existingAuthor.orElseGet(() -> authorRepo.save(authorEntity)));*/
-    }
 }

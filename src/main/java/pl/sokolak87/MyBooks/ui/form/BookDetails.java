@@ -20,7 +20,9 @@ import pl.sokolak87.MyBooks.model.author.AuthorDto;
 import pl.sokolak87.MyBooks.model.author.AuthorService;
 import pl.sokolak87.MyBooks.model.book.BookDto;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static pl.sokolak87.MyBooks.ui.TextFormatter.header;
 import static pl.sokolak87.MyBooks.ui.TextFormatter.uppercase;
@@ -36,7 +38,7 @@ public class BookDetails extends Form {
     private final TextField city = new TextField();
     private final TextField edition = new TextField();
     private final TextField volume = new TextField();
-
+    private final DeleteButton btnDelete = new DeleteButton();
 
     public BookDetails(BookDto bookDto, AuthorService authorService) {
         this.bookDto = BookDto.copy(bookDto);
@@ -44,7 +46,8 @@ public class BookDetails extends Form {
         setClassName("book-details");
 
         binder.bindInstanceFields(this);
-        //addListener(BookDetails.SaveEvent.class, e -> getParent().ifPresent(d -> ((Dialog)d).close()));
+        addListener(BookDetails.SaveEvent.class, e -> getParent().ifPresent(d -> ((Dialog)d).close()));
+        addListener(BookDetails.DeleteEvent.class, e -> getParent().ifPresent(d -> ((Dialog)d).close()));
 
         updateDetails();
     }
@@ -65,6 +68,7 @@ public class BookDetails extends Form {
                 .peek(t -> t.setReadOnly(true))
                 .peek(HasSize::setWidthFull)
                 .toArray(Component[]::new);
+
         verticalLayout.add(createSection("authors", new Button(new Icon(VaadinIcon.EDIT), click -> editAuthors()), authorsSection));
 
         configureTxtField(year, bookDto.getYear());
@@ -87,6 +91,7 @@ public class BookDetails extends Form {
         textField.setReadOnly(true);
         textField.setWidthFull();
         textField.addBlurListener(e -> e.getSource().setReadOnly(true));
+        textField.addValueChangeListener(e -> writeBook());
     }
 
     private Button getEditButton(TextField textField) {
@@ -95,7 +100,6 @@ public class BookDetails extends Form {
             textField.focus();
         });
     }
-
 
     private VerticalLayout createSection(String title, Button btnEdit, Component... components) {
         VerticalLayout verticalLayout = new VerticalLayout();
@@ -123,36 +127,49 @@ public class BookDetails extends Form {
     }
 
     private HorizontalLayout createButtonsLayout() {
-        HorizontalLayout horizontalLayout = new HorizontalLayout();
+        HorizontalLayout buttonsLayout = new HorizontalLayout();
 
         Button btnSave = new Button(header("save"));
         btnSave.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         btnSave.addClickShortcut(Key.ENTER);
-        btnSave.addClickListener(event -> {
-            saveBook();
-            getParent().ifPresent(d -> ((Dialog) d).close());
-        });
-        horizontalLayout.addAndExpand(btnSave);
+        btnSave.addClickListener(e -> saveBook());
+        buttonsLayout.addAndExpand(btnSave);
 
-/*        if(formMode.equals(FormMode.EDIT)) {
-            btnCancel.addThemeVariants(ButtonVariant.LUMO_ERROR);
-            btnCancel.addClickListener(event -> fireEvent(new DeleteEvent(this, author)));
-            horizontalLayout.addAndExpand(btnCancel);
-        }*/
-        return horizontalLayout;
+/*        Button btnDelete = new Button(header("delete"));
+        btnDelete.addThemeVariants(ButtonVariant.LUMO_ERROR);
+        btnDelete.addClickListener(e -> new ConfirmationDialog());*/
+
+        btnDelete.addClickListener(e -> {
+            if (((DeleteButton) e.getSource()).isReady())
+                deleteBook();
+        });
+        buttonsLayout.addAndExpand(btnDelete);
+
+        return buttonsLayout;
     }
 
-    private void saveBook() {
+    private boolean writeBook() {
         try {
             binder.writeBean(bookDto);
-            fireEvent(new SaveEvent(this, bookDto));
+            return true;
         } catch (ValidationException e) {
             e.printStackTrace();
+            return false;
         }
     }
 
+    private void saveBook() {
+        if(writeBook())
+            fireEvent(new SaveEvent(this, bookDto));
+    }
+
+    private void deleteBook() {
+        fireEvent(new DeleteEvent(this, bookDto));
+    }
+
     private void saveAuthors(BookFormAuthor.SaveEvent e) {
-        bookDto = BookDto.copy(e.getDto(BookDto.class));
+        List<AuthorDto> authors = e.getDto(BookDto.class).getAuthors();
+        bookDto.setAuthors(new ArrayList<>(authors));
         updateDetails();
     }
 }

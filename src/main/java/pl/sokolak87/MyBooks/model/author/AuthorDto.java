@@ -5,6 +5,8 @@ import pl.sokolak87.MyBooks.model.Dto;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -19,7 +21,7 @@ public class AuthorDto implements Dto {
     @NotNull
     @NotEmpty
     private String lastName = "";
-
+    private Set<Long> booksIds = new HashSet<>();
 
     @Override
     public String toString() {
@@ -55,12 +57,11 @@ public class AuthorDto implements Dto {
         return stringBuilder.toString();
     }
 
-    public static String authorsSetToString(Set<AuthorDto> set, boolean shortForm) {
+    public static String authorsSetToString(Collection<AuthorDto> set, boolean shortForm) {
         return set.stream()
                 .map(a -> a.toString(shortForm))
                 .collect(Collectors.joining("; "));
     }
-
 
     public static AuthorDto copy(AuthorDto original) {
         AuthorDto copy = new AuthorDto();
@@ -69,6 +70,7 @@ public class AuthorDto implements Dto {
         copy.setFirstName(original.getFirstName());
         copy.setMiddleName(original.getMiddleName());
         copy.setLastName(original.getLastName());
+        copy.setBooksIds(new HashSet<>(original.getBooksIds()));
         return copy;
     }
 }

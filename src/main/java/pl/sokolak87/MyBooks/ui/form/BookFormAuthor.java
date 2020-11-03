@@ -18,7 +18,9 @@ import pl.sokolak87.MyBooks.model.author.AuthorDto;
 import pl.sokolak87.MyBooks.model.author.AuthorService;
 import pl.sokolak87.MyBooks.model.book.BookDto;
 
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 import static pl.sokolak87.MyBooks.ui.TextFormatter.header;
@@ -35,7 +37,7 @@ public class BookFormAuthor extends Form {
     private final TextField lastName = new TextField(header("lastName"));
     private final Grid<AuthorDto> gridAvailableAuthor = new Grid<>();
     private final Grid<AuthorDto> gridAddedAuthor = new Grid<>();
-    private final Set<AuthorDto> addedAuthors = new LinkedHashSet<>();
+    private final List<AuthorDto> addedAuthors = new ArrayList<>();
     private Button btnAdd;
     private Button btnSave;
     private Button btnCancel;
