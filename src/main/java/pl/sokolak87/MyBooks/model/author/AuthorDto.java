@@ -1,6 +1,7 @@
 package pl.sokolak87.MyBooks.model.author;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import pl.sokolak87.MyBooks.model.Dto;
 
 import javax.validation.constraints.NotEmpty;
@@ -12,7 +13,8 @@ import java.util.stream.Collectors;
 
 import static pl.sokolak87.MyBooks.utils.StringUtil.getInitial;
 
-@Data
+@Getter
+@Setter
 public class AuthorDto implements Dto {
     private Long id;
     private String prefix = "";

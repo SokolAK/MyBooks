@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 import pl.sokolak87.MyBooks.model.AbstractEntity;
 import pl.sokolak87.MyBooks.model.author.Author;
+import pl.sokolak87.MyBooks.model.publisher.Publisher;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -15,39 +16,27 @@ import java.util.List;
 @Setter
 @ToString
 public class Book extends AbstractEntity {
-
-    @Column(columnDefinition = "varchar(512) default ''")
+    @Column(columnDefinition = "varchar(255) default ''")
     private String title = "";
-    @Column(columnDefinition = "varchar(512) default ''")
+    @Column(columnDefinition = "varchar(511) default ''")
     private String subtitle = "";
-    @Column(columnDefinition = "varchar(30) default ''")
+    @Column(columnDefinition = "varchar(31) default ''")
     private String city = "";
     @Column(columnDefinition = "varchar(15) default ''")
     private String year = "";
-    @Column(columnDefinition = "varchar(5) default ''")
+    @Column(columnDefinition = "varchar(7) default ''")
     private String volume = "";
-    @Column(columnDefinition = "varchar(255) default ''")
+    @Column(columnDefinition = "varchar(127) default ''")
     private String edition = "";
+    @Column(columnDefinition = "varchar(511) default ''")
+    private String comment = "";
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "book_author")
     @OrderColumn
     private List<Author> authors = new ArrayList<>();
-
-    public void addAuthor(Author author) {
-        this.authors.add(author);
-        author.getBooks().add(this);
-    }
-
-/*    public void removeAuthor(Author author) {
-        this.authors.remove(author);
-        author.getBooks().remove(this);
-    }*/
-
-/*    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "book_publisher",
-            joinColumns = @JoinColumn(name = "book_id"),
-            inverseJoinColumns = @JoinColumn(name = "publisher_id")
-    )
-    private List<Publisher> publishers = new ArrayList<>();*/
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "book_publisher")
+    @OrderColumn
+    private List<Publisher> publishers = new ArrayList<>();
 }

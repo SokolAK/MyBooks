@@ -28,6 +28,7 @@ public class BookMapper {
         bookDto.setCity(book.getCity());
         bookDto.setVolume(book.getVolume());
         bookDto.setEdition(book.getEdition());
+        bookDto.setComment(book.getComment());
 
         book.getAuthors().stream()
                 .map(AbstractEntity::getId)
@@ -47,6 +48,7 @@ public class BookMapper {
         book.setCity(bookDto.getCity());
         book.setVolume(bookDto.getVolume());
         book.setEdition(bookDto.getEdition());
+        book.setComment(bookDto.getComment());
 
         //saved authors
         bookDto.getAuthors().stream()

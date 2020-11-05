@@ -19,9 +19,7 @@ import pl.sokolak87.MyBooks.model.author.AuthorService;
 import pl.sokolak87.MyBooks.model.book.BookDto;
 
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 
 import static pl.sokolak87.MyBooks.ui.TextFormatter.header;
 

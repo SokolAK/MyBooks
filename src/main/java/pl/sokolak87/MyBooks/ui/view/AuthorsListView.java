@@ -30,38 +30,53 @@ public class AuthorsListView extends VerticalLayout {
     //private final AuthorForm authorForm = new AuthorForm();
     private final Grid<AuthorDto> grid = new Grid<>(AuthorDto.class);
     private final TextField txtFilter = new TextField();
-    //private Button btnAddAuthor;
+    private Button btnAddAuthor;
     //private FormDialog formDialog;
+    private HorizontalLayout toolbar;
 
     public AuthorsListView(AuthorService authorService) {
         this.authorService = authorService;
         addClassName("author-view");
         setSizeFull();
 
-        add(getToolbar(), grid);
+
         configureGrid();
+        configureToolbar();
+        add(toolbar, grid);
+
         updateList();
     }
 
-    private HorizontalLayout getToolbar() {
-        HorizontalLayout horizontalLayout = new HorizontalLayout();
-        horizontalLayout.setDefaultVerticalComponentAlignment(Alignment.CENTER);
+    private void configureToolbar() {
+        toolbar = new HorizontalLayout();
+        toolbar.setDefaultVerticalComponentAlignment(Alignment.CENTER);
         configureTxtFilter();
-        Button btnAddAuthor = new Button(new Icon(VaadinIcon.PLUS), click -> addAuthor());
+        btnAddAuthor = new Button(new Icon(VaadinIcon.PLUS), click -> addAuthor());
 
-        horizontalLayout.setWidthFull();
-        horizontalLayout.expand(txtFilter);
-        horizontalLayout.add(txtFilter, btnAddAuthor);
+        toolbar.setWidthFull();
+        //toolbar.expand(txtFilter);
+        txtFilter.setMinWidth("0%");
 
-        return horizontalLayout;
+        toolbar.add(txtFilter, btnAddAuthor);
     }
 
     private void configureTxtFilter() {
         txtFilter.setPlaceholder(header("filterByPhrase"));
         txtFilter.setClearButtonVisible(true);
         txtFilter.setValueChangeMode(ValueChangeMode.LAZY);
+        txtFilter.addFocusListener(e -> expandTxtFilter());
+        txtFilter.addBlurListener(e -> collapseTxtFilter());
         txtFilter.addValueChangeListener(e -> updateList());
-        //txtFilter.setWidth("50em");
+    }
+
+    private void expandTxtFilter() {
+        txtFilter.setMinWidth("100%");
+        btnAddAuthor.setVisible(false);
+    }
+
+    private void collapseTxtFilter() {
+        txtFilter.setMinWidth("0%");
+        btnAddAuthor.setVisible(true);
     }
 
     private void configureGrid() {

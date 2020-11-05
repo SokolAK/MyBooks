@@ -17,27 +17,16 @@ import java.util.Set;
 @Getter
 @Setter
 public class Author extends AbstractEntity {
-
-    @Column(columnDefinition = "varchar(20) default ''")
+    @Column(columnDefinition = "varchar(31) default ''")
     private String prefix = "";
-    @Column(columnDefinition = "varchar(20) default ''")
+    @Column(columnDefinition = "varchar(31) default ''")
     private String firstName = "";
-    @Column(columnDefinition = "varchar(20) default ''")
+    @Column(columnDefinition = "varchar(31) default ''")
     private String middleName = "";
     @NotNull
-    @Column(columnDefinition = "varchar(50) default ''")
+    @Column(columnDefinition = "varchar(63) default ''")
     private String lastName = "";
 
     @ManyToMany(mappedBy = "authors", fetch = FetchType.EAGER)
     private Set<Book> books = new HashSet<>();
-
-/*    public void addBook(Book book) {
-        this.books.add(book);
-        book.getAuthors().add(this);
-    }*/
-
-    public void removeBook(Book book) {
-        this.books.remove(book);
-        book.getAuthors().remove(this);
-    }
 }

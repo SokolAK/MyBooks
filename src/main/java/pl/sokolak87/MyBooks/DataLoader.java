@@ -38,12 +38,12 @@ public class DataLoader implements ApplicationRunner {
     }
 
     public void run(ApplicationArguments args) {
-        Stream.of("Ogniem i lalką;  powieść;    Henryk Sienkiewicz, Bolesław Prus;  1930;   1;  1",
-                "Lalka;             powieść;    Bolesław Prus;                      1922;   ;   3",
-                "Dziady;            ;           Adam Mickiewicz;                    1901;   ;   2",
-                "Kordian;           ;           Juliusz Słowacki;                   1914;   ;   ;",
-                "Chłopi;            Zima;       Władysław Reymont;                  1906;   1;  ;",
-                "Chłopi;            Wiosna;     Władysław Reymont;                  1906;   2;  ;")
+        Stream.of("Ogniem i lalką;  powieść;    Henryk Sienkiewicz, Bolesław Prus;  1930;   1;  1;  Gebethner;          Warszawa;",
+                "Lalka;             powieść;    Bolesław Prus;                      1922;   ;   3;  Książnica Atlas;    Lwów;",
+                "Dziady;            ;           Adam Mickiewicz;                    1901;   ;   2;  Gebethner;          Warszawa;",
+                "Kordian;           ;           Juliusz Słowacki;                   1914;   ;   ;   Fiszer;             Łódź",
+                "Chłopi;            Zima;       Władysław Reymont;                  1906;   1;  ;   ;                   ;",
+                "Chłopi;            Wiosna;     Władysław Reymont;                  1906;   2;  ;   ;                   ;")
                 .forEach(s -> {
                     Book book = new Book();
                     book.setTitle(s.split(";")[0].trim());
@@ -58,8 +58,8 @@ public class DataLoader implements ApplicationRunner {
                                 author.setFirstName(a.trim().split(" ")[0]);
                                 author.setLastName(a.trim().split(" ")[1]);
                                 AuthorDto savedAuthor = authorService.save(author);
-                                book.addAuthor(authorMapper.toEntity(savedAuthor));
-
+                                savedAuthor.getBooksIds().add(book.getId());
+                                book.getAuthors().add(authorMapper.toEntity(savedAuthor));
                             });
 
                     bookService.save(bookMapper.toDto(book));

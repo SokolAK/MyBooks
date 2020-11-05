@@ -51,7 +51,6 @@ public class BooksListView extends VerticalLayout {
         setSizeFull();
 
         initColumnList();
-        configureTxtField();
         //configureChkShortNotation();
         configureGrid();
         configureToolbar();
@@ -159,14 +158,6 @@ public class BooksListView extends VerticalLayout {
         return  column;
     }
 
-    private void configureTxtField() {
-        txtFilter.setPlaceholder(header("filterByPhrase"));
-        txtFilter.setClearButtonVisible(true);
-        txtFilter.setValueChangeMode(ValueChangeMode.LAZY);
-        txtFilter.addValueChangeListener(e -> updateList());
-        //txtFilter.setWidth("50em");
-    }
-
     private void updateList() {
         grid.setItems(bookService.findAll(txtFilter.getValue(), columnList));
         updateGrid();
@@ -193,6 +184,7 @@ public class BooksListView extends VerticalLayout {
         columnList.put("city", false);
         columnList.put("edition", true);
         columnList.put("volume", true);
+        columnList.put("comment", false);
     }
 
     private void configureMnuColumns() {

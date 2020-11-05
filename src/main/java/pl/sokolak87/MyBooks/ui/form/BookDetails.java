@@ -37,6 +37,7 @@ public class BookDetails extends Form {
     private final TextField year = new TextField();
     private final TextField city = new TextField();
     private final TextField edition = new TextField();
+    private final TextField comment = new TextField();
     private final TextField volume = new TextField();
     private final DeleteButton btnDelete = new DeleteButton();
 
@@ -83,6 +84,9 @@ public class BookDetails extends Form {
         configureTxtField(edition, bookDto.getEdition());
         verticalLayout.add(createSection("edition", getEditButton(edition), edition));
 
+        configureTxtField(comment, bookDto.getComment());
+        verticalLayout.add(createSection("comment", getEditButton(comment), comment));
+
         add(verticalLayout, createButtonsLayout());
     }
 
@@ -116,7 +120,14 @@ public class BookDetails extends Form {
         horizontalLayout.setSpacing(false);
         verticalLayout.add(horizontalLayout);
 
+        if(components.length == 0) {
+            TextField textField = new TextField();
+            textField.setReadOnly(true);
+            textField.setWidthFull();
+            components = new Component[] {textField};
+        }
         Arrays.stream(components).forEach(verticalLayout::add);
+
         return verticalLayout;
     }
 
