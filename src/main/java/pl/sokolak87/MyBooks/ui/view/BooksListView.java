@@ -17,6 +17,7 @@ import com.vaadin.flow.router.Route;
 import pl.sokolak87.MyBooks.model.author.AuthorService;
 import pl.sokolak87.MyBooks.model.book.BookDto;
 import pl.sokolak87.MyBooks.model.book.BookService;
+import pl.sokolak87.MyBooks.model.publisher.PublisherService;
 import pl.sokolak87.MyBooks.ui.MainLayout;
 import pl.sokolak87.MyBooks.ui.form.BookDetails;
 import pl.sokolak87.MyBooks.ui.form.DialogWindow;
@@ -25,6 +26,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import static pl.sokolak87.MyBooks.model.author.AuthorDto.authorsSetToString;
+import static pl.sokolak87.MyBooks.model.publisher.PublisherDto.publishersSetToString;
 import static pl.sokolak87.MyBooks.ui.TextFormatter.header;
 
 
@@ -34,7 +36,7 @@ public class BooksListView extends VerticalLayout {
 
     private final BookService bookService;
     private final AuthorService authorService;
-
+    private final PublisherService publisherService;
     private final Grid<BookDto> grid = new Grid<>(BookDto.class);
     private final TextField txtFilter = new TextField();
     private final MenuBar mnuColumns = new MenuBar();
@@ -44,13 +46,14 @@ public class BooksListView extends VerticalLayout {
     private boolean shortNotation = false;
     private HorizontalLayout toolbar;
 
-    public BooksListView(BookService bookService, AuthorService authorService) {
+    public BooksListView(BookService bookService, AuthorService authorService, PublisherService publisherService) {
         this.bookService = bookService;
         this.authorService = authorService;
+        this.publisherService = publisherService;
         addClassName("list-view");
         setSizeFull();
 
-        initColumnList();
+        initFullColumnList();
         //configureChkShortNotation();
         configureGrid();
         configureToolbar();
@@ -60,7 +63,7 @@ public class BooksListView extends VerticalLayout {
     }
 
     private Icon setBtnShortNotationIcon(boolean shortNotation) {
-        if(shortNotation)
+        if (shortNotation)
             return new Icon(VaadinIcon.EXPAND);
         else
             return new Icon(VaadinIcon.COMPRESS);
@@ -80,7 +83,7 @@ public class BooksListView extends VerticalLayout {
     }
 
     private void openBookDetails(BookDto bookDto) {
-        BookDetails bookDetails = new BookDetails(BookDto.copy(bookDto), authorService);
+        BookDetails bookDetails = new BookDetails(BookDto.copy(bookDto), authorService, publisherService);
         //authorForm.setAuthor(e);
         //authorForm.addListener(AuthorForm.DeleteEvent.class, this::deleteAuthor);
         //authorForm.addListener(AuthorForm.SaveEvent.class, this::saveAuthor);
@@ -115,8 +118,13 @@ public class BooksListView extends VerticalLayout {
         btnAddBook = new Button(new Icon(VaadinIcon.PLUS), click -> addBook());
         btnShortNotation = new Button(setBtnShortNotationIcon(shortNotation), e -> {
             shortNotation = !shortNotation;
-            e.getSource().setIcon(setBtnShortNotationIcon(shortNotation));
+            if (shortNotation)
+                initShortColumnList();
+            else
+                initFullColumnList();
+            updateMnuColumns();
             updateGrid();
+            e.getSource().setIcon(setBtnShortNotationIcon(shortNotation));
         });
         configureMnuColumns();
 
@@ -151,11 +159,14 @@ public class BooksListView extends VerticalLayout {
         if (key.equals("authors")) {
             ValueProvider<BookDto, String> valueProvider = b -> authorsSetToString(b.getAuthors(), shortNotation);
             column = grid.addColumn(valueProvider).setComparator(valueProvider);
+        } else if (key.equals("publishers")) {
+            ValueProvider<BookDto, String> valueProvider = b -> publishersSetToString(b.getPublishers());
+            column = grid.addColumn(valueProvider).setComparator(valueProvider);
         } else {
             column = grid.addColumn(key);
         }
         column.setHeader(header(key));
-        return  column;
+        return column;
     }
 
     private void updateList() {
@@ -175,16 +186,30 @@ public class BooksListView extends VerticalLayout {
         addEntityColumns();
     }
 
-    private void initColumnList() {
+    private void initShortColumnList() {
         columnList.put("id", false);
         columnList.put("title", true);
         columnList.put("subtitle", false);
         columnList.put("authors", true);
+        columnList.put("publishers", true);
         columnList.put("year", true);
         columnList.put("city", false);
         columnList.put("edition", true);
         columnList.put("volume", true);
         columnList.put("comment", false);
+    }
+
+    private void initFullColumnList() {
+        columnList.put("id", false);
+        columnList.put("title", true);
+        columnList.put("subtitle", true);
+        columnList.put("authors", true);
+        columnList.put("publishers", true);
+        columnList.put("year", true);
+        columnList.put("city", true);
+        columnList.put("edition", true);
+        columnList.put("volume", true);
+        columnList.put("comment", true);
     }
 
     private void configureMnuColumns() {
@@ -193,6 +218,7 @@ public class BooksListView extends VerticalLayout {
                     MenuItem item = columns
                             .getSubMenu()
                             .addItem(header(columnName));
+                    item.setId(columnName);
                     item.setCheckable(true);
                     item.setChecked(isChecked);
                     item.addClickListener(e -> {
@@ -207,4 +233,13 @@ public class BooksListView extends VerticalLayout {
         mnuColumns.addThemeVariants(MenuBarVariant.LUMO_ICON);
     }
 
+    private void updateMnuColumns() {
+        MenuItem columns = mnuColumns.getItems().get(0);
+        columns.getSubMenu().getItems().forEach(it -> it.setChecked(columnList.get(it.getId().get().toLowerCase())));
+    }
+
+/*    @Override
+    public String getPageTitle() {
+        return "Books | MyBooks";
+    }*/
 }

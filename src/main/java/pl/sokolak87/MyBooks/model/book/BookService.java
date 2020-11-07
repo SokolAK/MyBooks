@@ -65,38 +65,4 @@ public class BookService {
             bookRepo.delete(b);
         });
     }
-
-/*    @Transactional
-    public BookDto save(BookDto bookDto) {
-        updateAuthors(bookDto);
-        return bookMapper.toDto(bookRepo.save(bookMapper.toEntity(bookDto)));
-    }
-
-    @Transactional
-    public void delete(BookDto bookDto) {
-        deleteAuthors(bookDto);
-        bookRepo.delete(bookMapper.toEntity(bookDto));
-    }
-
-    private void deleteAuthors(BookDto bookDto) {
-        bookDto.getAuthors().clear();
-        updateAuthors(bookDto);
-    }
-
-    private void updateAuthors(BookDto bookDto) {
-        if (bookDto.getId() != null) {
-            Optional<Book> book = bookRepo.findById(bookDto.getId());
-            book.ifPresent(b -> b.getAuthors().stream()
-                    .filter(a -> !bookDto.getAuthors().contains(authorMapper.toDto(a)))
-                    .peek(a -> a.getBooks().remove(b))
-                    .map(authorMapper::toDto)
-                    .forEach(authorService::deleteOrphan));
-        }
-    }*/
-
-/*
-        Author authorEntity = authorMapper.toEntity(authorDto);
-        Optional<Author> existingAuthor = authorRepo.findOne(Example.of(authorEntity));
-        //Optional<Author> existingAuthor = authorRepo.findById(authorDto.getId());
-        return authorMapper.toDto(existingAuthor.orElseGet(() -> authorRepo.save(authorEntity)));*/
 }

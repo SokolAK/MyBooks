@@ -19,6 +19,8 @@ import com.vaadin.flow.data.binder.ValidationException;
 import pl.sokolak87.MyBooks.model.author.AuthorDto;
 import pl.sokolak87.MyBooks.model.author.AuthorService;
 import pl.sokolak87.MyBooks.model.book.BookDto;
+import pl.sokolak87.MyBooks.model.publisher.PublisherDto;
+import pl.sokolak87.MyBooks.model.publisher.PublisherService;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,6 +33,7 @@ public class BookDetails extends Form {
 
     private BookDto bookDto;
     private final AuthorService authorService;
+    private final PublisherService publisherService;
     private final Binder<BookDto> binder = new BeanValidationBinder<>(BookDto.class);
     private final TextField title = new TextField();
     private final TextField subtitle = new TextField();
@@ -41,9 +44,10 @@ public class BookDetails extends Form {
     private final TextField volume = new TextField();
     private final DeleteButton btnDelete = new DeleteButton();
 
-    public BookDetails(BookDto bookDto, AuthorService authorService) {
+    public BookDetails(BookDto bookDto, AuthorService authorService, PublisherService publisherService) {
         this.bookDto = BookDto.copy(bookDto);
         this.authorService = authorService;
+        this.publisherService = publisherService;
         setClassName("book-details");
 
         binder.bindInstanceFields(this);
@@ -69,8 +73,15 @@ public class BookDetails extends Form {
                 .peek(t -> t.setReadOnly(true))
                 .peek(HasSize::setWidthFull)
                 .toArray(Component[]::new);
-
         verticalLayout.add(createSection("authors", new Button(new Icon(VaadinIcon.EDIT), click -> editAuthors()), authorsSection));
+
+        Component[] publishersSection = bookDto.getPublishers().stream()
+                .map(PublisherDto::toString)
+                .map(s -> new TextField(null, s, ""))
+                .peek(t -> t.setReadOnly(true))
+                .peek(HasSize::setWidthFull)
+                .toArray(Component[]::new);
+        verticalLayout.add(createSection("publishers", new Button(new Icon(VaadinIcon.EDIT), click -> editPublishers()), publishersSection));
 
         configureTxtField(year, bookDto.getYear());
         verticalLayout.add(createSection("year", getEditButton(year), year));
@@ -137,6 +148,12 @@ public class BookDetails extends Form {
         new DialogWindow(bookFormAuthor, header("editAuthor")).open();
     }
 
+    private void editPublishers() {
+        BookFormPublisher bookFormPublisher = new BookFormPublisher(BookDto.copy(bookDto), publisherService);
+        bookFormPublisher.addListener(BookFormPublisher.SaveEvent.class, this::savePublishers);
+        new DialogWindow(bookFormPublisher, header("editPublisher")).open();
+    }
+
     private HorizontalLayout createButtonsLayout() {
         HorizontalLayout buttonsLayout = new HorizontalLayout();
 
@@ -181,6 +198,12 @@ public class BookDetails extends Form {
     private void saveAuthors(BookFormAuthor.SaveEvent e) {
         List<AuthorDto> authors = e.getDto(BookDto.class).getAuthors();
         bookDto.setAuthors(new ArrayList<>(authors));
+        updateDetails();
+    }
+
+    private void savePublishers(BookFormPublisher.SaveEvent e) {
+        List<PublisherDto> publishers = e.getDto(BookDto.class).getPublishers();
+        bookDto.setPublishers(new ArrayList<>(publishers));
         updateDetails();
     }
 }

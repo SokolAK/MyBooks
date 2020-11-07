@@ -1,14 +1,16 @@
 package pl.sokolak87.MyBooks.model.book;
 
-import pl.sokolak87.MyBooks.model.author.Author;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import javax.persistence.criteria.*;
-import java.util.*;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.StringJoiner;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static pl.sokolak87.MyBooks.utils.StringUtil.convertPhraseToSubPhrases;
 
@@ -20,11 +22,11 @@ public class BookFilterImpl implements BookFilter {
     private CriteriaQuery<Book> cq;
     private Root<Book> book;
 
-    private void init() {
+/*    private void init() {
         cb = em.getCriteriaBuilder();
         cq = cb.createQuery(Book.class);
         book = cq.from(Book.class);
-    }
+    }*/
 
     //Awful but works
     @Override
@@ -40,6 +42,9 @@ public class BookFilterImpl implements BookFilter {
         }
         if(columnList.getOrDefault("authors",false)) {
             columns.add("LOWER(STRING_AGG(CONCAT(a.firstName,a.middleName,a.lastName,a.prefix), ';'))");
+        }
+        if(columnList.getOrDefault("publishers",false)) {
+            columns.add("LOWER(STRING_AGG(CONCAT(p.name), ';'))");
         }
         if(columnList.getOrDefault("year",false)) {
             columns.add("b.year");
@@ -58,17 +63,19 @@ public class BookFilterImpl implements BookFilter {
 
         String subSql = "SELECT b.id FROM Book b " +
                 "LEFT JOIN b.authors a " +
+                "LEFT JOIN b.publishers p " +
                 "GROUP BY b.id " +
                 "HAVING " +
                 conditions;
         String sql = "SELECT b FROM Book b " +
-                "WHERE b.id IN (" + subSql + ")";
+                "WHERE b.id IN (" + subSql + ")" +
+                "";
 
         TypedQuery<Book> query = em.createQuery(sql,Book.class);
         return query.getResultList();
     }
 
-
+/*
     //Multi author problem
     public List<Book> findAllContainingPhraseOld(String phrase, Map<String, Boolean> columnList) {
         init();
@@ -113,5 +120,5 @@ public class BookFilterImpl implements BookFilter {
     private Predicate columnTextContainsPhrase(String columnName, String phrase, Path<?> path) {
         Expression<String> columnText = cb.lower(path.get(columnName).as(String.class));
         return cb.like(columnText, "%" + phrase.toLowerCase() + "%");
-    }
+    }*/
 }

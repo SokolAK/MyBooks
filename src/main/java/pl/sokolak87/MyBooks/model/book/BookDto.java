@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import pl.sokolak87.MyBooks.model.Dto;
 import pl.sokolak87.MyBooks.model.author.AuthorDto;
+import pl.sokolak87.MyBooks.model.publisher.PublisherDto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,7 @@ public class BookDto implements Dto {
     private String comment = "";
     //private Set<AuthorDto> authors = new LinkedHashSet<>();
     private List<AuthorDto> authors = new ArrayList<>();
+    private List<PublisherDto> publishers = new ArrayList<>();
 
     public static BookDto copy(BookDto original) {
         BookDto copy = new BookDto();
@@ -34,6 +36,7 @@ public class BookDto implements Dto {
         copy.setComment(original.getComment());
         copy.setAuthors(new ArrayList<>());
         original.getAuthors().forEach(oa -> copy.getAuthors().add(AuthorDto.copy(oa)));
+        original.getPublishers().forEach(op -> copy.getPublishers().add(op));
         return copy;
     }
 }
