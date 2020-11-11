@@ -7,13 +7,18 @@ import pl.sokolak.MyBooks.model.author.AuthorDto;
 import pl.sokolak.MyBooks.model.publisher.PublisherDto;
 import pl.sokolak.MyBooks.model.series.SeriesDto;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Getter
 @Setter
 public class BookDto implements Dto {
     private Long id;
+    @NotNull
+    @NotEmpty
     private String title = "";
     private String subtitle = "";
     private String city = "";
@@ -41,7 +46,8 @@ public class BookDto implements Dto {
         copy.setAuthors(new ArrayList<>());
         original.getAuthors().forEach(oa -> copy.getAuthors().add(AuthorDto.copy(oa)));
         original.getPublishers().forEach(op -> copy.getPublishers().add(PublisherDto.copy(op)));
-        copy.setSeries(SeriesDto.copy(original.getSeries()));
+        Optional<SeriesDto> originalSeries = Optional.ofNullable(original.getSeries());
+        originalSeries.ifPresent(s -> copy.setSeries(SeriesDto.copy(s)));
         return copy;
     }
 }

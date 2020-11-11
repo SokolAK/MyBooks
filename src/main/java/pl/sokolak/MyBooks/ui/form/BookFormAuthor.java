@@ -156,7 +156,6 @@ public class BookFormAuthor extends Form {
         } catch (ValidationException e) {
             //e.printStackTrace();
         }
-
     }
 
     private void save() {

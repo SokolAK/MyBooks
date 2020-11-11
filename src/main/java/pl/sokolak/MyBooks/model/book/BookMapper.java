@@ -58,7 +58,6 @@ public class BookMapper {
                 .flatMap(Optional::stream)
                 .forEach(p -> bookDto.getPublishers().add(publisherMapper.toDto(p)));
 
-
         Optional<Series> series = Optional.ofNullable(book.getSeries());
         Optional<Long> idSeries = series.map(Series::getId);
         idSeries.ifPresent(id -> {
@@ -121,7 +120,6 @@ public class BookMapper {
                             });
                 }
         );
-
         return book;
     }
 }

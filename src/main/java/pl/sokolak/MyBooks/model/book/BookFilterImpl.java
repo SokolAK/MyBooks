@@ -69,7 +69,7 @@ public class BookFilterImpl implements BookFilter {
                 conditions;
         String sql = "SELECT b FROM Book b " +
                 "WHERE b.id IN (" + subSql + ")" +
-                "";
+                "ORDER BY b.id";
 
         TypedQuery<Book> query = em.createQuery(sql,Book.class);
         return query.getResultList();

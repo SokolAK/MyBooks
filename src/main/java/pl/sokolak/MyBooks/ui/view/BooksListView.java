@@ -15,6 +15,7 @@ import com.vaadin.flow.function.ValueProvider;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import pl.sokolak.MyBooks.model.book.BookDto;
+import pl.sokolak.MyBooks.model.series.SeriesService;
 import pl.sokolak.MyBooks.ui.TextFormatter;
 import pl.sokolak.MyBooks.ui.form.BookDetails;
 import pl.sokolak.MyBooks.model.author.AuthorService;
@@ -37,6 +38,7 @@ public class BooksListView extends VerticalLayout {
     private final BookService bookService;
     private final AuthorService authorService;
     private final PublisherService publisherService;
+    private final SeriesService seriesService;
     private final Grid<BookDto> grid = new Grid<>(BookDto.class);
     private final TextField txtFilter = new TextField();
     private final MenuBar mnuColumns = new MenuBar();
@@ -46,10 +48,11 @@ public class BooksListView extends VerticalLayout {
     private boolean shortNotation = false;
     private HorizontalLayout toolbar;
 
-    public BooksListView(BookService bookService, AuthorService authorService, PublisherService publisherService) {
+    public BooksListView(BookService bookService, AuthorService authorService, PublisherService publisherService, SeriesService seriesService) {
         this.bookService = bookService;
         this.authorService = authorService;
         this.publisherService = publisherService;
+        this.seriesService = seriesService;
         addClassName("list-view");
         setSizeFull();
 
@@ -83,7 +86,7 @@ public class BooksListView extends VerticalLayout {
     }
 
     private void openBookDetails(BookDto bookDto) {
-        BookDetails bookDetails = new BookDetails(BookDto.copy(bookDto), authorService, publisherService);
+        BookDetails bookDetails = new BookDetails(BookDto.copy(bookDto), authorService, publisherService, seriesService);
         //authorForm.setAuthor(e);
         //authorForm.addListener(AuthorForm.DeleteEvent.class, this::deleteAuthor);
         //authorForm.addListener(AuthorForm.SaveEvent.class, this::saveAuthor);

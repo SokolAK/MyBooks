@@ -16,39 +16,49 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.binder.ValidationException;
-import pl.sokolak.MyBooks.model.book.BookDto;
-import pl.sokolak.MyBooks.ui.TextFormatter;
 import pl.sokolak.MyBooks.model.author.AuthorDto;
 import pl.sokolak.MyBooks.model.author.AuthorService;
+import pl.sokolak.MyBooks.model.book.BookDto;
 import pl.sokolak.MyBooks.model.publisher.PublisherDto;
 import pl.sokolak.MyBooks.model.publisher.PublisherService;
+import pl.sokolak.MyBooks.model.series.SeriesDto;
+import pl.sokolak.MyBooks.model.series.SeriesService;
+import pl.sokolak.MyBooks.ui.TextFormatter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 public class BookDetails extends Form {
 
     private BookDto bookDto;
     private final AuthorService authorService;
     private final PublisherService publisherService;
+    private final SeriesService seriesService;
+
     private final Binder<BookDto> binder = new BeanValidationBinder<>(BookDto.class);
     private final TextField title = new TextField();
     private final TextField subtitle = new TextField();
     private final TextField year = new TextField();
     private final TextField city = new TextField();
     private final TextField edition = new TextField();
+    //private final TextField series = new TextField();
+    private final TextField seriesVolume = new TextField();
     private final TextField comment = new TextField();
     private final TextField volume = new TextField();
     private final DeleteButton btnDelete = new DeleteButton();
 
-    public BookDetails(BookDto bookDto, AuthorService authorService, PublisherService publisherService) {
+    public BookDetails(BookDto bookDto, AuthorService authorService, PublisherService publisherService, SeriesService seriesService) {
         this.bookDto = BookDto.copy(bookDto);
         this.authorService = authorService;
         this.publisherService = publisherService;
+        this.seriesService = seriesService;
         setClassName("book-details");
 
         binder.bindInstanceFields(this);
+        title.setRequired(true);
+
         addListener(BookDetails.SaveEvent.class, e -> getParent().ifPresent(d -> ((Dialog)d).close()));
         addListener(BookDetails.DeleteEvent.class, e -> getParent().ifPresent(d -> ((Dialog)d).close()));
 
@@ -93,6 +103,15 @@ public class BookDetails extends Form {
         configureTxtField(edition, bookDto.getEdition());
         verticalLayout.add(createSection("edition", getEditButton(edition), edition));
 
+        Optional<SeriesDto> series = Optional.ofNullable(bookDto.getSeries());
+        TextField seriesSection = new TextField(null, series.map(SeriesDto::toString).orElse(""), "" );
+        seriesSection.setReadOnly(true);
+        seriesSection.setWidthFull();
+        verticalLayout.add(createSection("series", new Button(new Icon(VaadinIcon.EDIT), click -> editSeries()), seriesSection));
+
+        configureTxtField(seriesVolume, bookDto.getSeriesVolume());
+        verticalLayout.add(createSection("seriesVolume", getEditButton(seriesVolume), seriesVolume));
+
         configureTxtField(comment, bookDto.getComment());
         verticalLayout.add(createSection("comment", getEditButton(comment), comment));
 
@@ -104,7 +123,7 @@ public class BookDetails extends Form {
         textField.setReadOnly(true);
         textField.setWidthFull();
         textField.addBlurListener(e -> e.getSource().setReadOnly(true));
-        textField.addValueChangeListener(e -> writeBook());
+        //textField.addValueChangeListener(e -> writeBook());
     }
 
     private Button getEditButton(TextField textField) {
@@ -150,6 +169,12 @@ public class BookDetails extends Form {
         BookFormPublisher bookFormPublisher = new BookFormPublisher(BookDto.copy(bookDto), publisherService);
         bookFormPublisher.addListener(BookFormPublisher.SaveEvent.class, this::savePublishers);
         new DialogWindow(bookFormPublisher, TextFormatter.header("editPublisher")).open();
+    }
+
+    private void editSeries() {
+        BookFormSeries bookFormSeries = new BookFormSeries(BookDto.copy(bookDto), seriesService);
+        bookFormSeries.addListener(BookFormSeries.SaveEvent.class, this::saveSeries);
+        new DialogWindow(bookFormSeries, TextFormatter.header("editSeries")).open();
     }
 
     private HorizontalLayout createButtonsLayout() {
@@ -202,6 +227,12 @@ public class BookDetails extends Form {
     private void savePublishers(BookFormPublisher.SaveEvent e) {
         List<PublisherDto> publishers = e.getDto(BookDto.class).getPublishers();
         bookDto.setPublishers(new ArrayList<>(publishers));
+        updateDetails();
+    }
+
+    private void saveSeries(BookFormSeries.SaveEvent e) {
+        SeriesDto series = e.getDto(BookDto.class).getSeries();
+        bookDto.setSeries(series);
         updateDetails();
     }
 }

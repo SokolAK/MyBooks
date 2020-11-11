@@ -4,6 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.sokolak.MyBooks.model.author.AuthorMapper;
 import pl.sokolak.MyBooks.model.author.AuthorRepo;
+import pl.sokolak.MyBooks.model.publisher.PublisherMapper;
+import pl.sokolak.MyBooks.model.publisher.PublisherRepo;
+import pl.sokolak.MyBooks.model.series.SeriesMapper;
+import pl.sokolak.MyBooks.model.series.SeriesRepo;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -20,6 +24,14 @@ public class BookService {
     private AuthorRepo authorRepo;
     @Autowired
     private AuthorMapper authorMapper;
+    @Autowired
+    private PublisherRepo publisherRepo;
+    @Autowired
+    private PublisherMapper publisherMapper;
+    @Autowired
+    private SeriesRepo seriesRepo;
+    @Autowired
+    private SeriesMapper seriesMapper;
 
 
     public BookService(BookRepo bookRepo, BookMapper bookMapper) {
@@ -45,12 +57,13 @@ public class BookService {
 
     @Transactional
     public BookDto save(BookDto bookDto) {
-        if (bookDto.getId() != null) {
+        return bookMapper.toDto(bookRepo.save(bookMapper.toEntity(bookDto)));
+/*        if (bookDto.getId() != null) {
             Optional<Book> book = bookRepo.findById(bookDto.getId());
             book.ifPresent(b -> delete(bookDto));
         }
         Book book = bookMapper.toEntity(bookDto);
-        return bookMapper.toDto(bookRepo.save(book));
+        return bookMapper.toDto(bookRepo.save(book));*/
     }
 
     @Transactional
@@ -62,6 +75,17 @@ public class BookService {
                     .filter(a -> a.getBooks().size() == 0)
                     .forEach(a -> authorRepo.delete(a));
             b.getAuthors().clear();
+
+            b.getPublishers().stream()
+                    .peek(p -> p.getBooks().remove(b))
+                    .filter(p -> p.getBooks().size() == 0)
+                    .forEach(p -> publisherRepo.delete(p));
+            b.getPublishers().clear();
+
+            b.getSeries().getBooks().remove(b);
+            if(b.getSeries().getBooks().size() == 0)
+                seriesRepo.delete(b.getSeries());
+
             bookRepo.delete(b);
         });
     }

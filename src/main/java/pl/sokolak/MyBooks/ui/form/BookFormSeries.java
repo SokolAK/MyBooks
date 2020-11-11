@@ -5,8 +5,6 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.grid.Grid;
-import com.vaadin.flow.component.icon.Icon;
-import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
@@ -15,49 +13,40 @@ import com.vaadin.flow.data.binder.ValidationException;
 import com.vaadin.flow.data.converter.StringToLongConverter;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import pl.sokolak.MyBooks.model.book.BookDto;
-import pl.sokolak.MyBooks.model.publisher.PublisherDto;
-import pl.sokolak.MyBooks.model.publisher.PublisherService;
+import pl.sokolak.MyBooks.model.series.SeriesDto;
+import pl.sokolak.MyBooks.model.series.SeriesService;
 import pl.sokolak.MyBooks.ui.TextFormatter;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class BookFormSeries extends Form {
 
     private final BookDto bookDto;
-    private final PublisherService publisherService;
-    private final Binder<PublisherDto> binder = new BeanValidationBinder<>(PublisherDto.class);
+    private final SeriesService seriesService;
+    private final Binder<SeriesDto> binder = new BeanValidationBinder<>(SeriesDto.class);
     private final TextField id = new TextField(TextFormatter.header("id"));
     private final TextField name = new TextField(TextFormatter.header("name"));
-    private final Grid<PublisherDto> gridAvailablePublisher = new Grid<>();
-    private final Grid<PublisherDto> gridAddedPublisher = new Grid<>();
-    private final List<PublisherDto> addedPublishers = new ArrayList<>();
-    private Button btnAdd;
+    private final Grid<SeriesDto> gridAvailableSeries = new Grid<>();
     private Button btnSave;
     private Button btnCancel;
 
-    public BookFormSeries(BookDto bookDto, PublisherService publisherService) {
+    public BookFormSeries(BookDto bookDto, SeriesService seriesService) {
         this.bookDto = bookDto;
-        this.publisherService = publisherService;
+        this.seriesService = seriesService;
 
-        addClassName("publisher-form");
+        addClassName("series-form");
 
-        gridAvailablePublisher.setHeight("10vh");
-        gridAddedPublisher.setHeight("10vh");
-        addedPublishers.addAll(bookDto.getPublishers());
+        gridAvailableSeries.setHeight("10vh");
+        binder.readBean(bookDto.getSeries());
 
         configureButtons();
-        configureAvailablePublishersGrid();
-        updateAvailablePublishersList();
-        configureAddedPublishersGrid();
-        updateAddedPublishersList();
+        configureAvailableSeriesGrid();
+        updateAvailableSeriesList();
 
-        name.setRequired(true);
+        //name.setRequired(true);
         setUpdateListenerForTxtField(name);
 
         binder.forField(id)
                 .withConverter(new StringToLongConverter("Must enter a Long"))
-                .bind(PublisherDto::getId, PublisherDto::setId);
+                .bind(SeriesDto::getId, SeriesDto::setId);
         binder.bindInstanceFields(this);
 
         VerticalLayout verticalLayout = new VerticalLayout();
@@ -65,7 +54,7 @@ public class BookFormSeries extends Form {
         verticalLayout.getChildren().map(c -> (TextField) c).forEach(HasSize::setWidthFull);
         verticalLayout.setPadding(false);
         verticalLayout.setSpacing(false);
-        VerticalLayout verticalLayout2 = new VerticalLayout(gridAvailablePublisher, btnAdd, gridAddedPublisher, btnSave, btnCancel);
+        VerticalLayout verticalLayout2 = new VerticalLayout(gridAvailableSeries, btnSave, btnCancel);
         verticalLayout2.setPadding(false);
         //verticalLayout.setSpacing(false);
 
@@ -73,14 +62,11 @@ public class BookFormSeries extends Form {
     }
 
     private void setUpdateListenerForTxtField(TextField txtField) {
-        txtField.addValueChangeListener(e -> updateAvailablePublishersList());
+        txtField.addValueChangeListener(e -> updateAvailableSeriesList());
         txtField.setValueChangeMode(ValueChangeMode.LAZY);
     }
 
     private void configureButtons() {
-        btnAdd = new Button(TextFormatter.header("add"), event -> addPublisher());
-        btnAdd.setWidthFull();
-
         btnSave = new Button(TextFormatter.header("save"), event -> save());
         btnSave.setWidthFull();
         btnSave.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
@@ -91,64 +77,38 @@ public class BookFormSeries extends Form {
     }
 
 
-    private void configureAvailablePublishersGrid() {
-        gridAvailablePublisher.addClassName("publisher-grid");
-        gridAvailablePublisher.setWidthFull();
-        addEntityColumns(gridAvailablePublisher);
-        gridAvailablePublisher.addItemClickListener(e -> {
+    private void configureAvailableSeriesGrid() {
+        gridAvailableSeries.addClassName("series-grid");
+        gridAvailableSeries.setWidthFull();
+        addEntityColumns(gridAvailableSeries);
+        gridAvailableSeries.addItemClickListener(e -> {
             binder.readBean(e.getItem());
         });
     }
 
-    private void updateAvailablePublishersList() {
-        gridAvailablePublisher.setItems(publisherService.findAll(name.getValue()));
-        gridAvailablePublisher.getColumns().forEach(c -> c.setAutoWidth(true));
+    private void updateAvailableSeriesList() {
+        gridAvailableSeries.setItems(seriesService.findAll(name.getValue()));
+        gridAvailableSeries.getColumns().forEach(c -> c.setAutoWidth(true));
     }
 
-    private void configureAddedPublishersGrid() {
-        gridAddedPublisher.addClassName("publisher-grid");
-        gridAddedPublisher.setWidthFull();
-
-        gridAddedPublisher.addComponentColumn(publisher -> {
-            Button edit = new Button(new Icon(VaadinIcon.CLOSE_SMALL));
-            //edit.addClassName("edit");
-            edit.addClickListener(e -> {
-                addedPublishers.remove(publisher);
-                updateAddedPublishersList();
-            });
-            return edit;
-        });
-
-        addEntityColumns(gridAddedPublisher);
+    private void addEntityColumns(Grid<SeriesDto> grid) {
+        grid.addColumn(SeriesDto::getName);
     }
 
-    private void updateAddedPublishersList() {
-        gridAddedPublisher.setItems(addedPublishers);
-        gridAddedPublisher.getColumns().forEach(c -> c.setAutoWidth(true));
-    }
-
-    private void addEntityColumns(Grid<PublisherDto> grid) {
-        grid.addColumn(PublisherDto::getName);
-    }
-
-    private void addPublisher() {
-        PublisherDto publisher = new PublisherDto();
-        try {
-            binder.writeBean(publisher);
-            if (!addedPublishers.contains(publisher)) {
-                addedPublishers.add(publisher);
-                updateAddedPublishersList();
-                binder.readBean(null);
-            }
-        } catch (ValidationException e) {
-            //e.printStackTrace();
-        }
-
-    }
 
     private void save() {
-        bookDto.getPublishers().clear();
-        bookDto.setPublishers(addedPublishers);
+        if(name.getValue() == null || name.getValue().isBlank()) {
+            bookDto.setSeries(null);
+        }
+        else {
+            SeriesDto seriesDto = new SeriesDto();
+            try {
+                binder.writeBean(seriesDto);
+                bookDto.setSeries(seriesDto);
+            } catch (ValidationException e) {
+                //e.printStackTrace();
+            }
+        }
         fireEvent(new SaveEvent(this, bookDto));
         close();
     }
