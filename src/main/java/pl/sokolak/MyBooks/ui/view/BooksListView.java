@@ -242,7 +242,7 @@ public class BooksListView extends VerticalLayout {
 
     private void updateMnuColumns() {
         MenuItem columns = mnuColumns.getItems().get(0);
-        columns.getSubMenu().getItems().forEach(it -> it.setChecked(columnList.get(it.getId().get().toLowerCase())));
+        columns.getSubMenu().getItems().forEach(it -> it.setChecked(columnList.get(it.getId().get())));
     }
 
 /*    @Override
