@@ -1,3 +1,4 @@
+/*
 package pl.sokolak.MyBooks.ui.view;
 
 import com.vaadin.flow.router.RouteConfiguration;
@@ -13,9 +14,8 @@ public class ApplicationServiceInitListener implements VaadinServiceInitListener
         // add view only during development time
         if (!event.getSource().getDeploymentConfiguration().isProductionMode()) {
             RouteConfiguration configuration = RouteConfiguration.forApplicationScope();
-
             //configuration.setRoute("", BooksListView.class, MainLayout.class);
         }
     }
 
-}
+}*/

@@ -18,7 +18,7 @@ spring:
 spring:
   profiles: prod
   datasource:
-    url: jdbc:postgresql://postgres:5432/mybooks
+    url: jdbc:postgresql://localhost:5432/mybooks
     username: mybooksadmin
     password: supaplex
     #username: postgres

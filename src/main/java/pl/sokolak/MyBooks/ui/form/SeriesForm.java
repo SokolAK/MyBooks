@@ -13,16 +13,17 @@ import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.binder.ValidationException;
 import pl.sokolak.MyBooks.model.series.SeriesDto;
-import pl.sokolak.MyBooks.ui.TextFormatter;
+
+import static pl.sokolak.MyBooks.utils.TextFormatter.header;
 
 public class SeriesForm extends Form {
 
     private SeriesDto series;
     private final Binder<SeriesDto> binder = new BeanValidationBinder<>(SeriesDto.class);
 
-    private final TextField name = new TextField(TextFormatter.header("name"));
-    private final Button btnSave = new Button(TextFormatter.header("save"));
-    private final Button btnDelete = new Button(TextFormatter.header("delete"));
+    private final TextField name = new TextField(header("name"));
+    private final Button btnSave = new Button(header("save"));
+    private final DeleteButton btnDelete = new DeleteButton();
 
     public SeriesForm(SeriesDto series, FormMode formMode) {
         this(formMode);
@@ -65,7 +66,10 @@ public class SeriesForm extends Form {
 
         if (formMode.equals(FormMode.EDIT)) {
             btnDelete.addThemeVariants(ButtonVariant.LUMO_ERROR);
-            btnDelete.addClickListener(event -> fireEvent(new DeleteEvent(this, series)));
+            btnDelete.addClickListener(event -> {
+                if (btnDelete.isReady())
+                    fireEvent(new DeleteEvent(this, series));
+            });
             horizontalLayout.addAndExpand(btnDelete);
         }
         return horizontalLayout;

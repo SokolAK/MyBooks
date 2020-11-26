@@ -23,12 +23,14 @@ import pl.sokolak.MyBooks.model.publisher.PublisherDto;
 import pl.sokolak.MyBooks.model.publisher.PublisherService;
 import pl.sokolak.MyBooks.model.series.SeriesDto;
 import pl.sokolak.MyBooks.model.series.SeriesService;
-import pl.sokolak.MyBooks.ui.TextFormatter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+
+import static pl.sokolak.MyBooks.utils.TextFormatter.header;
+import static pl.sokolak.MyBooks.utils.TextFormatter.uppercase;
 
 public class BookDetails extends Form {
 
@@ -138,7 +140,7 @@ public class BookDetails extends Form {
         verticalLayout.setPadding(false);
         verticalLayout.setSpacing(false);
 
-        Label lblTitle = new Label(TextFormatter.uppercase(title));
+        Label lblTitle = new Label(uppercase(title));
         lblTitle.setClassName("section-header");
         btnEdit.setClassName("edit-button");
         btnEdit.addThemeVariants(ButtonVariant.LUMO_ICON, ButtonVariant.LUMO_TERTIARY_INLINE);
@@ -162,25 +164,25 @@ public class BookDetails extends Form {
     private void editAuthors() {
         BookFormAuthor bookFormAuthor = new BookFormAuthor(BookDto.copy(bookDto), authorService);
         bookFormAuthor.addListener(BookFormAuthor.SaveEvent.class, this::saveAuthors);
-        new DialogWindow(bookFormAuthor, TextFormatter.header("editAuthor")).open();
+        new DialogWindow(bookFormAuthor, header("editAuthor")).open();
     }
 
     private void editPublishers() {
         BookFormPublisher bookFormPublisher = new BookFormPublisher(BookDto.copy(bookDto), publisherService);
         bookFormPublisher.addListener(BookFormPublisher.SaveEvent.class, this::savePublishers);
-        new DialogWindow(bookFormPublisher, TextFormatter.header("editPublisher")).open();
+        new DialogWindow(bookFormPublisher, header("editPublisher")).open();
     }
 
     private void editSeries() {
         BookFormSeries bookFormSeries = new BookFormSeries(BookDto.copy(bookDto), seriesService);
         bookFormSeries.addListener(BookFormSeries.SaveEvent.class, this::saveSeries);
-        new DialogWindow(bookFormSeries, TextFormatter.header("editSeries")).open();
+        new DialogWindow(bookFormSeries, header("editSeries")).open();
     }
 
     private HorizontalLayout createButtonsLayout() {
         HorizontalLayout buttonsLayout = new HorizontalLayout();
 
-        Button btnSave = new Button(TextFormatter.header("save"));
+        Button btnSave = new Button(header("save"));
         btnSave.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         btnSave.addClickShortcut(Key.ENTER);
         btnSave.addClickListener(e -> saveBook());

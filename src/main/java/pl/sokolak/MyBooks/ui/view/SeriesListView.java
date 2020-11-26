@@ -12,7 +12,6 @@ import pl.sokolak.MyBooks.model.series.SeriesDto;
 import pl.sokolak.MyBooks.model.series.SeriesService;
 import pl.sokolak.MyBooks.ui.ExpandingTextField;
 import pl.sokolak.MyBooks.ui.MainLayout;
-import pl.sokolak.MyBooks.ui.TextFormatter;
 import pl.sokolak.MyBooks.ui.form.AuthorForm;
 import pl.sokolak.MyBooks.ui.form.DialogWindow;
 import pl.sokolak.MyBooks.ui.form.Form;
@@ -21,13 +20,15 @@ import pl.sokolak.MyBooks.ui.form.SeriesForm;
 import java.util.Set;
 import java.util.stream.Stream;
 
+import static pl.sokolak.MyBooks.utils.TextFormatter.header;
+
 @Route(value = "series", layout = MainLayout.class)
 @PageTitle("Series | MyBooks")
 public class SeriesListView extends VerticalLayout {
 
     private final SeriesService seriesService;
     private final Grid<SeriesDto> grid = new Grid<>(SeriesDto.class);
-    private final ExpandingTextField txtFilter = new ExpandingTextField(TextFormatter.header("filterByPhrase"));
+    private final ExpandingTextField txtFilter = new ExpandingTextField(header("filterByPhrase"));
     private HorizontalLayout toolbar;
 
     public SeriesListView(SeriesService seriesService) {
@@ -64,7 +65,7 @@ public class SeriesListView extends VerticalLayout {
             seriesForm.setSeries(e.getItem());
             seriesForm.addListener(SeriesForm.DeleteEvent.class, this::delete);
             seriesForm.addListener(SeriesForm.SaveEvent.class, this::save);
-            new DialogWindow(seriesForm, TextFormatter.header("editSeries")).open();
+            new DialogWindow(seriesForm, header("editSeries")).open();
         });
         updateGrid();
     }
@@ -72,7 +73,7 @@ public class SeriesListView extends VerticalLayout {
     private void addEntityColumns() {
         Stream.of("name")
                 .map(grid::addColumn)
-                .map(c -> c.setHeader(TextFormatter.header(c.getKey())))
+                .map(c -> c.setHeader(header(c.getKey())))
                 .forEach(c -> c.setAutoWidth(true));
     }
 
@@ -101,6 +102,6 @@ public class SeriesListView extends VerticalLayout {
         SeriesForm seriesForm = new SeriesForm(Form.FormMode.ADD);
         seriesForm.setSeries(new SeriesDto());
         seriesForm.addListener(AuthorForm.SaveEvent.class, this::save);
-        new DialogWindow(seriesForm, TextFormatter.header("addSeries")).open();
+        new DialogWindow(seriesForm, header("addSeries")).open();
     }
 }

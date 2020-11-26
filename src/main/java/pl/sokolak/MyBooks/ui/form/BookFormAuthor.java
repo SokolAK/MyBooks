@@ -17,21 +17,22 @@ import com.vaadin.flow.data.value.ValueChangeMode;
 import pl.sokolak.MyBooks.model.author.AuthorDto;
 import pl.sokolak.MyBooks.model.author.AuthorService;
 import pl.sokolak.MyBooks.model.book.BookDto;
-import pl.sokolak.MyBooks.ui.TextFormatter;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static pl.sokolak.MyBooks.utils.TextFormatter.header;
 
 public class BookFormAuthor extends Form {
 
     private final BookDto bookDto;
     private final AuthorService authorService;
     private final Binder<AuthorDto> binder = new BeanValidationBinder<>(AuthorDto.class);
-    private final TextField id = new TextField(TextFormatter.header("id"));
-    private final TextField prefix = new TextField(TextFormatter.header("prefix"));
-    private final TextField firstName = new TextField(TextFormatter.header("firstName"));
-    private final TextField middleName = new TextField(TextFormatter.header("middleName"));
-    private final TextField lastName = new TextField(TextFormatter.header("lastName"));
+    private final TextField id = new TextField(header("id"));
+    private final TextField prefix = new TextField(header("prefix"));
+    private final TextField firstName = new TextField(header("firstName"));
+    private final TextField middleName = new TextField(header("middleName"));
+    private final TextField lastName = new TextField(header("lastName"));
     private final Grid<AuthorDto> gridAvailableAuthor = new Grid<>();
     private final Grid<AuthorDto> gridAddedAuthor = new Grid<>();
     private final List<AuthorDto> addedAuthors = new ArrayList<>();
@@ -84,14 +85,14 @@ public class BookFormAuthor extends Form {
     }
 
     private void configureButtons() {
-        btnAdd = new Button(TextFormatter.header("add"), event -> addAuthor());
+        btnAdd = new Button(header("add"), event -> addAuthor());
         btnAdd.setWidthFull();
 
-        btnSave = new Button(TextFormatter.header("save"), event -> save());
+        btnSave = new Button(header("save"), event -> save());
         btnSave.setWidthFull();
         btnSave.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
 
-        btnCancel= new Button(TextFormatter.header("cancel"), event -> close());
+        btnCancel= new Button(header("cancel"), event -> close());
         btnCancel.setWidthFull();
         //btnCancel.addThemeVariants(ButtonVariant.);
     }

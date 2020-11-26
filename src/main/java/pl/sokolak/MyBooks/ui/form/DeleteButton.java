@@ -3,12 +3,13 @@ package pl.sokolak.MyBooks.ui.form;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import lombok.Getter;
-import pl.sokolak.MyBooks.ui.TextFormatter;
+
+import static pl.sokolak.MyBooks.utils.TextFormatter.header;
 
 public class DeleteButton extends Button {
 
     private int counter = 3;
-    private final String label = TextFormatter.header("delete");
+    private final String label = header("delete");
     @Getter
     private boolean ready = false;
 

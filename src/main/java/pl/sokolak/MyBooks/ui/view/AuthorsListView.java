@@ -8,17 +8,18 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import pl.sokolak.MyBooks.ui.TextFormatter;
-import pl.sokolak.MyBooks.ui.form.Form;
 import pl.sokolak.MyBooks.model.author.AuthorDto;
 import pl.sokolak.MyBooks.model.author.AuthorService;
 import pl.sokolak.MyBooks.ui.ExpandingTextField;
 import pl.sokolak.MyBooks.ui.MainLayout;
 import pl.sokolak.MyBooks.ui.form.AuthorForm;
 import pl.sokolak.MyBooks.ui.form.DialogWindow;
+import pl.sokolak.MyBooks.ui.form.Form;
 
 import java.util.Set;
 import java.util.stream.Stream;
+
+import static pl.sokolak.MyBooks.utils.TextFormatter.header;
 
 
 @Route(value = "authors", layout = MainLayout.class)
@@ -27,7 +28,7 @@ public class AuthorsListView extends VerticalLayout {
 
     private final AuthorService authorService;
     private final Grid<AuthorDto> grid = new Grid<>(AuthorDto.class);
-    private final ExpandingTextField txtFilter = new ExpandingTextField(TextFormatter.header("filterByPhrase"));
+    private final ExpandingTextField txtFilter = new ExpandingTextField(header("filterByPhrase"));
     private HorizontalLayout toolbar;
 
     public AuthorsListView(AuthorService authorService) {
@@ -64,7 +65,7 @@ public class AuthorsListView extends VerticalLayout {
             authorForm.setAuthor(e.getItem());
             authorForm.addListener(AuthorForm.DeleteEvent.class, this::deleteAuthor);
             authorForm.addListener(AuthorForm.SaveEvent.class, this::saveAuthor);
-            new DialogWindow(authorForm, TextFormatter.header("editAuthor")).open();
+            new DialogWindow(authorForm, header("editAuthor")).open();
         });
         updateGrid();
     }
@@ -72,7 +73,7 @@ public class AuthorsListView extends VerticalLayout {
     private void addEntityColumns() {
         Stream.of("lastName", "firstName", "middleName", "prefix")
                 .map(grid::addColumn)
-                .map(c -> c.setHeader(TextFormatter.header(c.getKey())))
+                .map(c -> c.setHeader(header(c.getKey())))
                 .forEach(c -> c.setAutoWidth(true));
     }
 
@@ -101,6 +102,6 @@ public class AuthorsListView extends VerticalLayout {
         AuthorForm authorForm = new AuthorForm(Form.FormMode.ADD);
         authorForm.setAuthor(new AuthorDto());
         authorForm.addListener(AuthorForm.SaveEvent.class, this::saveAuthor);
-        new DialogWindow(authorForm, TextFormatter.header("addAuthor")).open();
+        new DialogWindow(authorForm, header("addAuthor")).open();
     }
 }

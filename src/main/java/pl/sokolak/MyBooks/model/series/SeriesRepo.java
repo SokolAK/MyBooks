@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface SeriesRepo extends JpaRepository<Series, Long> {
     List<Series> findAllByOrderByNameAsc();
-    List<Series> findAllByNameContaining(String phrase);
+    List<Series> findAllByNameContainingIgnoreCase(String phrase);
 }

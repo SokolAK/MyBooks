@@ -12,17 +12,18 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.binder.ValidationException;
-import pl.sokolak.MyBooks.ui.TextFormatter;
 import pl.sokolak.MyBooks.model.publisher.PublisherDto;
+
+import static pl.sokolak.MyBooks.utils.TextFormatter.header;
 
 public class PublisherForm extends Form {
 
     private PublisherDto publisher;
     private final Binder<PublisherDto> binder = new BeanValidationBinder<>(PublisherDto.class);
 
-    private final TextField name = new TextField(TextFormatter.header("name"));
-    private final Button btnSave = new Button(TextFormatter.header("save"));
-    private final Button btnDelete = new Button(TextFormatter.header("delete"));
+    private final TextField name = new TextField(header("name"));
+    private final Button btnSave = new Button(header("save"));
+    private final DeleteButton btnDelete = new DeleteButton();
 
     public PublisherForm(PublisherDto publisher, FormMode formMode) {
         this(formMode);
@@ -66,7 +67,10 @@ public class PublisherForm extends Form {
 
         if (formMode.equals(FormMode.EDIT)) {
             btnDelete.addThemeVariants(ButtonVariant.LUMO_ERROR);
-            btnDelete.addClickListener(event -> fireEvent(new DeleteEvent(this, publisher)));
+            btnDelete.addClickListener(event -> {
+                if (btnDelete.isReady())
+                    fireEvent(new DeleteEvent(this, publisher));
+            });
             horizontalLayout.addAndExpand(btnDelete);
         }
         return horizontalLayout;

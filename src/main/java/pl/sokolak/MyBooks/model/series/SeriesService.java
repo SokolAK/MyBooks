@@ -28,7 +28,7 @@ public class SeriesService {
         if (stringFilter == null || stringFilter.isEmpty()) {
             seriesList = seriesRepo.findAllByOrderByNameAsc();
         } else {
-            seriesList = seriesRepo.findAllByNameContaining(stringFilter);
+            seriesList = seriesRepo.findAllByNameContainingIgnoreCase(stringFilter);
         }
 
         return seriesList.stream()

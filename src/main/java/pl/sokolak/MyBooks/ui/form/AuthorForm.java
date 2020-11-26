@@ -13,7 +13,8 @@ import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.binder.ValidationException;
 import pl.sokolak.MyBooks.model.author.AuthorDto;
-import pl.sokolak.MyBooks.ui.TextFormatter;
+
+import static pl.sokolak.MyBooks.utils.TextFormatter.header;
 
 public class AuthorForm extends Form {
 
@@ -21,13 +22,13 @@ public class AuthorForm extends Form {
     private final Binder<AuthorDto> binder = new BeanValidationBinder<>(AuthorDto.class);
 
     //TextField id = new TextField(header("id"));
-    private final TextField prefix = new TextField(TextFormatter.header("prefix"));
-    private final TextField firstName = new TextField(TextFormatter.header("firstName"));
-    private final TextField middleName = new TextField(TextFormatter.header("middleName"));
-    private final TextField lastName = new TextField(TextFormatter.header("lastName"));
+    private final TextField prefix = new TextField(header("prefix"));
+    private final TextField firstName = new TextField(header("firstName"));
+    private final TextField middleName = new TextField(header("middleName"));
+    private final TextField lastName = new TextField(header("lastName"));
 
-    private final Button btnSave = new Button(TextFormatter.header("save"));
-    private final Button btnDelete = new Button(TextFormatter.header("delete"));
+    private final Button btnSave = new Button(header("save"));
+    private final DeleteButton btnDelete = new DeleteButton();
 
     public AuthorForm(AuthorDto author, FormMode formMode) {
         this(formMode);
@@ -47,12 +48,12 @@ public class AuthorForm extends Form {
         lastName.setRequired(true);
 
 
-        addListener(AuthorForm.DeleteEvent.class, e -> getParent().ifPresent(d -> ((Dialog)d).close()));
-        addListener(AuthorForm.SaveEvent.class, e -> getParent().ifPresent(d -> ((Dialog)d).close()));
+        addListener(AuthorForm.DeleteEvent.class, e -> getParent().ifPresent(d -> ((Dialog) d).close()));
+        addListener(AuthorForm.SaveEvent.class, e -> getParent().ifPresent(d -> ((Dialog) d).close()));
 
         VerticalLayout verticalLayout = new VerticalLayout();
         verticalLayout.add(prefix, firstName, middleName, lastName);
-        verticalLayout.getChildren().map(c -> (TextField)c).forEach(HasSize::setWidthFull);
+        verticalLayout.getChildren().map(c -> (TextField) c).forEach(HasSize::setWidthFull);
         verticalLayout.setSpacing(false);
         verticalLayout.setPadding(false);
 
@@ -76,9 +77,12 @@ public class AuthorForm extends Form {
         btnSave.addClickListener(event -> validateAndSave());
         horizontalLayout.addAndExpand(btnSave);
 
-        if(formMode.equals(FormMode.EDIT)) {
+        if (formMode.equals(FormMode.EDIT)) {
             btnDelete.addThemeVariants(ButtonVariant.LUMO_ERROR);
-            btnDelete.addClickListener(event -> fireEvent(new DeleteEvent(this, author)));
+            btnDelete.addClickListener(event -> {
+                if (btnDelete.isReady())
+                    fireEvent(new DeleteEvent(this, author));
+            });
             horizontalLayout.addAndExpand(btnDelete);
         }
         return horizontalLayout;

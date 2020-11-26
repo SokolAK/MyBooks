@@ -1,4 +1,4 @@
-package pl.sokolak.MyBooks.ui;
+package pl.sokolak.MyBooks.utils;
 
 import com.vaadin.flow.component.Text;
 

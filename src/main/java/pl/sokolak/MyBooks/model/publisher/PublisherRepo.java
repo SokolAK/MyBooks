@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface PublisherRepo extends JpaRepository<Publisher, Long> {
     List<Publisher> findAllByOrderByNameAsc();
-    List<Publisher> findAllByNameContaining(String phrase);
+    List<Publisher> findAllByNameContainingIgnoreCase(String phrase);
 }

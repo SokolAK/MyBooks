@@ -6,6 +6,8 @@ import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
+import static pl.sokolak.MyBooks.utils.TextFormatter.header;
+
 public class ConfirmationDialog {
 
     public ConfirmationDialog() {
@@ -14,12 +16,12 @@ public class ConfirmationDialog {
         dialog.setCloseOnEsc(false);
         dialog.setCloseOnOutsideClick(false);
 
-        Label header = new Label(TextFormatter.header("sureDelete"));
+        Label header = new Label(header("sureDelete"));
 
-        Button confirmButton = new Button(TextFormatter.header("yes"), event -> {
+        Button confirmButton = new Button(header("yes"), event -> {
             dialog.close();
         });
-        Button cancelButton = new Button(TextFormatter.header("no"), event -> {
+        Button cancelButton = new Button(header("no"), event -> {
             dialog.close();
         });
 

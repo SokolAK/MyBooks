@@ -28,7 +28,7 @@ public class PublisherService {
         if (stringFilter == null || stringFilter.isEmpty()) {
             publisherList = publisherRepo.findAllByOrderByNameAsc();
         } else {
-            publisherList = publisherRepo.findAllByNameContaining(stringFilter);
+            publisherList = publisherRepo.findAllByNameContainingIgnoreCase(stringFilter);
         }
 
         return publisherList.stream()

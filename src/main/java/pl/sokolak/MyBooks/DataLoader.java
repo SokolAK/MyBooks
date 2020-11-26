@@ -55,8 +55,8 @@ public class DataLoader implements ApplicationRunner {
         Stream.of("Ogniem i lalką;  powieść;    Henryk Sienkiewicz, Bolesław Prus;  1930;   1;  1;  Gebethner;          Warszawa;   Wielcy Pisarze; 1;",
                 "Lalka;             powieść;    Bolesław Prus;                      1922;   ;   3;  Książnica Atlas;    Lwów;       Wielcy Pisarze; 2;",
                 "Dziady;            ;           Adam Mickiewicz;                    1901;   ;   2;  Gebethner, Fiszer;  Warszawa;   Wielcy Pisarze; 3;",
-                "Kordian;           ;           Juliusz Słowacki;                   1914;   ;   ;   Fiszer;             Łódź;       ;               ;",
-                "Chłopi;            Zima;       Władysław Reymont;                  1906;   1;  ;   ;                   ;           Nobliści;       1;",
+                "Kordian;           ;           Juliusz Słowacki;                   1914;   ;   ;   Fiszer;             Łódź;       ;               2;",
+                "Chłopi;            Zima;       Władysław Reymont;                  1906;   1;  ;   s;                  ;           Nobliści;       1;",
                 "Chłopi;            Wiosna;     Władysław Reymont;                  1906;   2;  ;   ;                   ;           Nobliści;       2;")
                 .forEach(s -> {
                     Book book = new Book();

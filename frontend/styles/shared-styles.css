@@ -12,6 +12,11 @@ a[highlight] {
     margin: var(--lumo-space-m);
 }
 
+.login-view h1 {
+    font-size: 3em;
+    margin: var(--lumo-space-m);
+}
+
 .list-view .content {
     display: flex;
 }

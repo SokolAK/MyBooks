@@ -14,14 +14,13 @@ import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.function.ValueProvider;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import pl.sokolak.MyBooks.model.book.BookDto;
-import pl.sokolak.MyBooks.model.series.SeriesService;
-import pl.sokolak.MyBooks.ui.TextFormatter;
-import pl.sokolak.MyBooks.ui.form.BookDetails;
 import pl.sokolak.MyBooks.model.author.AuthorService;
+import pl.sokolak.MyBooks.model.book.BookDto;
 import pl.sokolak.MyBooks.model.book.BookService;
 import pl.sokolak.MyBooks.model.publisher.PublisherService;
+import pl.sokolak.MyBooks.model.series.SeriesService;
 import pl.sokolak.MyBooks.ui.MainLayout;
+import pl.sokolak.MyBooks.ui.form.BookDetails;
 import pl.sokolak.MyBooks.ui.form.DialogWindow;
 
 import java.util.LinkedHashMap;
@@ -29,12 +28,14 @@ import java.util.Map;
 
 import static pl.sokolak.MyBooks.model.author.AuthorDto.authorsSetToString;
 import static pl.sokolak.MyBooks.model.publisher.PublisherDto.publishersSetToString;
+import static pl.sokolak.MyBooks.security.SecurityUtils.OperationType.ADD;
+import static pl.sokolak.MyBooks.security.SecurityUtils.hasAccess;
+import static pl.sokolak.MyBooks.utils.TextFormatter.header;
 
 
 @Route(value = "", layout = MainLayout.class)
 @PageTitle("Books | MyBooks")
 public class BooksListView extends VerticalLayout {
-
     private final BookService bookService;
     private final AuthorService authorService;
     private final PublisherService publisherService;
@@ -92,7 +93,7 @@ public class BooksListView extends VerticalLayout {
         //authorForm.addListener(AuthorForm.SaveEvent.class, this::saveAuthor);
         bookDetails.addListener(BookDetails.SaveEvent.class, this::saveBook);
         bookDetails.addListener(BookDetails.DeleteEvent.class, this::deleteBook);
-        new DialogWindow(bookDetails, TextFormatter.header("bookDetails")).open();
+        new DialogWindow(bookDetails, header("bookDetails")).open();
     }
 
     private void saveBook(BookDetails.SaveEvent e) {
@@ -106,7 +107,7 @@ public class BooksListView extends VerticalLayout {
     }
 
     private void configureTxtFilter() {
-        txtFilter.setPlaceholder(TextFormatter.header("filterByPhrase"));
+        txtFilter.setPlaceholder(header("filterByPhrase"));
         txtFilter.setClearButtonVisible(true);
         txtFilter.setValueChangeMode(ValueChangeMode.LAZY);
         txtFilter.addFocusListener(e -> expandTxtFilter());
@@ -153,8 +154,10 @@ public class BooksListView extends VerticalLayout {
     }
 
     private void addBook() {
-        grid.asSingleSelect().clear();
-        openBookDetails(new BookDto());
+        if(hasAccess(ADD)) {
+            grid.asSingleSelect().clear();
+            openBookDetails(new BookDto());
+        }
     }
 
     private Grid.Column addGridColumn(String key) {
@@ -168,7 +171,7 @@ public class BooksListView extends VerticalLayout {
         } else {
             column = grid.addColumn(key);
         }
-        column.setHeader(TextFormatter.header(key));
+        column.setHeader(header(key));
         return column;
     }
 
@@ -224,7 +227,7 @@ public class BooksListView extends VerticalLayout {
         columnList.forEach((columnName, isChecked) -> {
                     MenuItem item = columns
                             .getSubMenu()
-                            .addItem(TextFormatter.header(columnName));
+                            .addItem(header(columnName));
                     item.setId(columnName);
                     item.setCheckable(true);
                     item.setChecked(isChecked);

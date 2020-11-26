@@ -15,20 +15,21 @@ import com.vaadin.flow.data.binder.ValidationException;
 import com.vaadin.flow.data.converter.StringToLongConverter;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import pl.sokolak.MyBooks.model.book.BookDto;
-import pl.sokolak.MyBooks.ui.TextFormatter;
 import pl.sokolak.MyBooks.model.publisher.PublisherDto;
 import pl.sokolak.MyBooks.model.publisher.PublisherService;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static pl.sokolak.MyBooks.utils.TextFormatter.header;
+
 public class BookFormPublisher extends Form {
 
     private final BookDto bookDto;
     private final PublisherService publisherService;
     private final Binder<PublisherDto> binder = new BeanValidationBinder<>(PublisherDto.class);
-    private final TextField id = new TextField(TextFormatter.header("id"));
-    private final TextField name = new TextField(TextFormatter.header("name"));
+    private final TextField id = new TextField(header("id"));
+    private final TextField name = new TextField(header("name"));
     private final Grid<PublisherDto> gridAvailablePublisher = new Grid<>();
     private final Grid<PublisherDto> gridAddedPublisher = new Grid<>();
     private final List<PublisherDto> addedPublishers = new ArrayList<>();
@@ -78,14 +79,14 @@ public class BookFormPublisher extends Form {
     }
 
     private void configureButtons() {
-        btnAdd = new Button(TextFormatter.header("add"), event -> addPublisher());
+        btnAdd = new Button(header("add"), event -> addPublisher());
         btnAdd.setWidthFull();
 
-        btnSave = new Button(TextFormatter.header("save"), event -> save());
+        btnSave = new Button(header("save"), event -> save());
         btnSave.setWidthFull();
         btnSave.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
 
-        btnCancel= new Button(TextFormatter.header("cancel"), event -> close());
+        btnCancel= new Button(header("cancel"), event -> close());
         btnCancel.setWidthFull();
         //btnCancel.addThemeVariants(ButtonVariant.);
     }

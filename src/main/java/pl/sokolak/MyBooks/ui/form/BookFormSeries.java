@@ -15,15 +15,16 @@ import com.vaadin.flow.data.value.ValueChangeMode;
 import pl.sokolak.MyBooks.model.book.BookDto;
 import pl.sokolak.MyBooks.model.series.SeriesDto;
 import pl.sokolak.MyBooks.model.series.SeriesService;
-import pl.sokolak.MyBooks.ui.TextFormatter;
+
+import static pl.sokolak.MyBooks.utils.TextFormatter.header;
 
 public class BookFormSeries extends Form {
 
     private final BookDto bookDto;
     private final SeriesService seriesService;
     private final Binder<SeriesDto> binder = new BeanValidationBinder<>(SeriesDto.class);
-    private final TextField id = new TextField(TextFormatter.header("id"));
-    private final TextField name = new TextField(TextFormatter.header("name"));
+    private final TextField id = new TextField(header("id"));
+    private final TextField name = new TextField(header("name"));
     private final Grid<SeriesDto> gridAvailableSeries = new Grid<>();
     private Button btnSave;
     private Button btnCancel;
@@ -67,11 +68,11 @@ public class BookFormSeries extends Form {
     }
 
     private void configureButtons() {
-        btnSave = new Button(TextFormatter.header("save"), event -> save());
+        btnSave = new Button(header("save"), event -> save());
         btnSave.setWidthFull();
         btnSave.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
 
-        btnCancel= new Button(TextFormatter.header("cancel"), event -> close());
+        btnCancel= new Button(header("cancel"), event -> close());
         btnCancel.setWidthFull();
         //btnCancel.addThemeVariants(ButtonVariant.);
     }

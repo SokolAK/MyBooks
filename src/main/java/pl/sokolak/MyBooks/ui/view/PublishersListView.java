@@ -8,7 +8,6 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import pl.sokolak.MyBooks.ui.TextFormatter;
 import pl.sokolak.MyBooks.model.publisher.PublisherDto;
 import pl.sokolak.MyBooks.model.publisher.PublisherService;
 import pl.sokolak.MyBooks.ui.ExpandingTextField;
@@ -21,13 +20,15 @@ import pl.sokolak.MyBooks.ui.form.PublisherForm;
 import java.util.Set;
 import java.util.stream.Stream;
 
+import static pl.sokolak.MyBooks.utils.TextFormatter.header;
+
 @Route(value = "publishers", layout = MainLayout.class)
 @PageTitle("Publishers | MyBooks")
 public class PublishersListView extends VerticalLayout {
 
     private final PublisherService publisherService;
     private final Grid<PublisherDto> grid = new Grid<>(PublisherDto.class);
-    private final ExpandingTextField txtFilter = new ExpandingTextField(TextFormatter.header("filterByPhrase"));
+    private final ExpandingTextField txtFilter = new ExpandingTextField(header("filterByPhrase"));
     private HorizontalLayout toolbar;
 
     public PublishersListView(PublisherService publisherService) {
@@ -64,7 +65,7 @@ public class PublishersListView extends VerticalLayout {
             publisherForm.setPublisher(e.getItem());
             publisherForm.addListener(PublisherForm.DeleteEvent.class, this::delete);
             publisherForm.addListener(PublisherForm.SaveEvent.class, this::save);
-            new DialogWindow(publisherForm, TextFormatter.header("editPublisher")).open();
+            new DialogWindow(publisherForm, header("editPublisher")).open();
         });
         updateGrid();
     }
@@ -72,7 +73,7 @@ public class PublishersListView extends VerticalLayout {
     private void addEntityColumns() {
         Stream.of("name")
                 .map(grid::addColumn)
-                .map(c -> c.setHeader(TextFormatter.header(c.getKey())))
+                .map(c -> c.setHeader(header(c.getKey())))
                 .forEach(c -> c.setAutoWidth(true));
     }
 
@@ -101,6 +102,6 @@ public class PublishersListView extends VerticalLayout {
         PublisherForm publisherForm = new PublisherForm(Form.FormMode.ADD);
         publisherForm.setPublisher(new PublisherDto());
         publisherForm.addListener(AuthorForm.SaveEvent.class, this::save);
-        new DialogWindow(publisherForm, TextFormatter.header("addPublisher")).open();
+        new DialogWindow(publisherForm, header("addPublisher")).open();
     }
 }
