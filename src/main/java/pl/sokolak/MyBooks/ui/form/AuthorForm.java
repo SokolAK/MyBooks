@@ -47,7 +47,6 @@ public class AuthorForm extends Form {
 
         lastName.setRequired(true);
 
-
         addListener(AuthorForm.DeleteEvent.class, e -> getParent().ifPresent(d -> ((Dialog) d).close()));
         addListener(AuthorForm.SaveEvent.class, e -> getParent().ifPresent(d -> ((Dialog) d).close()));
 

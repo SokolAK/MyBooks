@@ -10,6 +10,7 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import pl.sokolak.MyBooks.model.publisher.PublisherDto;
 import pl.sokolak.MyBooks.model.publisher.PublisherService;
+import pl.sokolak.MyBooks.security.Secured;
 import pl.sokolak.MyBooks.ui.ExpandingTextField;
 import pl.sokolak.MyBooks.ui.MainLayout;
 import pl.sokolak.MyBooks.ui.form.AuthorForm;
@@ -20,6 +21,8 @@ import pl.sokolak.MyBooks.ui.form.PublisherForm;
 import java.util.Set;
 import java.util.stream.Stream;
 
+import static pl.sokolak.MyBooks.security.OperationType.ADD;
+import static pl.sokolak.MyBooks.security.OperationType.EDIT;
 import static pl.sokolak.MyBooks.utils.TextFormatter.header;
 
 @Route(value = "publishers", layout = MainLayout.class)
@@ -44,7 +47,7 @@ public class PublishersListView extends VerticalLayout {
     }
 
     private void configureToolbar() {
-        Button btnAdd = new Button(new Icon(VaadinIcon.PLUS), click -> add());
+        Button btnAdd = new Button(new Icon(VaadinIcon.PLUS), click -> addPublisher());
 
         txtFilter.setComponentsToHide(Set.of(btnAdd));
         txtFilter.addValueChangeListener(e -> updateList());
@@ -57,15 +60,11 @@ public class PublishersListView extends VerticalLayout {
     }
 
     private void configureGrid() {
-        grid.addClassName("author-grid");
+        grid.addClassName("series-grid");
         grid.setSizeFull();
         grid.addItemDoubleClickListener(e -> {
             grid.select(e.getItem());
-            PublisherForm publisherForm = new PublisherForm(e.getItem(), Form.FormMode.EDIT);
-            publisherForm.setPublisher(e.getItem());
-            publisherForm.addListener(PublisherForm.DeleteEvent.class, this::delete);
-            publisherForm.addListener(PublisherForm.SaveEvent.class, this::save);
-            new DialogWindow(publisherForm, header("editPublisher")).open();
+            editPublisher(e.getItem());
         });
         updateGrid();
     }
@@ -97,7 +96,17 @@ public class PublishersListView extends VerticalLayout {
         updateList();
     }
 
-    private void add() {
+    @Secured(EDIT)
+    private void editPublisher(PublisherDto publisherDto) {
+        PublisherForm publisherForm = new PublisherForm(publisherDto, Form.FormMode.EDIT);
+        publisherForm.setPublisher(publisherDto);
+        publisherForm.addListener(PublisherForm.DeleteEvent.class, this::delete);
+        publisherForm.addListener(PublisherForm.SaveEvent.class, this::save);
+        new DialogWindow(publisherForm, header("editPublisher")).open();
+    }
+
+    @Secured(ADD)
+    private void addPublisher() {
         grid.asSingleSelect().clear();
         PublisherForm publisherForm = new PublisherForm(Form.FormMode.ADD);
         publisherForm.setPublisher(new PublisherDto());

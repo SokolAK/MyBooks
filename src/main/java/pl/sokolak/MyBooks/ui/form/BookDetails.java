@@ -23,12 +23,14 @@ import pl.sokolak.MyBooks.model.publisher.PublisherDto;
 import pl.sokolak.MyBooks.model.publisher.PublisherService;
 import pl.sokolak.MyBooks.model.series.SeriesDto;
 import pl.sokolak.MyBooks.model.series.SeriesService;
+import pl.sokolak.MyBooks.security.Secured;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import static pl.sokolak.MyBooks.security.OperationType.*;
 import static pl.sokolak.MyBooks.utils.TextFormatter.header;
 import static pl.sokolak.MyBooks.utils.TextFormatter.uppercase;
 
@@ -129,10 +131,13 @@ public class BookDetails extends Form {
     }
 
     private Button getEditButton(TextField textField) {
-        return new Button(new Icon(VaadinIcon.EDIT), click -> {
-            textField.setReadOnly(false);
-            textField.focus();
-        });
+        return new Button(new Icon(VaadinIcon.EDIT), click -> unlockTextField(textField));
+    }
+
+    @Secured(EDIT)
+    private void unlockTextField(TextField textField) {
+        textField.setReadOnly(false);
+        textField.focus();
     }
 
     private VerticalLayout createSection(String title, Button btnEdit, Component... components) {
@@ -161,18 +166,21 @@ public class BookDetails extends Form {
         return verticalLayout;
     }
 
+    @Secured(EDIT)
     private void editAuthors() {
         BookFormAuthor bookFormAuthor = new BookFormAuthor(BookDto.copy(bookDto), authorService);
         bookFormAuthor.addListener(BookFormAuthor.SaveEvent.class, this::saveAuthors);
         new DialogWindow(bookFormAuthor, header("editAuthor")).open();
     }
 
+    @Secured(EDIT)
     private void editPublishers() {
         BookFormPublisher bookFormPublisher = new BookFormPublisher(BookDto.copy(bookDto), publisherService);
         bookFormPublisher.addListener(BookFormPublisher.SaveEvent.class, this::savePublishers);
         new DialogWindow(bookFormPublisher, header("editPublisher")).open();
     }
 
+    @Secured(EDIT)
     private void editSeries() {
         BookFormSeries bookFormSeries = new BookFormSeries(BookDto.copy(bookDto), seriesService);
         bookFormSeries.addListener(BookFormSeries.SaveEvent.class, this::saveSeries);
@@ -187,10 +195,6 @@ public class BookDetails extends Form {
         btnSave.addClickShortcut(Key.ENTER);
         btnSave.addClickListener(e -> saveBook());
         buttonsLayout.addAndExpand(btnSave);
-
-/*        Button btnDelete = new Button(header("delete"));
-        btnDelete.addThemeVariants(ButtonVariant.LUMO_ERROR);
-        btnDelete.addClickListener(e -> new ConfirmationDialog());*/
 
         btnDelete.addClickListener(e -> {
             if (((DeleteButton) e.getSource()).isReady())
@@ -211,27 +215,32 @@ public class BookDetails extends Form {
         }
     }
 
+    @Secured(ADD)
     private void saveBook() {
         if(writeBook())
             fireEvent(new SaveEvent(this, bookDto));
     }
 
+    @Secured(DELETE)
     private void deleteBook() {
         fireEvent(new DeleteEvent(this, bookDto));
     }
 
+    @Secured(EDIT)
     private void saveAuthors(BookFormAuthor.SaveEvent e) {
         List<AuthorDto> authors = e.getDto(BookDto.class).getAuthors();
         bookDto.setAuthors(new ArrayList<>(authors));
         updateDetails();
     }
 
+    @Secured(EDIT)
     private void savePublishers(BookFormPublisher.SaveEvent e) {
         List<PublisherDto> publishers = e.getDto(BookDto.class).getPublishers();
         bookDto.setPublishers(new ArrayList<>(publishers));
         updateDetails();
     }
 
+    @Secured(EDIT)
     private void saveSeries(BookFormSeries.SaveEvent e) {
         SeriesDto series = e.getDto(BookDto.class).getSeries();
         bookDto.setSeries(series);

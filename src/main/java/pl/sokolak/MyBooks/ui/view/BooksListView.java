@@ -19,6 +19,7 @@ import pl.sokolak.MyBooks.model.book.BookDto;
 import pl.sokolak.MyBooks.model.book.BookService;
 import pl.sokolak.MyBooks.model.publisher.PublisherService;
 import pl.sokolak.MyBooks.model.series.SeriesService;
+import pl.sokolak.MyBooks.security.Secured;
 import pl.sokolak.MyBooks.ui.MainLayout;
 import pl.sokolak.MyBooks.ui.form.BookDetails;
 import pl.sokolak.MyBooks.ui.form.DialogWindow;
@@ -28,8 +29,7 @@ import java.util.Map;
 
 import static pl.sokolak.MyBooks.model.author.AuthorDto.authorsSetToString;
 import static pl.sokolak.MyBooks.model.publisher.PublisherDto.publishersSetToString;
-import static pl.sokolak.MyBooks.security.SecurityUtils.OperationType.ADD;
-import static pl.sokolak.MyBooks.security.SecurityUtils.hasAccess;
+import static pl.sokolak.MyBooks.security.OperationType.ADD;
 import static pl.sokolak.MyBooks.utils.TextFormatter.header;
 
 
@@ -86,6 +86,7 @@ public class BooksListView extends VerticalLayout {
         });
     }
 
+    //@Secured(EDIT)
     private void openBookDetails(BookDto bookDto) {
         BookDetails bookDetails = new BookDetails(BookDto.copy(bookDto), authorService, publisherService, seriesService);
         //authorForm.setAuthor(e);
@@ -153,11 +154,10 @@ public class BooksListView extends VerticalLayout {
         btnAddBook.setVisible(true);
     }
 
+    @Secured(ADD)
     private void addBook() {
-        if(hasAccess(ADD)) {
-            grid.asSingleSelect().clear();
-            openBookDetails(new BookDto());
-        }
+        grid.asSingleSelect().clear();
+        openBookDetails(new BookDto());
     }
 
     private Grid.Column addGridColumn(String key) {

@@ -10,6 +10,7 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import pl.sokolak.MyBooks.model.series.SeriesDto;
 import pl.sokolak.MyBooks.model.series.SeriesService;
+import pl.sokolak.MyBooks.security.Secured;
 import pl.sokolak.MyBooks.ui.ExpandingTextField;
 import pl.sokolak.MyBooks.ui.MainLayout;
 import pl.sokolak.MyBooks.ui.form.AuthorForm;
@@ -20,6 +21,8 @@ import pl.sokolak.MyBooks.ui.form.SeriesForm;
 import java.util.Set;
 import java.util.stream.Stream;
 
+import static pl.sokolak.MyBooks.security.OperationType.ADD;
+import static pl.sokolak.MyBooks.security.OperationType.EDIT;
 import static pl.sokolak.MyBooks.utils.TextFormatter.header;
 
 @Route(value = "series", layout = MainLayout.class)
@@ -44,7 +47,7 @@ public class SeriesListView extends VerticalLayout {
     }
 
     private void configureToolbar() {
-        Button btnAdd = new Button(new Icon(VaadinIcon.PLUS), click -> add());
+        Button btnAdd = new Button(new Icon(VaadinIcon.PLUS), click -> addSeries());
 
         txtFilter.setComponentsToHide(Set.of(btnAdd));
         txtFilter.addValueChangeListener(e -> updateList());
@@ -57,15 +60,11 @@ public class SeriesListView extends VerticalLayout {
     }
 
     private void configureGrid() {
-        grid.addClassName("author-grid");
+        grid.addClassName("series-grid");
         grid.setSizeFull();
         grid.addItemDoubleClickListener(e -> {
             grid.select(e.getItem());
-            SeriesForm seriesForm = new SeriesForm(e.getItem(), Form.FormMode.EDIT);
-            seriesForm.setSeries(e.getItem());
-            seriesForm.addListener(SeriesForm.DeleteEvent.class, this::delete);
-            seriesForm.addListener(SeriesForm.SaveEvent.class, this::save);
-            new DialogWindow(seriesForm, header("editSeries")).open();
+            editSeries(e.getItem());
         });
         updateGrid();
     }
@@ -97,7 +96,17 @@ public class SeriesListView extends VerticalLayout {
         updateList();
     }
 
-    private void add() {
+    @Secured(EDIT)
+    private void editSeries(SeriesDto seriesDto) {
+        SeriesForm seriesForm = new SeriesForm(seriesDto, Form.FormMode.EDIT);
+        seriesForm.setSeries(seriesDto);
+        seriesForm.addListener(SeriesForm.DeleteEvent.class, this::delete);
+        seriesForm.addListener(SeriesForm.SaveEvent.class, this::save);
+        new DialogWindow(seriesForm, header("editSeries")).open();
+    }
+
+    @Secured(ADD)
+    private void addSeries() {
         grid.asSingleSelect().clear();
         SeriesForm seriesForm = new SeriesForm(Form.FormMode.ADD);
         seriesForm.setSeries(new SeriesDto());
