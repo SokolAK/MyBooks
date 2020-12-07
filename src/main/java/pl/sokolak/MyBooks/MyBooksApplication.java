@@ -14,15 +14,15 @@ import static java.lang.System.setProperty;
 @PropertySource("classpath:application.yml")
 public class MyBooksApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(MyBooksApplication.class, args);
-		setProperty("vaadin.i18n.provider", VaadinI18NProvider.class.getName());
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(MyBooksApplication.class, args);
+        setProperty("vaadin.i18n.provider", VaadinI18NProvider.class.getName());
+    }
 
-	@Bean
-	static PropertySourcesPlaceholderConfigurer propertyPlaceHolderConfigurer() {
-		return new PropertySourcesPlaceholderConfigurer();
-	}
+    @Bean
+    static PropertySourcesPlaceholderConfigurer propertyPlaceHolderConfigurer() {
+        return new PropertySourcesPlaceholderConfigurer();
+    }
 }
 
 

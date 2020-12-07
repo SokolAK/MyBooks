@@ -1,6 +1,7 @@
 package pl.sokolak.MyBooks;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -17,11 +18,24 @@ import pl.sokolak.MyBooks.model.series.SeriesDto;
 import pl.sokolak.MyBooks.model.series.SeriesMapper;
 import pl.sokolak.MyBooks.model.series.SeriesService;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URISyntaxException;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Stream;
+
+import static pl.sokolak.MyBooks.security.SecurityConfiguration.getActiveProfiles;
 
 @Component
 public class DataLoader implements ApplicationRunner {
+
+    @Value("${spring.jpa.hibernate.ddl-auto}")
+    private String auto;
 
     private final AuthorService authorService;
     private final BookService bookService;
@@ -51,55 +65,84 @@ public class DataLoader implements ApplicationRunner {
         this.seriesMapper = seriesMapper;
     }
 
-    public void run(ApplicationArguments args) {
-        Stream.of("Ogniem i lalką;  powieść;    Henryk Sienkiewicz, Bolesław Prus;  1930;   1;  1;  Gebethner;          Warszawa;   Wielcy Pisarze; 1;",
-                "Lalka;             powieść;    Bolesław Prus;                      1922;   ;   3;  Książnica Atlas;    Lwów;       Wielcy Pisarze; 2;",
-                "Dziady;            ;           Adam Mickiewicz;                    1901;   ;   2;  Gebethner, Fiszer;  Warszawa;   Wielcy Pisarze; 3;",
-                "Kordian;           ;           Juliusz Słowacki;                   1914;   ;   ;   Fiszer;             Łódź;       ;               2;",
-                "Chłopi;            Zima;       Władysław Reymont;                  1906;   1;  ;   s;                  ;           Nobliści;       1;",
-                "Chłopi;            Wiosna;     Władysław Reymont;                  1906;   2;  ;   ;                   ;           Nobliści;       2;")
-                .forEach(s -> {
-                    Book book = new Book();
-                    book.setTitle(s.split(";")[0].trim());
-                    book.setSubtitle(s.split(";")[1].trim());
-                    book.setYear(s.split(";")[3].trim());
-                    book.setVolume(s.split(";")[4].trim());
-                    book.setEdition(s.split(";")[5].trim());
-                    book.setCity(s.split(";")[7].trim());
+    public void run(ApplicationArguments args) throws URISyntaxException, IOException {
+        if (getActiveProfiles().contains("dev") || auto.equals("create")) {
 
-                    Arrays.stream(s.split(";")[2].split(","))
-                            .filter(a -> !a.isBlank())
-                            .forEach(a -> {
-                                AuthorDto author = new AuthorDto();
-                                author.setFirstName(a.trim().split(" ")[0]);
-                                author.setLastName(a.trim().split(" ")[1]);
-                                AuthorDto savedAuthor = authorService.save(author);
-                                savedAuthor.getBooksIds().add(book.getId());
-                                book.getAuthors().add(authorMapper.toEntity(savedAuthor));
-                            });
+            ClassLoader classLoader = getClass().getClassLoader();
+            InputStream inputStream = classLoader.getResourceAsStream("books_data.txt");
+            Stream<String> lines = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8)).lines();
 
-                    Arrays.stream(s.split(";")[6].split(","))
-                            .filter(p -> !p.isBlank())
-                            .forEach(p -> {
-                                PublisherDto publisher = new PublisherDto();
-                                publisher.setName(p.trim());
-                                PublisherDto savedPublisher = publisherService.save(publisher);
-                                savedPublisher.getBooksIds().add(book.getId());
-                                book.getPublishers().add(publisherMapper.toEntity(savedPublisher));
-                            });
 
-                    String seriesName = s.split(";")[8].trim();
-                    if(!seriesName.isBlank()) {
-                        SeriesDto series = new SeriesDto();
-                        series.setName(seriesName);
-                        SeriesDto savedSeries = seriesService.save(series);
-                        savedSeries.getBooksIds().add(book.getId());
-                        book.setSeries(seriesMapper.toEntity(savedSeries));
+            lines.forEach(s -> {
+                Book book = new Book();
+                String[] items = s.split("#");
+                //System.out.println(s);
+
+                setAuthors(book, items[1].trim());
+
+                book.setTitle(items[2].trim());
+                book.setSubtitle(items[3].trim());
+
+                setPublishers(book, items[4].trim());
+
+                book.setVolume(items[5].trim());
+                book.setEdition(items[6].trim());
+                book.setCity(items[7].trim());
+                book.setYear(items[8].trim());
+
+                setSeries(book, items[9].trim());
+
+                book.setSeriesVolume(items[10].trim());
+                book.setComment(items[11].trim());
+
+                bookService.save(bookMapper.toDto(book));
+            });
+            lines.close();
+        }
+    }
+
+    private void setAuthors(Book book, String authors) {
+        Arrays.stream(authors.split(";"))
+                .filter(a -> !a.isBlank())
+                .forEach(a -> {
+                    AuthorDto author = new AuthorDto();
+                    String[] aItems = a.trim().split(",", 2);
+                    if (aItems.length > 1) {
+                        author.setPrefix(aItems[1]);
                     }
-
-                    book.setSeriesVolume(s.split(";")[9].trim());
-
-                    bookService.save(bookMapper.toDto(book));
+                    String[] names = aItems[0].split(" ");
+                    author.setLastName(names[0]);
+                    if (names.length > 1) {
+                        List<String> middleNames = new ArrayList<>(Arrays.asList(names).subList(1, names.length - 1));
+                        String middleName = String.join(" ", middleNames);
+                        author.setMiddleName(middleName);
+                        author.setFirstName(names[names.length - 1]);
+                    }
+                    AuthorDto savedAuthor = authorService.save(author);
+                    savedAuthor.getBooksIds().add(book.getId());
+                    book.getAuthors().add(authorMapper.toEntity(savedAuthor));
                 });
+    }
+
+    private void setPublishers(Book book, String publishers) {
+        Arrays.stream(publishers.split(";"))
+                .filter(p -> !p.isBlank())
+                .forEach(p -> {
+                    PublisherDto publisher = new PublisherDto();
+                    publisher.setName(p.trim());
+                    PublisherDto savedPublisher = publisherService.save(publisher);
+                    savedPublisher.getBooksIds().add(book.getId());
+                    book.getPublishers().add(publisherMapper.toEntity(savedPublisher));
+                });
+    }
+
+    private void setSeries(Book book, String seriesName) {
+        if (!seriesName.isBlank()) {
+            SeriesDto series = new SeriesDto();
+            series.setName(seriesName);
+            SeriesDto savedSeries = seriesService.save(series);
+            savedSeries.getBooksIds().add(book.getId());
+            book.setSeries(seriesMapper.toEntity(savedSeries));
+        }
     }
 }

@@ -2,10 +2,12 @@ package pl.sokolak.MyBooks.localization;
 
 import com.vaadin.flow.i18n.I18NProvider;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.text.MessageFormat;
 import java.util.*;
 
+@Component
 public class VaadinI18NProvider implements I18NProvider {
 
     public static final String BUNDLE_PREFIX = "locale/messages";

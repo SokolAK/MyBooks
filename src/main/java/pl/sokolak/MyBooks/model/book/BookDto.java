@@ -50,4 +50,13 @@ public class BookDto implements Dto {
         originalSeries.ifPresent(s -> copy.setSeries(SeriesDto.copy(s)));
         return copy;
     }
+
+    @Override
+    public String toString() {
+        List<String> items = new ArrayList<>();
+        items.add(id.toString());
+        items.add(title);
+        items.add(subtitle);
+        return String.join(" # ", items);
+    }
 }

@@ -1,7 +1,13 @@
 spring:
-  profiles.active: dev
+  profiles.active: prod
+
 server:
   servlet.session.persistent: false
+
+jasypt:
+  encryptor:
+    algorithm: PBEWithMD5AndDES
+    iv-generator-classname: org.jasypt.iv.NoIvGenerator
 
 ---
 
@@ -10,6 +16,8 @@ spring:
   h2.console.enabled: true
   datasource.url: jdbc:h2:mem:/.MyBooks
   jpa:
+    hibernate.ddl-auto: create
+  #jpa:
     #show-sql: true
     #properties.hibernate.format_sql: true
 
@@ -19,11 +27,27 @@ spring:
   profiles: prod
   datasource:
     url: jdbc:postgresql://localhost:5432/mybooks
-    username: mybooksadmin
-    password: supaplex
-    #username: postgres
-    #password: root
+    username: ENC(+2z5W6bphNMgstRafjkgT4zJKiqnBsa1)
+    password: ENC(IKjfPut1SBzf3wHKcPNt0x2ZAxtcBUtT)
     driverClassName: org.postgresql.Driver
     initialization-mode: always
   jpa:
-    properties.hibernate.hbm2ddl.auto: create
+    hibernate.ddl-auto: create
+  #jpa:
+    #properties.hibernate.hbm2ddl.auto: create
+
+---
+
+spring:
+  profiles: heroku
+  datasource:
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    driverClassName: org.postgresql.Driver
+    initialization-mode: always
+  jpa:
+    hibernate.ddl-auto: ${SPRING_JPA_HIBERNATE_DDL-AUTO}
+    #database-platform: ${SPRING_JPA_DATABASE-PLATFORM}
+    #properties.hibernate.hbm2ddl.auto: ${SPRING_JPA_HIBERNATE_DLL-AUTO}
+

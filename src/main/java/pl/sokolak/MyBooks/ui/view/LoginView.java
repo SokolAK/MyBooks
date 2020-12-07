@@ -16,13 +16,14 @@ import static pl.sokolak.MyBooks.utils.TextFormatter.header;
 import static pl.sokolak.MyBooks.utils.TextFormatter.label;
 
 @Route("login")
-@PageTitle("Login | Vaadin CRM")
+@PageTitle("Login | MyBooks")
 public class LoginView extends VerticalLayout implements BeforeEnterObserver {
     private final LoginForm login = new LoginForm();
 
     public LoginView(){
         addClassName("login-view");
         login.setI18n(createI18n());
+        login.setForgotPasswordButtonVisible(false);
 
         setSizeFull();
         setAlignItems(Alignment.CENTER);

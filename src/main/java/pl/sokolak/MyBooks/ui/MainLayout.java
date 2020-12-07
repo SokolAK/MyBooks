@@ -22,6 +22,7 @@ import pl.sokolak.MyBooks.ui.view.BooksListView;
 import pl.sokolak.MyBooks.ui.view.PublishersListView;
 import pl.sokolak.MyBooks.ui.view.SeriesListView;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,13 +42,19 @@ import static pl.sokolak.MyBooks.utils.TextFormatter.label;
 @CssImport("./styles/shared-styles.css")
 public class MainLayout extends AppLayout {
 
-    public MainLayout() {
+    public MainLayout() throws FileNotFoundException {
         createHeader();
         createDrawer();
         ThemeUtil.setThemeVariant(Lumo.DARK);
     }
 
-    private void createHeader() {
+
+    private void createHeader() throws FileNotFoundException {
+
+        //Button downloadBtn = new Button(new Icon(VaadinIcon.DOWNLOAD_ALT));
+        //downloadBtn.addClickListener(e -> exportData());
+        //download.add(downloadBtn);
+
         H1 logo = new H1(label("appName"));
         logo.addClassName("logo");
 
@@ -66,6 +73,7 @@ public class MainLayout extends AppLayout {
         header.setDefaultVerticalComponentAlignment(FlexComponent.Alignment.CENTER);
 
         addToNavbar(header);
+
     }
 
     private void createDrawer() {

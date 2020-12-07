@@ -1,5 +1,7 @@
 package pl.sokolak.MyBooks.model.book;
 
+import org.springframework.data.domain.Pageable;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -21,13 +23,13 @@ public class BookFilterImpl implements BookFilter {
     private Root<Book> book;
 
     @Override
-    public List<Book> findAllContainingPhrase(String phrase, Map<String, Boolean> columnList) {
-        return findAllContainingPhraseSQL(phrase, columnList);
+    public List<Book> findAllContainingPhrase(String phrase, Map<String, Boolean> columnList, Pageable pageable) {
+        return findAllContainingPhraseSQL(phrase, columnList, pageable);
     }
 
     //Awful but works - NEW
     @SuppressWarnings("unchecked")
-    private List<Book> findAllContainingPhraseSQL(String phrase, Map<String, Boolean> columnList) {
+    private List<Book> findAllContainingPhraseSQL(String phrase, Map<String, Boolean> columnList, Pageable pageable) {
         Set<String> subPhrases = convertPhraseToSubPhrases(phrase);
         StringJoiner columns = new StringJoiner(", ';' ,");
 
@@ -85,7 +87,9 @@ public class BookFilterImpl implements BookFilter {
                 conditions;
         String sql = "SELECT * FROM Book b " +
                 "WHERE b.id IN (" + subSql + ") " +
-                "ORDER BY b.id";
+                "ORDER BY b.id " +
+                "LIMIT " + pageable.getPageSize() +
+                " OFFSET " + pageable.getPageSize() * pageable.getPageNumber();
 
         Query query = em.createNativeQuery(sql, Book.class);
 

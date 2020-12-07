@@ -16,7 +16,7 @@ import java.util.Set;
 @Getter
 @Setter
 public class Publisher extends AbstractEntity {
-    @Column(columnDefinition = "varchar(127) default ''")
+    @Column(columnDefinition = "varchar(255) default ''")
     private String name = "";
     @ManyToMany(mappedBy = "publishers", fetch = FetchType.EAGER)
     private Set<Book> books = new HashSet<>();

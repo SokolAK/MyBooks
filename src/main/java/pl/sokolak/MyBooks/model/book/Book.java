@@ -23,13 +23,13 @@ public class Book extends AbstractEntity {
     private String subtitle = "";
     @Column(columnDefinition = "varchar(255) default ''")
     private String city = "";
-    @Column(columnDefinition = "varchar(15) default ''")
+    @Column(columnDefinition = "varchar(31) default ''")
     private String year = "";
-    @Column(columnDefinition = "varchar(7) default ''")
+    @Column(columnDefinition = "varchar(31) default ''")
     private String volume = "";
     @Column(columnDefinition = "varchar(127) default ''")
     private String edition = "";
-    @Column(columnDefinition = "varchar(7) default ''")
+    @Column(columnDefinition = "varchar(255) default ''", name = "series_volume")
     private String seriesVolume = "";
     @Column(columnDefinition = "varchar(511) default ''")
     private String comment = "";

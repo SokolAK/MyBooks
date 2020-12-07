@@ -1,11 +1,13 @@
 package pl.sokolak.MyBooks.model.book;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import pl.sokolak.MyBooks.model.author.AuthorMapper;
 import pl.sokolak.MyBooks.model.author.AuthorRepo;
 import pl.sokolak.MyBooks.model.publisher.PublisherMapper;
 import pl.sokolak.MyBooks.model.publisher.PublisherRepo;
+import pl.sokolak.MyBooks.model.series.Series;
 import pl.sokolak.MyBooks.model.series.SeriesMapper;
 import pl.sokolak.MyBooks.model.series.SeriesRepo;
 
@@ -39,17 +41,27 @@ public class BookService {
         this.bookMapper = bookMapper;
     }
 
+    public long count() {
+        return bookRepo.count();
+    }
+
     public List<BookDto> findAll() {
         return bookRepo.findAll().stream()
                 .map(bookMapper::toDto)
                 .collect(Collectors.toList());
     }
 
-    public List<BookDto> findAll(String phrase, Map<String, Boolean> columnList) {
+    public List<BookDto> findAll(Pageable pageable) {
+        return bookRepo.findAll(pageable).stream()
+                .map(bookMapper::toDto)
+                .collect(Collectors.toList());
+    }
+
+    public List<BookDto> findAll(String phrase, Map<String, Boolean> columnList, Pageable pageable) {
         if (phrase == null || phrase.isEmpty()) {
-            return findAll();
+            return findAll(pageable);
         } else {
-            return bookRepo.findAllContainingPhrase(phrase, columnList).stream()
+            return bookRepo.findAllContainingPhrase(phrase, columnList, pageable).stream()
                     .map(bookMapper::toDto)
                     .collect(Collectors.toList());
         }
@@ -82,10 +94,13 @@ public class BookService {
                     .forEach(p -> publisherRepo.delete(p));
             b.getPublishers().clear();
 
-            b.getSeries().getBooks().remove(b);
-            if(b.getSeries().getBooks().size() == 0)
-                seriesRepo.delete(b.getSeries());
-
+            Optional<Series> series = Optional.ofNullable(b.getSeries());
+            series.ifPresent(s -> {
+                        s.getBooks().remove(b);
+                        if (s.getBooks().size() == 0)
+                            seriesRepo.delete(b.getSeries());
+                    }
+            );
             bookRepo.delete(b);
         });
     }

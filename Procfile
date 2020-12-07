@@ -1,0 +1,1 @@
+web: java -jar target/mybooks-0.0.1-SNAPSHOT.jar -javaagent:C:\Users\AKS-Brutus\.m2\repository\org\aspectj\aspectjweaver\1.9.6\aspectjweaver-1.9.6.jar

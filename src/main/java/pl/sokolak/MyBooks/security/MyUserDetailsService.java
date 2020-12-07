@@ -13,7 +13,7 @@ import java.util.List;
 @Configuration
 public class MyUserDetailsService {
     @Bean
-    @Profile("prod")
+    @Profile({"prod", "heroku"})
     public UserDetailsService userDetailsServiceProd() {
         UserDetails guest =
                 User.withUsername("guest")
@@ -25,6 +25,11 @@ public class MyUserDetailsService {
                         .password("{bcrypt}$2b$10$nBiEgDUOjw.MVP6GNDoC6u0cKmQWVWFjU1Rv/oROhs4kqv6c2vwe.")
                         .roles("ADMIN")
                         .build();
-        return new InMemoryUserDetailsManager(List.of(admin, guest));
+        UserDetails darek =
+                User.withUsername("darek")
+                        .password("{bcrypt}$2b$10$D1YkX18Ism7XPhEu2PtWaO0OjEY1Nj6esQI0cXUQrTCkcSyQyXHsC")
+                        .roles("GUEST")
+                        .build();
+        return new InMemoryUserDetailsManager(List.of(admin, guest, darek));
     }
 }
