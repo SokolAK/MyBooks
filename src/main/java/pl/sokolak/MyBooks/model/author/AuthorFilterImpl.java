@@ -11,7 +11,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static pl.sokolak.MyBooks.utils.StringUtil.convertPhraseToSubPhrases;
+import static pl.sokolak.MyBooks.utils.StringUtils.convertPhraseToSubPhrases;
 
 public class AuthorFilterImpl implements AuthorFilter {
 

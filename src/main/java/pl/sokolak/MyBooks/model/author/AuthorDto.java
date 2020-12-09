@@ -3,7 +3,7 @@ package pl.sokolak.MyBooks.model.author;
 import lombok.Getter;
 import lombok.Setter;
 import pl.sokolak.MyBooks.model.Dto;
-import pl.sokolak.MyBooks.utils.StringUtil;
+import pl.sokolak.MyBooks.utils.StringUtils;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -39,7 +39,7 @@ public class AuthorDto implements Dto {
             if (!shortNotation)
                 stringBuilder.append(firstName);
             else
-                stringBuilder.append(StringUtil.getInitial(firstName));
+                stringBuilder.append(StringUtils.getInitial(firstName));
         }
 
         if (!middleName.isBlank()) {
@@ -47,7 +47,7 @@ public class AuthorDto implements Dto {
             if (!shortNotation)
                 stringBuilder.append(middleName);
             else
-                stringBuilder.append(StringUtil.getInitial(middleName));
+                stringBuilder.append(StringUtils.getInitial(middleName));
         }
 
         if (!prefix.isBlank()) {

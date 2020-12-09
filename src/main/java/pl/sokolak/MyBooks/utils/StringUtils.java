@@ -4,7 +4,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class StringUtil {
+public class StringUtils {
 
     public static String getInitial(String word) {
         return getFirstChar(word.toUpperCase())+".";

@@ -19,20 +19,21 @@ import pl.sokolak.MyBooks.model.series.SeriesMapper;
 import pl.sokolak.MyBooks.model.series.SeriesService;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Stream;
 
 import static pl.sokolak.MyBooks.security.SecurityConfiguration.getActiveProfiles;
 
 @Component
 public class DataLoader implements ApplicationRunner {
+    private final Logger log = Logger.getLogger(getClass().getName());
 
     @Value("${spring.jpa.hibernate.ddl-auto}")
     private String auto;
@@ -65,7 +66,7 @@ public class DataLoader implements ApplicationRunner {
         this.seriesMapper = seriesMapper;
     }
 
-    public void run(ApplicationArguments args) throws URISyntaxException, IOException {
+    public void run(ApplicationArguments args) {
         if (getActiveProfiles().contains("dev") || auto.equals("create")) {
 
             ClassLoader classLoader = getClass().getClassLoader();
@@ -74,9 +75,10 @@ public class DataLoader implements ApplicationRunner {
 
 
             lines.forEach(s -> {
+                log.log(Level.INFO, "Reading line: {0}", s);
+
                 Book book = new Book();
                 String[] items = s.split("#");
-                //System.out.println(s);
 
                 setAuthors(book, items[1].trim());
 
@@ -113,10 +115,12 @@ public class DataLoader implements ApplicationRunner {
                     String[] names = aItems[0].split(" ");
                     author.setLastName(names[0]);
                     if (names.length > 1) {
-                        List<String> middleNames = new ArrayList<>(Arrays.asList(names).subList(1, names.length - 1));
+                        author.setFirstName(names[1]);
+                    }
+                    if (names.length > 2) {
+                        List<String> middleNames = new ArrayList<>(Arrays.asList(names).subList(2, names.length));
                         String middleName = String.join(" ", middleNames);
                         author.setMiddleName(middleName);
-                        author.setFirstName(names[names.length - 1]);
                     }
                     AuthorDto savedAuthor = authorService.save(author);
                     savedAuthor.getBooksIds().add(book.getId());

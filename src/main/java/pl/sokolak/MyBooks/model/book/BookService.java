@@ -19,7 +19,6 @@ import java.util.stream.Collectors;
 
 @Service
 public class BookService {
-
     private final BookRepo bookRepo;
     private final BookMapper bookMapper;
     @Autowired
@@ -34,7 +33,6 @@ public class BookService {
     private SeriesRepo seriesRepo;
     @Autowired
     private SeriesMapper seriesMapper;
-
 
     public BookService(BookRepo bookRepo, BookMapper bookMapper) {
         this.bookRepo = bookRepo;

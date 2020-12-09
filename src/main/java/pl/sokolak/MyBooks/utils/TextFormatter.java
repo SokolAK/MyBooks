@@ -2,7 +2,7 @@ package pl.sokolak.MyBooks.utils;
 
 import com.vaadin.flow.component.Text;
 
-import static pl.sokolak.MyBooks.utils.StringUtil.lowerAndCapitalizeFirst;
+import static pl.sokolak.MyBooks.utils.StringUtils.lowerAndCapitalizeFirst;
 
 
 public class TextFormatter {

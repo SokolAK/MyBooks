@@ -12,7 +12,7 @@ import javax.persistence.criteria.Root;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static pl.sokolak.MyBooks.utils.StringUtil.convertPhraseToSubPhrases;
+import static pl.sokolak.MyBooks.utils.StringUtils.convertPhraseToSubPhrases;
 
 public class BookFilterImpl implements BookFilter {
 

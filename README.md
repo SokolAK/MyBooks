@@ -1,13 +1,5 @@
 # MyBooks
-> Book Collection Manager
-
-## Table of contents
-* [General info](#general-info)
-* [Technologies](#technologies)
-* [Setup](#setup)
-* [Features](#features)
-* [Status](#status)
-* [Contact](#contact)
+Book Collection Manager
 
 ## General info
 
@@ -25,9 +17,9 @@
 ## Features
 
 
+## Screenshots
+
+
+
 ## Status
 Project is: _in progress_
-
-
-## Contact
-Created by [@sokolak87](https://github.com/sokolak87)
