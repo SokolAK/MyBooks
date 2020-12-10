@@ -1,13 +1,16 @@
 package pl.sokolak.MyBooks.ui.view;
 
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import org.springframework.data.domain.Pageable;
+import pl.sokolak.MyBooks.model.Dto;
 import pl.sokolak.MyBooks.model.publisher.PublisherDto;
 import pl.sokolak.MyBooks.model.publisher.PublisherService;
 import pl.sokolak.MyBooks.security.Secured;
@@ -18,7 +21,7 @@ import pl.sokolak.MyBooks.ui.form.DialogWindow;
 import pl.sokolak.MyBooks.ui.form.Form;
 import pl.sokolak.MyBooks.ui.form.PublisherForm;
 
-import java.util.Set;
+import java.util.List;
 import java.util.stream.Stream;
 
 import static pl.sokolak.MyBooks.security.OperationType.ADD;
@@ -31,8 +34,15 @@ public class PublishersListView extends VerticalLayout {
 
     private final PublisherService publisherService;
     private final Grid<PublisherDto> grid = new Grid<>(PublisherDto.class);
-    private final ExpandingTextField txtFilter = new ExpandingTextField(header("filterByPhrase"));
-    private HorizontalLayout toolbar;
+    private final ExpandingTextField txtFilter = new ExpandingTextField();
+    private VerticalLayout toolbar;
+    private Button btnAddPublisher;
+    private final ComboBox<Integer> comboBox = new ComboBox<>();
+    private Button btnLeft = new Button();
+    private Button btnRight = new Button();
+    private final TextField txtPage = new TextField();
+    private final ListViewUI listViewUI = new ListViewUI();
+    private NavigationController nc;
 
     public PublishersListView(PublisherService publisherService) {
         this.publisherService = publisherService;
@@ -40,23 +50,57 @@ public class PublishersListView extends VerticalLayout {
         setSizeFull();
 
         configureGrid();
-        configureToolbar();
-        add(toolbar, grid);
 
-        updateList();
+        configureUI();
     }
 
+    private void configureUI() {
+        nc = new NavigationController(this::getPublishers, publisherService::count, this::updateList, txtPage);
+        nc.configureTxtPage(txtPage);
+        listViewUI.configure(this::onInit, this::onReload);
+    }
+
+    private void onInit() {
+        configureToolbar();
+        nc.update();
+        add(toolbar, grid);
+    }
+
+    private void onReload() {
+        reloadToolbar();
+    }
+
+    private List<PublisherDto> getPublishers(Pageable pageable) {
+        return publisherService.findAll(txtFilter.getValue(), pageable);
+    }
+
+    private void updateList(List<? extends Dto> publishers) {
+        grid.setItems((List<PublisherDto>) publishers);
+        updateGrid();
+    }
+
+
     private void configureToolbar() {
-        Button btnAdd = new Button(new Icon(VaadinIcon.PLUS), click -> addPublisher());
+        toolbar = new VerticalLayout();
+        btnAddPublisher = new Button(new Icon(VaadinIcon.PLUS), click -> addPublisher());
+        configureTxtFilter();
+        //configureBtnPages();
+        nc.configureBtnPages(btnLeft, btnRight);
+        //configureCmbPage();
+        nc.configureCmbPage(comboBox);
+        reloadToolbar();
+    }
 
-        txtFilter.setComponentsToHide(Set.of(btnAdd));
-        txtFilter.addValueChangeListener(e -> updateList());
-        txtFilter.setMinWidth("0%");
+    private void reloadToolbar() {
+        ToolbarUtils.reloadToolbar(toolbar, listViewUI, btnAddPublisher, btnLeft, btnRight, txtFilter, txtPage, comboBox);
+    }
 
-        toolbar = new HorizontalLayout();
-        toolbar.setDefaultVerticalComponentAlignment(Alignment.CENTER);
-        toolbar.setWidthFull();
-        toolbar.add(txtFilter, btnAdd);
+    private void configureTxtFilter() {
+        txtFilter.setPlaceholder(header("filterByPhrase"));
+        txtFilter.addValueChangeListener(e -> {
+            nc.getPage().no = 0;
+            nc.update();
+        });
     }
 
     private void configureGrid() {

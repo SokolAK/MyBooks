@@ -1,6 +1,5 @@
 package pl.sokolak.MyBooks.ui.view;
 
-import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.contextmenu.MenuItem;
@@ -9,10 +8,8 @@ import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.menubar.MenuBar;
 import com.vaadin.flow.component.menubar.MenuBarVariant;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
-import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.function.ValueProvider;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
@@ -24,11 +21,10 @@ import pl.sokolak.MyBooks.model.book.BookService;
 import pl.sokolak.MyBooks.model.publisher.PublisherService;
 import pl.sokolak.MyBooks.model.series.SeriesService;
 import pl.sokolak.MyBooks.security.Secured;
+import pl.sokolak.MyBooks.ui.ExpandingTextField;
 import pl.sokolak.MyBooks.ui.MainLayout;
-import pl.sokolak.MyBooks.ui.NavigationController;
 import pl.sokolak.MyBooks.ui.form.BookDetails;
 import pl.sokolak.MyBooks.ui.form.DialogWindow;
-import pl.sokolak.MyBooks.utils.LayoutBuilder;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -48,7 +44,7 @@ public class BooksListView extends VerticalLayout {
     private final PublisherService publisherService;
     private final SeriesService seriesService;
     private final Grid<BookDto> grid = new Grid<>(BookDto.class);
-    private final TextField txtFilter = new TextField();
+    private final ExpandingTextField txtFilter = new ExpandingTextField();
     private final MenuBar mnuColumns = new MenuBar();
     private final TextField txtPage = new TextField();
     private final ComboBox<Integer> comboBox = new ComboBox<>();
@@ -59,7 +55,7 @@ public class BooksListView extends VerticalLayout {
     private Button btnAddBook;
     private boolean shortNotation = false;
     private VerticalLayout toolbar;
-    private int screenWidth;
+    private final ListViewUI listViewUI = new ListViewUI();
     private NavigationController nc;
 
 
@@ -75,28 +71,23 @@ public class BooksListView extends VerticalLayout {
         //configureChkShortNotation();
         configureGrid();
 
-        nc = new NavigationController(this::getBooks, bookService::count, this::updateList, txtPage);
-
         configureUI();
     }
 
     private void configureUI() {
+        nc = new NavigationController(this::getBooks, bookService::count, this::updateList, txtPage);
         nc.configureTxtPage(txtPage);
+        listViewUI.configure(this::onInit, this::onReload);
+    }
 
-        UI.getCurrent().getPage().retrieveExtendedClientDetails(receiver -> {
-            screenWidth = receiver.getScreenWidth();
-            configureToolbar();
-            nc.update();
-            add(toolbar, grid);
-        });
+    private void onInit() {
+        configureToolbar();
+        nc.update();
+        add(toolbar, grid);
+    }
 
-        com.vaadin.flow.component.page.Page page = UI.getCurrent().getPage();
-        page.addBrowserWindowResizeListener(event -> {
-            if (event.getWidth() != screenWidth) {
-                screenWidth = event.getWidth();
-                reloadToolbar();
-            }
-        });
+    private void onReload() {
+        reloadToolbar();
     }
 
     private List<BookDto> getBooks(Pageable pageable) {
@@ -163,56 +154,7 @@ public class BooksListView extends VerticalLayout {
     }
 
     private void reloadToolbar() {
-        toolbar.removeAll();
-        toolbar.setPadding(false);
-        toolbar.setWidthFull();
-        //toolbar.setDefaultHorizontalComponentAlignment(Alignment.CENTER);
-        //toolbar.expand(txtFilter);
-        if (screenWidth > 700) {
-            HorizontalLayout hl3 = LayoutBuilder.builder()
-                    .components(List.of(btnLeft, txtPage, btnRight))
-                    .alignment(Alignment.CENTER)
-                    .padding(false)
-                    .spacing(false)
-                    .build().getHorizontalLayout();
-            HorizontalLayout hl4 = LayoutBuilder.builder()
-                    .components(List.of(btnAddBook, txtFilter, mnuColumns, btnShortNotation, hl3, comboBox))
-                    .alignment(Alignment.CENTER)
-                    .padding(false)
-                    .widthFull(true)
-                    .build().getHorizontalLayout();
-            toolbar.add(hl4);
-        } else {
-            HorizontalLayout hl1 = LayoutBuilder.builder()
-                    .components(List.of(btnAddBook, txtFilter))
-                    .alignment(Alignment.CENTER)
-                    .padding(false)
-                    .spacing(false)
-                    .widthFull(true)
-                    .build().getHorizontalLayout();
-
-            HorizontalLayout hl2 = LayoutBuilder.builder()
-                    .components(List.of(mnuColumns, btnShortNotation))
-                    .alignment(Alignment.CENTER)
-                    .padding(false)
-                    .spacing(false)
-                    .build().getHorizontalLayout();
-
-            HorizontalLayout hl3 = LayoutBuilder.builder()
-                    .components(List.of(btnLeft, txtPage, btnRight))
-                    .alignment(Alignment.CENTER)
-                    .padding(false)
-                    .spacing(false)
-                    .build().getHorizontalLayout();
-
-            HorizontalLayout hl4 = LayoutBuilder.builder()
-                    .components(List.of(hl2, hl3, comboBox))
-                    .alignment(Alignment.CENTER)
-                    .padding(false)
-                    .widthFull(true)
-                    .build().getHorizontalLayout();
-            toolbar.add(hl1, hl4);
-        }
+        ToolbarUtils.reloadToolbar(toolbar, listViewUI, btnAddBook, btnLeft, btnRight, txtFilter, txtPage, comboBox, mnuColumns, btnShortNotation);
     }
 
     private void configureBtnExport() {
@@ -236,34 +178,10 @@ public class BooksListView extends VerticalLayout {
 
     private void configureTxtFilter() {
         txtFilter.setPlaceholder(header("filterByPhrase"));
-        txtFilter.setClearButtonVisible(true);
-        txtFilter.setValueChangeMode(ValueChangeMode.LAZY);
-        txtFilter.addFocusListener(e -> expandTxtFilter());
-        txtFilter.addBlurListener(e -> collapseTxtFilter());
-        txtFilter.setMinWidth("0%");
-        //txtFilter.setWidthFull();
         txtFilter.addValueChangeListener(e -> {
             nc.getPage().no = 0;
             nc.update();
         });
-        collapseTxtFilter();
-    }
-
-    private void expandTxtFilter() {
-        txtFilter.setMinWidth("100%");
-        btnAddBook.setVisible(false);
-        //btnShortNotation.setVisible(false);
-        //mnuColumns.setVisible(false);
-        //btnAddBook.setVisible(false);
-    }
-
-    private void collapseTxtFilter() {
-        txtFilter.setMinWidth("265px");
-        txtFilter.setWidthFull();
-        btnAddBook.setVisible(true);
-        //btnShortNotation.setVisible(true);
-        //mnuColumns.setVisible(true);
-        //btnAddBook.setVisible(true);
     }
 
     @Secured(ADD)
@@ -286,18 +204,6 @@ public class BooksListView extends VerticalLayout {
         column.setHeader(header(key));
         return column;
     }
-
-//    private void configureBtnPages() {
-//        btnLeft = new Button(new Icon(VaadinIcon.CHEVRON_LEFT), e -> {
-//            if (page.no > 0) page.no--;
-//            updateList();
-//        });
-//        btnRight = new Button(new Icon(VaadinIcon.CHEVRON_RIGHT), e -> {
-//            if (page.no < page.max) page.no++;
-//            updateList();
-//        });
-//    }
-
 
     private void addEntityColumns() {
         columnList.entrySet().stream()

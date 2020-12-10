@@ -1,6 +1,7 @@
 package pl.sokolak.MyBooks.model.series;
 
 import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -19,16 +20,29 @@ public class SeriesService {
         this.seriesMapper = seriesMapper;
     }
 
+    public long count() {
+        return seriesRepo.count();
+    }
+
     public List<SeriesDto> findAll() {
-        return findAll(null);
+        Pageable pageable = null;
+        return findAll(pageable);
+    }
+
+    public List<SeriesDto> findAll(Pageable pageable) {
+        return findAll(pageable);
     }
 
     public List<SeriesDto> findAll(String stringFilter) {
+        return findAll(stringFilter, null);
+    }
+
+    public List<SeriesDto> findAll(String stringFilter, Pageable pageable) {
         List<Series> seriesList;
         if (stringFilter == null || stringFilter.isEmpty()) {
-            seriesList = seriesRepo.findAllByOrderByNameAsc();
+            seriesList = seriesRepo.findAllByOrderByNameAsc(pageable);
         } else {
-            seriesList = seriesRepo.findAllByNameContainingIgnoreCase(stringFilter);
+            seriesList = seriesRepo.findAllByNameContainingIgnoreCase(stringFilter, pageable);
         }
 
         return seriesList.stream()

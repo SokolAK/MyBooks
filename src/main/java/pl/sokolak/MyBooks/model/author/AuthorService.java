@@ -1,6 +1,7 @@
 package pl.sokolak.MyBooks.model.author;
 
 import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -19,16 +20,24 @@ public class AuthorService {
         this.authorMapper = authorMapper;
     }
 
+    public long count() {
+        return authorRepo.count();
+    }
+
     public List<AuthorDto> findAll() {
         return findAll(null);
     }
 
-    public List<AuthorDto> findAll(String stringFilter) {
+    public List<AuthorDto> findAll(Pageable pageable) {
+        return findAll(pageable);
+    }
+
+    public List<AuthorDto> findAll(String stringFilter, Pageable pageable) {
         List<Author> authorList;
         if (stringFilter == null || stringFilter.isEmpty()) {
-            authorList = authorRepo.findAllByOrderByLastNameAscFirstNameAscMiddleNameAscPrefixAsc();
+            authorList = authorRepo.findAllByOrderByLastNameAscFirstNameAscMiddleNameAscPrefixAsc(pageable);
         } else {
-            authorList = authorRepo.findAllContainingPhrase(stringFilter);
+            authorList = authorRepo.findAllContainingPhrase(stringFilter, pageable);
         }
 
         return authorList.stream()
@@ -37,7 +46,11 @@ public class AuthorService {
     }
 
     public List<AuthorDto> findAll(String prefix, String firstName, String middleName, String lastName) {
-        return authorRepo.findAllContainingPhrases(prefix, firstName, middleName, lastName).stream()
+        return findAll(prefix, firstName, middleName, lastName, null);
+    }
+
+    public List<AuthorDto> findAll(String prefix, String firstName, String middleName, String lastName, Pageable pageable) {
+        return authorRepo.findAllContainingPhrases(prefix, firstName, middleName, lastName, pageable).stream()
                 .map(authorMapper::toDto)
                 .collect(Collectors.toList());
     }

@@ -1,13 +1,16 @@
 package pl.sokolak.MyBooks.ui.view;
 
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import org.springframework.data.domain.Pageable;
+import pl.sokolak.MyBooks.model.Dto;
 import pl.sokolak.MyBooks.model.author.AuthorDto;
 import pl.sokolak.MyBooks.model.author.AuthorService;
 import pl.sokolak.MyBooks.security.Secured;
@@ -17,7 +20,7 @@ import pl.sokolak.MyBooks.ui.form.AuthorForm;
 import pl.sokolak.MyBooks.ui.form.DialogWindow;
 import pl.sokolak.MyBooks.ui.form.Form;
 
-import java.util.Set;
+import java.util.List;
 import java.util.stream.Stream;
 
 import static pl.sokolak.MyBooks.security.OperationType.ADD;
@@ -31,8 +34,15 @@ public class AuthorsListView extends VerticalLayout {
 
     private final AuthorService authorService;
     private final Grid<AuthorDto> grid = new Grid<>(AuthorDto.class);
-    private final ExpandingTextField txtFilter = new ExpandingTextField(header("filterByPhrase"));
-    private HorizontalLayout toolbar;
+    private final ExpandingTextField txtFilter = new ExpandingTextField();
+    private VerticalLayout toolbar;
+    private Button btnAddAuthor;
+    private final ComboBox<Integer> comboBox = new ComboBox<>();
+    private Button btnLeft = new Button();
+    private Button btnRight = new Button();
+    private final TextField txtPage = new TextField();
+    private final ListViewUI listViewUI = new ListViewUI();
+    private NavigationController nc;
 
     public AuthorsListView(AuthorService authorService) {
         this.authorService = authorService;
@@ -40,23 +50,57 @@ public class AuthorsListView extends VerticalLayout {
         setSizeFull();
 
         configureGrid();
-        configureToolbar();
-        add(toolbar, grid);
 
-        updateList();
+        configureUI();
     }
 
+    private void configureUI() {
+        nc = new NavigationController(this::getAuthors, authorService::count, this::updateList, txtPage);
+        nc.configureTxtPage(txtPage);
+        listViewUI.configure(this::onInit, this::onReload);
+    }
+
+    private void onInit() {
+        configureToolbar();
+        nc.update();
+        add(toolbar, grid);
+    }
+
+    private void onReload() {
+        reloadToolbar();
+    }
+
+    private List<AuthorDto> getAuthors(Pageable pageable) {
+        return authorService.findAll(txtFilter.getValue(), pageable);
+    }
+
+    private void updateList(List<? extends Dto> authors) {
+        grid.setItems((List<AuthorDto>) authors);
+        updateGrid();
+    }
+
+
     private void configureToolbar() {
-        Button btnAddAuthor = new Button(new Icon(VaadinIcon.PLUS), click -> addAuthor());
+        toolbar = new VerticalLayout();
+        btnAddAuthor = new Button(new Icon(VaadinIcon.PLUS), click -> addAuthor());
+        configureTxtFilter();
+        //configureBtnPages();
+        nc.configureBtnPages(btnLeft, btnRight);
+        //configureCmbPage();
+        nc.configureCmbPage(comboBox);
+        reloadToolbar();
+    }
 
-        txtFilter.setComponentsToHide(Set.of(btnAddAuthor));
-        txtFilter.addValueChangeListener(e -> updateList());
-        txtFilter.setMinWidth("0%");
+    private void reloadToolbar() {
+        ToolbarUtils.reloadToolbar(toolbar, listViewUI, btnAddAuthor, btnLeft, btnRight, txtFilter, txtPage, comboBox);
+    }
 
-        toolbar = new HorizontalLayout();
-        toolbar.setDefaultVerticalComponentAlignment(Alignment.CENTER);
-        toolbar.setWidthFull();
-        toolbar.add(txtFilter, btnAddAuthor);
+    private void configureTxtFilter() {
+        txtFilter.setPlaceholder(header("filterByPhrase"));
+        txtFilter.addValueChangeListener(e -> {
+            nc.getPage().no = 0;
+            nc.update();
+        });
     }
 
     private void configureGrid() {
@@ -76,11 +120,6 @@ public class AuthorsListView extends VerticalLayout {
                 .forEach(c -> c.setAutoWidth(true));
     }
 
-    private void updateList() {
-        grid.setItems(authorService.findAll(txtFilter.getValue()));
-        updateGrid();
-    }
-
     private void updateGrid() {
         grid.setColumns();
         addEntityColumns();
@@ -88,12 +127,12 @@ public class AuthorsListView extends VerticalLayout {
 
     private void deleteAuthor(AuthorForm.DeleteEvent e) {
         authorService.delete(e.getDto(AuthorDto.class));
-        updateList();
+        nc.update();
     }
 
     private void saveAuthor(AuthorForm.SaveEvent e) {
         authorService.save(e.getDto(AuthorDto.class));
-        updateList();
+        nc.update();
     }
 
     @Secured(EDIT)

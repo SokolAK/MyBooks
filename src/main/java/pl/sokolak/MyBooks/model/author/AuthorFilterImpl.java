@@ -1,5 +1,7 @@
 package pl.sokolak.MyBooks.model.author;
 
+import org.springframework.data.domain.Pageable;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -28,7 +30,7 @@ public class AuthorFilterImpl implements AuthorFilter {
     }
 
     @Override
-    public List<Author> findAllContainingPhrase(String phrase) {
+    public List<Author> findAllContainingPhrase(String phrase, Pageable pageable) {
         init();
         Set<String> subPhrases = convertPhraseToSubPhrases(phrase);
 
@@ -44,11 +46,15 @@ public class AuthorFilterImpl implements AuthorFilter {
 
         buildQuery(finalPredicate);
         TypedQuery<Author> query = em.createQuery(cq);
+        if(pageable != null) {
+            query.setFirstResult(pageable.getPageNumber() * pageable.getPageSize());
+            query.setMaxResults(pageable.getPageSize());
+        }
         return query.getResultList();
     }
 
     @Override
-    public List<Author> findAllContainingPhrases(String prefix, String firstName, String middleName, String lastName) {
+    public List<Author> findAllContainingPhrases(String prefix, String firstName, String middleName, String lastName, Pageable pageable) {
         init();
         List<Predicate> predicates = new ArrayList<>();
         predicates.add(columnTextContainsPhrase("prefix", prefix, author));
@@ -59,6 +65,10 @@ public class AuthorFilterImpl implements AuthorFilter {
 
         buildQuery(finalPredicate);
         TypedQuery<Author> query = em.createQuery(cq);
+        if(pageable != null) {
+            query.setFirstResult(pageable.getPageNumber() * pageable.getPageSize());
+            query.setMaxResults(pageable.getPageSize());
+        }
         return query.getResultList();
     }
 

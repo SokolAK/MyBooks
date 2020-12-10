@@ -1,13 +1,16 @@
 package pl.sokolak.MyBooks.ui.view;
 
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import org.springframework.data.domain.Pageable;
+import pl.sokolak.MyBooks.model.Dto;
 import pl.sokolak.MyBooks.model.series.SeriesDto;
 import pl.sokolak.MyBooks.model.series.SeriesService;
 import pl.sokolak.MyBooks.security.Secured;
@@ -18,7 +21,7 @@ import pl.sokolak.MyBooks.ui.form.DialogWindow;
 import pl.sokolak.MyBooks.ui.form.Form;
 import pl.sokolak.MyBooks.ui.form.SeriesForm;
 
-import java.util.Set;
+import java.util.List;
 import java.util.stream.Stream;
 
 import static pl.sokolak.MyBooks.security.OperationType.ADD;
@@ -31,8 +34,15 @@ public class SeriesListView extends VerticalLayout {
 
     private final SeriesService seriesService;
     private final Grid<SeriesDto> grid = new Grid<>(SeriesDto.class);
-    private final ExpandingTextField txtFilter = new ExpandingTextField(header("filterByPhrase"));
-    private HorizontalLayout toolbar;
+    private final ExpandingTextField txtFilter = new ExpandingTextField();
+    private VerticalLayout toolbar;
+    private Button btnAddPublisher;
+    private final ComboBox<Integer> comboBox = new ComboBox<>();
+    private Button btnLeft = new Button();
+    private Button btnRight = new Button();
+    private final TextField txtPage = new TextField();
+    private final ListViewUI listViewUI = new ListViewUI();
+    private NavigationController nc;
 
     public SeriesListView(SeriesService seriesService) {
         this.seriesService = seriesService;
@@ -40,23 +50,56 @@ public class SeriesListView extends VerticalLayout {
         setSizeFull();
 
         configureGrid();
-        configureToolbar();
-        add(toolbar, grid);
 
-        updateList();
+        configureUI();
+    }
+
+    private void configureUI() {
+        nc = new NavigationController(this::getSeries, seriesService::count, this::updateList, txtPage);
+        nc.configureTxtPage(txtPage);
+        listViewUI.configure(this::onInit, this::onReload);
+    }
+
+    private void onInit() {
+        configureToolbar();
+        nc.update();
+        add(toolbar, grid);
+    }
+
+    private void onReload() {
+        reloadToolbar();
+    }
+
+    private List<SeriesDto> getSeries(Pageable pageable) {
+        return seriesService.findAll(txtFilter.getValue(), pageable);
+    }
+
+    private void updateList(List<? extends Dto> series) {
+        grid.setItems((List<SeriesDto>) series);
+        updateGrid();
     }
 
     private void configureToolbar() {
-        Button btnAdd = new Button(new Icon(VaadinIcon.PLUS), click -> addSeries());
+        toolbar = new VerticalLayout();
+        btnAddPublisher = new Button(new Icon(VaadinIcon.PLUS), click -> addSeries());
+        configureTxtFilter();
+        //configureBtnPages();
+        nc.configureBtnPages(btnLeft, btnRight);
+        //configureCmbPage();
+        nc.configureCmbPage(comboBox);
+        reloadToolbar();
+    }
 
-        txtFilter.setComponentsToHide(Set.of(btnAdd));
-        txtFilter.addValueChangeListener(e -> updateList());
-        txtFilter.setMinWidth("0%");
+    private void reloadToolbar() {
+        ToolbarUtils.reloadToolbar(toolbar, listViewUI, btnAddPublisher, btnLeft, btnRight, txtFilter, txtPage, comboBox);
+    }
 
-        toolbar = new HorizontalLayout();
-        toolbar.setDefaultVerticalComponentAlignment(Alignment.CENTER);
-        toolbar.setWidthFull();
-        toolbar.add(txtFilter, btnAdd);
+    private void configureTxtFilter() {
+        txtFilter.setPlaceholder(header("filterByPhrase"));
+        txtFilter.addValueChangeListener(e -> {
+            nc.getPage().no = 0;
+            nc.update();
+        });
     }
 
     private void configureGrid() {

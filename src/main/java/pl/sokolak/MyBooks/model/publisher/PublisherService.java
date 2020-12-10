@@ -1,6 +1,7 @@
 package pl.sokolak.MyBooks.model.publisher;
 
 import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -19,16 +20,29 @@ public class PublisherService {
         this.publisherMapper = publisherMapper;
     }
 
+    public long count() {
+        return publisherRepo.count();
+    }
+
     public List<PublisherDto> findAll() {
-        return findAll(null);
+        Pageable pageable = null;
+        return findAll(pageable);
+    }
+
+    public List<PublisherDto> findAll(Pageable pageable) {
+        return findAll(pageable);
     }
 
     public List<PublisherDto> findAll(String stringFilter) {
+        return findAll(stringFilter, null);
+    }
+
+    public List<PublisherDto> findAll(String stringFilter, Pageable pageable) {
         List<Publisher> publisherList;
         if (stringFilter == null || stringFilter.isEmpty()) {
-            publisherList = publisherRepo.findAllByOrderByNameAsc();
+            publisherList = publisherRepo.findAllByOrderByNameAsc(pageable);
         } else {
-            publisherList = publisherRepo.findAllByNameContainingIgnoreCase(stringFilter);
+            publisherList = publisherRepo.findAllByNameContainingIgnoreCase(stringFilter, pageable);
         }
 
         return publisherList.stream()

@@ -6,6 +6,8 @@ import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.html.H2;
+import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
@@ -51,10 +53,6 @@ public class MainLayout extends AppLayout {
 
     private void createHeader() throws FileNotFoundException {
 
-        //Button downloadBtn = new Button(new Icon(VaadinIcon.DOWNLOAD_ALT));
-        //downloadBtn.addClickListener(e -> exportData());
-        //download.add(downloadBtn);
-
         H1 logo = new H1(label("appName"));
         logo.addClassName("logo");
 
@@ -85,7 +83,13 @@ public class MainLayout extends AppLayout {
         routerLinks.add(new RouterLink(header("MainLayout.series"), SeriesListView.class));
 
         routerLinks.forEach(l -> l.setHighlightCondition(HighlightConditions.sameLocation()));
-        addToDrawer(new VerticalLayout(routerLinks.toArray(new RouterLink[0])));
+
+        Image logo = new Image("icons/icon.png", "");
+        logo.setMaxHeight("88px");
+
+        VerticalLayout drawerLayout = new VerticalLayout(logo, new H2(label("appName")));
+        drawerLayout.add(routerLinks.toArray(new RouterLink[0]));
+        addToDrawer(drawerLayout);
         setDrawerOpened(false);
     }
 }

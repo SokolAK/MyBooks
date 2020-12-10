@@ -1,4 +1,4 @@
-package pl.sokolak.MyBooks.ui;
+package pl.sokolak.MyBooks.ui.view;
 
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
@@ -7,7 +7,7 @@ import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.textfield.TextFieldVariant;
 import com.vaadin.flow.data.value.ValueChangeMode;
-import lombok.Data;
+import lombok.Getter;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import pl.sokolak.MyBooks.model.Dto;
@@ -19,9 +19,9 @@ import java.util.function.Supplier;
 
 import static java.lang.StrictMath.ceil;
 
-@Data
 public class NavigationController {
     private TextField txtPage;
+    @Getter
     private Page page = new Page();
     private Function<Pageable, List<? extends Dto>> getItems;
     private Supplier<Long> countAllItems;
