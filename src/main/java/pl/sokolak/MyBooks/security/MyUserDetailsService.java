@@ -32,4 +32,15 @@ public class MyUserDetailsService {
                         .build();
         return new InMemoryUserDetailsManager(List.of(admin, guest, darek));
     }
+
+    @Bean
+    @Profile("heroku-demo")
+    public UserDetailsService userDetailsServiceHerokuDemo() {
+        UserDetails user =
+                User.withUsername("user")
+                        .password("{noop}pass")
+                        .roles("ADMIN")
+                        .build();
+        return new InMemoryUserDetailsManager(List.of(user));
+    }
 }

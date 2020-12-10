@@ -16,6 +16,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.sql.SQLException;
 
+//To connect 2 databases - inactive
 //@Configuration
 //@EnableTransactionManagement
 public class PersistenceJPAConfig{
@@ -31,8 +32,6 @@ public class PersistenceJPAConfig{
 
         return em;
     }
-
-
 
     @Autowired
     private Environment env;

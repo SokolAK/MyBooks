@@ -12,6 +12,7 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.theme.lumo.Lumo;
 import pl.sokolak.MyBooks.ui.ThemeUtil;
 
+import static pl.sokolak.MyBooks.security.SecurityConfiguration.getActiveProfiles;
 import static pl.sokolak.MyBooks.utils.TextFormatter.header;
 import static pl.sokolak.MyBooks.utils.TextFormatter.label;
 
@@ -61,7 +62,11 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
         i18n.getForm().setForgotPassword("");
         i18n.getErrorMessage().setTitle(header("LoginView.error.title"));
         i18n.getErrorMessage().setMessage(header("LoginView.error.message"));
-        i18n.setAdditionalInformation(header("LoginView.info"));
+
+        if(getActiveProfiles().contains("heroku-demo"))
+            i18n.setAdditionalInformation(header("LoginView.info.demo"));
+        else
+            i18n.setAdditionalInformation(header("LoginView.info"));
         return i18n;
     }
 }

@@ -523,3 +523,5 @@
 523 # Zwoliński Tadeusz; Zwoliński Stefan # Przewodnik po Tatrach i Zakopanem #  # Nakład i własność księgarni L. Zwolińskiego w Zakopanem #  # 4, przejrzane i uzupełnione # Zakopane # 1930 #  #  # Brak mapki, pierwsze strony wydrukowane
 524 # Praca zbiorowa # M. Arcta Nowoczesna Encyklopedia Ilustrowana #  # Nakładem Zakładów Wydawniczych M. Arct, Sp. akc. w Warszawie #  #  # Warszawa # 1936-1939 (?) #  #  # Brak ostatnich stron w suplemencie
 525 # Żelazowski Karol, ks. # Bądźcie doskonałymi # Na podstawie dzieła Scaramelli'ego pod tytułem "Direttorio ascetico" # Skład główny w Księgarni Sort. dawniej Maurycego Orgelbranda, obecnie M Machwitz # 1, 2 #  # Warszawa # 1898 #  #  # 
+526 # Sienkiewicz Henryk # Ogniem i mieczem # Powieść z lat dawnych # Nakład Gebethnera i Wolffa # 3 # czwarte, przejrzane i poprawione # Warszawa # 1889 # Pisma Henryka Sienkiewicza # 8 # 
+527 # Szpyrkówna M. H. # Godzina bije! #  # Wydawnictwo Zakładu Narodowego im. Ossolińskich #  #  # Lwów-Warszawa-Kraków # 1927 #  #  # 
