@@ -16,7 +16,7 @@
 
 	<properties>
 		<aspectj.version>1.9.6</aspectj.version>
-		<java.version>14</java.version>
+		<java.version>15</java.version>
 		<vaadin.version>14.3.7</vaadin.version>
 	</properties>
 
@@ -128,8 +128,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.8.1</version>
 				<configuration>
-					<source>14</source>
-					<target>14</target>
+					<source>15</source>
+					<target>15</target>
 					<annotationProcessorPaths>
 						<path>
 							<groupId>org.projectlombok</groupId>
@@ -168,6 +168,8 @@
 				</plugins>
 			</build>
 		</profile>
+
+
 	</profiles>
 
 </project>

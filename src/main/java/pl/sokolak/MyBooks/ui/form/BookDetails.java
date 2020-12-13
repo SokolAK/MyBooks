@@ -127,7 +127,7 @@ public class BookDetails extends Form {
         textField.setReadOnly(true);
         textField.setWidthFull();
         textField.addBlurListener(e -> e.getSource().setReadOnly(true));
-        //textField.addValueChangeListener(e -> writeBook());
+        textField.addValueChangeListener(e -> writeBook());
     }
 
     private Button getEditButton(TextField textField) {
@@ -210,7 +210,7 @@ public class BookDetails extends Form {
             binder.writeBean(bookDto);
             return true;
         } catch (ValidationException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             return false;
         }
     }

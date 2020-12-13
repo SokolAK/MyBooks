@@ -1,6 +1,5 @@
 spring:
-  profiles.active: heroku-demo
-
+  profiles.active: ${SPRING_ACTIVE_PROFILE}
 server:
   servlet.session.persistent: false
 
@@ -21,6 +20,10 @@ spring:
     #show-sql: true
     #properties.hibernate.format_sql: true
 
+dataLoader:
+  populate: true
+  fromLine: 0
+
 ---
 
 spring:
@@ -32,9 +35,7 @@ spring:
     driverClassName: org.postgresql.Driver
     initialization-mode: always
   jpa:
-    hibernate.ddl-auto: create
-  #jpa:
-    #properties.hibernate.hbm2ddl.auto: create
+    hibernate.ddl-auto: update
 
 ---
 
@@ -45,11 +46,10 @@ spring:
     username: ${SPRING_DATASOURCE_USERNAME}
     password: ${SPRING_DATASOURCE_PASSWORD}
     driverClassName: org.postgresql.Driver
-    initialization-mode: always
+    initialization-mode: never
   jpa:
     hibernate.ddl-auto: ${SPRING_JPA_HIBERNATE_DDL-AUTO}
     #database-platform: ${SPRING_JPA_DATABASE-PLATFORM}
-    #properties.hibernate.hbm2ddl.auto: ${SPRING_JPA_HIBERNATE_DLL-AUTO}
 
 ---
 
@@ -59,3 +59,8 @@ spring:
   datasource.url: jdbc:h2:mem:/.MyBooks
   jpa:
     hibernate.ddl-auto: create
+
+dataLoader:
+  populate: true
+  fromLine: 0
+  toLine: 100

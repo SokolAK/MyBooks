@@ -29,14 +29,18 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
 
-import static pl.sokolak.MyBooks.security.SecurityConfiguration.getActiveProfiles;
-
 @Component
 public class DataLoader implements ApplicationRunner {
     private final Logger log = Logger.getLogger(getClass().getName());
 
-    @Value("${spring.jpa.hibernate.ddl-auto}")
-    private String auto;
+    @Value("${dataLoader.populate:false}")
+    private boolean populate;
+
+    @Value("${dataLoader.fromLine:0}")
+    private long fromLine;
+
+    @Value("${dataLoader.toLine:10000}")
+    private long toLine;
 
     private final AuthorService authorService;
     private final BookService bookService;
@@ -67,40 +71,46 @@ public class DataLoader implements ApplicationRunner {
     }
 
     public void run(ApplicationArguments args) {
-        if (getActiveProfiles().contains("dev") || auto.equals("create")) {
-
+        if (populate) {
             ClassLoader classLoader = getClass().getClassLoader();
             InputStream inputStream = classLoader.getResourceAsStream("books_data.txt");
             Stream<String> lines = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8)).lines();
 
-
-            lines.forEach(s -> {
-                log.log(Level.INFO, "Reading line: {0}", s);
-
-                Book book = new Book();
-                String[] items = s.split("#");
-
-                setAuthors(book, items[1].trim());
-
-                book.setTitle(items[2].trim());
-                book.setSubtitle(items[3].trim());
-
-                setPublishers(book, items[4].trim());
-
-                book.setVolume(items[5].trim());
-                book.setEdition(items[6].trim());
-                book.setCity(items[7].trim());
-                book.setYear(items[8].trim());
-
-                setSeries(book, items[9].trim());
-
-                book.setSeriesVolume(items[10].trim());
-                book.setComment(items[11].trim());
-
-                bookService.save(bookMapper.toDto(book));
-            });
+            lines.peek(s -> log.log(Level.INFO, "Reading line: {0}", s))
+                    .map(s -> s.split("#"))
+                    .filter(items -> items.length == 12)
+                    .filter(items -> Long.parseLong(items[0].trim()) >= fromLine)
+                    .filter(items -> Long.parseLong(items[0].trim()) <= toLine)
+                    .peek(this::saveBook)
+                    .forEach(s -> log.log(Level.INFO, "Saved"));
             lines.close();
         }
+    }
+
+    private void saveBook(String[] items) {
+        Book book = new Book();
+        log.log(Level.INFO, "Setting authors");
+        setAuthors(book, items[1].trim());
+
+        book.setTitle(items[2].trim());
+        book.setSubtitle(items[3].trim());
+
+        log.log(Level.INFO, "Setting publishers");
+        setPublishers(book, items[4].trim());
+
+        book.setVolume(items[5].trim());
+        book.setEdition(items[6].trim());
+        book.setCity(items[7].trim());
+        book.setYear(items[8].trim());
+
+        log.log(Level.INFO, "Setting series");
+        setSeries(book, items[9].trim());
+
+        book.setSeriesVolume(items[10].trim());
+        book.setComment(items[11].trim());
+
+        log.log(Level.INFO, "Saving");
+        bookService.save(bookMapper.toDto(book));
     }
 
     private void setAuthors(Book book, String authors) {
@@ -122,6 +132,7 @@ public class DataLoader implements ApplicationRunner {
                         String middleName = String.join(" ", middleNames);
                         author.setMiddleName(middleName);
                     }
+                    log.log(Level.INFO, "Saving author");
                     AuthorDto savedAuthor = authorService.save(author);
                     savedAuthor.getBooksIds().add(book.getId());
                     book.getAuthors().add(authorMapper.toEntity(savedAuthor));
@@ -134,6 +145,7 @@ public class DataLoader implements ApplicationRunner {
                 .forEach(p -> {
                     PublisherDto publisher = new PublisherDto();
                     publisher.setName(p.trim());
+                    log.log(Level.INFO, "Saving publisher");
                     PublisherDto savedPublisher = publisherService.save(publisher);
                     savedPublisher.getBooksIds().add(book.getId());
                     book.getPublishers().add(publisherMapper.toEntity(savedPublisher));
@@ -144,6 +156,7 @@ public class DataLoader implements ApplicationRunner {
         if (!seriesName.isBlank()) {
             SeriesDto series = new SeriesDto();
             series.setName(seriesName);
+            log.log(Level.INFO, "Saving series");
             SeriesDto savedSeries = seriesService.save(series);
             savedSeries.getBooksIds().add(book.getId());
             book.setSeries(seriesMapper.toEntity(savedSeries));

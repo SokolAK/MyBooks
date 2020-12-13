@@ -1,4 +1,5 @@
-﻿1 # Niemcewicz Julian Ursyn # Śpiewy historyczne z muzyką i rycinami #  # Nakładem Kajetana Jabłońskiego #  # 5 # Lwów # 1849 #  #  # 
+﻿
+1 # Niemcewicz Julian Ursyn # Śpiewy historyczne z muzyką i rycinami #  # Nakładem Kajetana Jabłońskiego #  # 5 # Lwów # 1849 #  #  # 
 2 # Gomulicki Wiktor # Cudna Mieszczka # Obrazek warszawski z wieku XVII # Drukarnia Artystyczna Saturnina Sikorskiego #  #  # Warszawa, Kraków # 1897 # Biblioteka Dzieł Wyborowych # 11 # 
 3 # Cerwantes_(Cervantes) # Don Kiszot z Manszy #  # Drukarnia Granowskiego i Sikorskiego # 4 #  # Warszawa # 1899 # Biblioteka Dzieł Wyborowych # 78 # 
 4 # Słowacki Juliusz # Pisma Juliusza Słowackiego #  # Nakład Gebethnera i Wolffa # 2 # wydanie "Kuryera Codziennego" # Warszawa # 1899 # Pisma Juliusza Słowackiego #  # Druk. Tow. Akc. S. Orgelbranda Synów
@@ -286,7 +287,7 @@
 284 # Gamaston # Fata morgana # Opowiadanie z czasów studenckich # Bibljoteka Domu Polskiego # 01.02.2002 #  # Warszawa # 1925 # Bibljoteka Domu Polskiego # 28 # 
 285 # Marion # Na wólce # Powieść z roku 1905 # Bibljoteka Domu Polskiego #  #  # Warszawa # 1927 (?) # Bibljoteka Domu Polskiego # 83 # 
 286 # Romanow Pantelejmon # Pierwsza miłość #  # Wydawnictwo "Alfa" #  #  # Warszawa # 1927 (?) # Współczesna belestryka rosyjska # 3 # 
-287 # Cieszkowska Zofja (Sarjusz) # Więzy ducha #  # Bibljoteka Domu Polskiego # 01.02.2002 #  # Warszawa # 1928 (?) # Bibljoteka Domu Polskiego # 105 # 
+287 # Cieszkowska Zofja (Sarjusz) # Więzy ducha #  # Bibljoteka Domu Polskiego # 1-2/2 #  # Warszawa # 1928 (?) # Bibljoteka Domu Polskiego # 105 # 
 288 # Ossendowski Antoni # Huragan #  # Bibljoteka Domu Polskiego #  #  # Warszawa # 1927 (?) # Bibljoteka Domu Polskiego #  # 
 289 # Weiininger Otto # Płeć i charakter #  # Nakładem Ludwika Fiszera, księgarnia H. Altenberga (?) #  #  # Łódź-Warszawa-Lwów (?) # 1911 (?) #  #  # Brak pierwszych stron oraz ostatniej ze spisu treści
 290 # Tow. Akc. J. John w Łodzi # Pędnie (Transmisye) #  # Towarzystwo Akcyjne Fabryki Transmisyi Maszyn i Odlewów Żelaznych J. John w Łodzi #  #  # Łódź # 1914 > (?) #  #  # Katalog No 336
