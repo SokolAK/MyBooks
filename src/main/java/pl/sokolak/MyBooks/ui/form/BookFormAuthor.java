@@ -81,7 +81,7 @@ public class BookFormAuthor extends Form {
 
     private void setUpdateListenerForTxtField(TextField txtField) {
         txtField.addValueChangeListener(e -> updateAvailableAuthorsList());
-        txtField.setValueChangeMode(ValueChangeMode.LAZY);
+        txtField.setValueChangeMode(ValueChangeMode.ON_CHANGE);
     }
 
     private void configureButtons() {

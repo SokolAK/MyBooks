@@ -75,7 +75,7 @@ public class BookFormPublisher extends Form {
 
     private void setUpdateListenerForTxtField(TextField txtField) {
         txtField.addValueChangeListener(e -> updateAvailablePublishersList());
-        txtField.setValueChangeMode(ValueChangeMode.LAZY);
+        txtField.setValueChangeMode(ValueChangeMode.ON_CHANGE);
     }
 
     private void configureButtons() {

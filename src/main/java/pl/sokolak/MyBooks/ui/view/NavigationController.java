@@ -71,7 +71,7 @@ public class NavigationController {
         //txtPage.setReadOnly(true);
         txtPage.addThemeVariants(TextFieldVariant.LUMO_ALIGN_CENTER);
         txtPage.setMaxWidth("50px");
-        txtPage.setValueChangeMode(ValueChangeMode.LAZY);
+        txtPage.setValueChangeMode(ValueChangeMode.ON_CHANGE);
         txtPage.addValueChangeListener(e -> {
             try {
                 page.no = Integer.parseInt(txtPage.getValue());

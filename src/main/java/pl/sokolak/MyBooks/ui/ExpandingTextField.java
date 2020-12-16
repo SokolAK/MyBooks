@@ -15,7 +15,7 @@ public class ExpandingTextField extends TextField {
 
     public ExpandingTextField() {
         setClearButtonVisible(true);
-        setValueChangeMode(ValueChangeMode.LAZY);
+        setValueChangeMode(ValueChangeMode.ON_CHANGE);
         addFocusListener(e -> expandTxtFilter());
         addBlurListener(e -> collapseTxtFilter());
         collapseTxtFilter();

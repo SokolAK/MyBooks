@@ -64,7 +64,7 @@ public class BookFormSeries extends Form {
 
     private void setUpdateListenerForTxtField(TextField txtField) {
         txtField.addValueChangeListener(e -> updateAvailableSeriesList());
-        txtField.setValueChangeMode(ValueChangeMode.LAZY);
+        txtField.setValueChangeMode(ValueChangeMode.ON_CHANGE);
     }
 
     private void configureButtons() {

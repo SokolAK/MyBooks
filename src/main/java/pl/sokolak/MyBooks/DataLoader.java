@@ -89,13 +89,12 @@ public class DataLoader implements ApplicationRunner {
 
     private void saveBook(String[] items) {
         Book book = new Book();
-        log.log(Level.INFO, "Setting authors");
+
         setAuthors(book, items[1].trim());
 
         book.setTitle(items[2].trim());
         book.setSubtitle(items[3].trim());
 
-        log.log(Level.INFO, "Setting publishers");
         setPublishers(book, items[4].trim());
 
         book.setVolume(items[5].trim());
@@ -103,13 +102,11 @@ public class DataLoader implements ApplicationRunner {
         book.setCity(items[7].trim());
         book.setYear(items[8].trim());
 
-        log.log(Level.INFO, "Setting series");
         setSeries(book, items[9].trim());
 
         book.setSeriesVolume(items[10].trim());
         book.setComment(items[11].trim());
 
-        log.log(Level.INFO, "Saving");
         bookService.save(bookMapper.toDto(book));
     }
 
@@ -132,7 +129,6 @@ public class DataLoader implements ApplicationRunner {
                         String middleName = String.join(" ", middleNames);
                         author.setMiddleName(middleName);
                     }
-                    log.log(Level.INFO, "Saving author");
                     AuthorDto savedAuthor = authorService.save(author);
                     savedAuthor.getBooksIds().add(book.getId());
                     book.getAuthors().add(authorMapper.toEntity(savedAuthor));
@@ -145,7 +141,6 @@ public class DataLoader implements ApplicationRunner {
                 .forEach(p -> {
                     PublisherDto publisher = new PublisherDto();
                     publisher.setName(p.trim());
-                    log.log(Level.INFO, "Saving publisher");
                     PublisherDto savedPublisher = publisherService.save(publisher);
                     savedPublisher.getBooksIds().add(book.getId());
                     book.getPublishers().add(publisherMapper.toEntity(savedPublisher));
@@ -156,7 +151,6 @@ public class DataLoader implements ApplicationRunner {
         if (!seriesName.isBlank()) {
             SeriesDto series = new SeriesDto();
             series.setName(seriesName);
-            log.log(Level.INFO, "Saving series");
             SeriesDto savedSeries = seriesService.save(series);
             savedSeries.getBooksIds().add(book.getId());
             book.setSeries(seriesMapper.toEntity(savedSeries));
