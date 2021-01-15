@@ -413,116 +413,143 @@
 410 #  # Pięćdziesięciolecie Chrześcijańskiego Towarzystwa Głuchoniemych "Opatrzność" w Warszawie #  # Nakładem Komitetu Jubileuszowego 50-ciolecia Chrześcijańskiego Towarzystwa Głuchoniemych "Opatrzność" #  #  # Warszwa # 1934 #  #  # 
 411 # Krasuski St., inż. # Mały Kalendarz Techniczny # Podręcznik dla szkół zawodowych, techników, rzemieślników i osób pracujących w przemyśle #  #  #  # Warszawa # 1939 #  #  # 
 412 #  # Wiadomość o Trzech Szkaplerzach #  # Nakładem XX. Misyonarzy #  #  # Kraków # 1885 #  #  # 
-414 # Orzeszkowa E. # Nad Niemnem w komentarzach #  # Poznańska Spółka Wydawnicza #  #  # Poznań # 1947 # Literatura polska # 13 # Opracowała Szczerkowska
-415 # Wyspiański Stanisław # Wesele - streszczenie i objaśnienie przez K. B. #  # Krakowskie Towarzystwo Wydawnicze Sp. z o.o. #  #  # Kraków # 1946 # Biblioteka Krytyczna Arcydzieł Literatury Polskiej # 23 # 
-416 # Widajewicz Józef # Słowianie zachodni #  # Polski Związek Zachodni, Wojewódzki Zarząd Okręgowy w Krakowie #  #  # Kraków # 1945 # Uniwersytet Jagielloński i Akademia Górnicza; Kurs naukowo-informacyjny o ziemiach zachodnich #  # 
-417 # Słowacki Juliusz # Balladyna #  # Krakowskie Towarzystwo Wydawnicze Sp. z o.o. #  # nowe, poprawione i uzupełnione # Kraków # 1946 # Biblioteka Krytyczna Arcydzieł Literatury Polskiej # 22 # Opracował Stanisław Fischer
-418 # Kalandyk Stanisław, profesor Uniwersytetu Poznańskiego # Podręcznik fizyki dla medyków, farmaceutów i biologów #  # Księgarnia Akademicka, Spółdzielnia z odp. udz. #  # 3 # Poznań # 1949 #  #  # 
-419 # Mickiewicz Adam # Dzieła poetyckie #  # Nakładem Komitetu Mickiewiczowskiego #  # 2, zupełne, z portretami i podobiznami autografów poety # Nowogródek # 1933 #  #  # Wydał i objaśnił Tadeusz Pini
-420 # Beyer Otto # Haft Richelieu #  # Nakładem firmy Ottona Beyera w Lipsku #  #  # Lipsk # 1936 > (?) # Beyera podręczniki do robótek ręcznych #  # Spolszczyła Hanka
-421 # Janowski Bronisław, prof. # Jak zakładać pastwiska trwałe #  # Nakładem S-ki Wydawniczej "Biblioteka Rolnicza", skład główny w Księgarni Gebethnera i Wolffa #  #  # Warszawa-Lwów # 1913 #  #  # 
-422 # Kondracki Jerzy # Pomorze # Szkic geograficzny # Państwowe Zakłady Wydawnictw Szkolnych #  #  # Warszwa # 1946 #  #  # 
-423 # Pawłowski Stanisław # Wskazówki metodyczne do podręcznika "Geografja Polski" dla I klasy gimnazjalnej #  # Książnica - Atlas, S.A. Zjednocz. Zakłady Kartogr. i Wydawn. T.N.S.W. #  #  # Lwów-Warszawa # 1933 #  #  # 
-424 # Orzeszkowa E. # "Daleko; Karyfery" #  # Nakład Gebethnera i Wolffa #  # nowe # Warszawa-Kraków-Lublin-Łódź-Poznań-Wilno-Zakopane # 1939 > (?) # Biblioteczka Uniwersytetów Ludowych i Młodzieży Szkolnej # 135 # 
-425 # Szmyd Gerard, ks. dr # Życie chrześcijanina z Chrystusem w Kościele i liturgii # Podręcznik do nauki religii rzymskokatolickiej dla I klasy gimnazjalnej # Wydanictwo Zakładu Narodowego im. Ossolińskich #  #  # Lwów # 1937 #  #  # 
-426 #  # Przewodnik po Poznaniu #  # Nakładem Powszechnej Wystawy Krajowej w Poznaniu #  #  # Poznań # 1929 (?) #  #  # 
-427 # Sinko Tadeusz # Antologia klasyczna dla liceów ogólnokształcących # Zeszyt 1 z poezji greckiej # Książnica - Atlas, S.A. Zjednocz. Zakłady Kartogr. i Wydawn. T.N.S.W. #  #  # Lwów-Warszawa # 1937 #  #  # 
-428 #  # Płomyk # tygodnik ilustrowany dla dzieci i młodzieży # "Związek Polskiego Nauczycielstwa Szkół Powszechnych; Związek Nauczycielstwa Polskiego" # 13, 15, 27-35, 37-39 #  # Warszawa # 1930-1931 #  #  # 
-429 #  # Eroticon #  #  # 9 #  #  # 2 (?) #  #  # 
-430 #  # Basic English # Podstawowy kurs języka angielskiego oparty na 850 słowach dających 20.000 pojęć - dla uczących się samodzielnie #  # 1-6 #  # Wilno # 1934 #  #  # Serja II z osobnym słownikiem-gramatyką; Brak ostatniej strony
-431 #  # Basic English # Kompletny kurs nauki Języka Angielskiego oparty na 850 słowach ze słownikiem #  # 1 (1932), 1-9 (1933) #  # Wilno # 1932-1933 #  #  # 
-432 #  # Melodyje... (?) #  #  #  #  #  # 1914 > (?) #  #  # Nuty pieśni kościelnych
-433 # Słowacki Juljusz # Genezis z Ducha. Modlitwa. #  # Nakładem i drukiem księgarni Wilhelma Zukerkandla #  #  # Złoczów # 1939 > (?) # Biblioteka Powszechna # 1029 # 
-434 # Słowacki Juljusz # Podróż na wschód #  # Nakładem i drukiem księgarni Wilhelma Zukerkandla #  #  # Złoczów # 1939 > (?) # Biblioteka Powszechna # 1071-1072 # 
-435 # Słowacki Juliusz # Sen srebrny Salomei #  # Nakładem i drukiem księgarni Wilhelma Zukerkandla #  #  # Złoczów #  # Biblioteka Powszechna # 618-619 # 
-436 # Chleboradzki Antoni # Na kurpiowskim szlaku # Powieść historyczna x XVII w. # Nakładem Redakcyi "Gazety Polskiej" #  #  # Warszawa # 1900 # Gazeta Polska # 12 (ogólnego zbioru tom 77) # 
-437 #  # Program studiów na rok akademicki 1945/1946 #  # Nakładem Politechniki Łódzkiej #  #  # Łódź # 1945 #  #  # 
+413 # Orzeszkowa E. # Nad Niemnem w komentarzach #  # Poznańska Spółka Wydawnicza #  #  # Poznań # 1947 # Literatura polska # 13 # Opracowała Szczerkowska
+414 # Wyspiański Stanisław # Wesele - streszczenie i objaśnienie przez K. B. #  # Krakowskie Towarzystwo Wydawnicze Sp. z o.o. #  #  # Kraków # 1946 # Biblioteka Krytyczna Arcydzieł Literatury Polskiej # 23 # 
+415 # Widajewicz Józef # Słowianie zachodni #  # Polski Związek Zachodni, Wojewódzki Zarząd Okręgowy w Krakowie #  #  # Kraków # 1945 # Uniwersytet Jagielloński i Akademia Górnicza; Kurs naukowo-informacyjny o ziemiach zachodnich #  # 
+416 # Słowacki Juliusz # Balladyna #  # Krakowskie Towarzystwo Wydawnicze Sp. z o.o. #  # nowe, poprawione i uzupełnione # Kraków # 1946 # Biblioteka Krytyczna Arcydzieł Literatury Polskiej # 22 # Opracował Stanisław Fischer
+417 # Kalandyk Stanisław, profesor Uniwersytetu Poznańskiego # Podręcznik fizyki dla medyków, farmaceutów i biologów #  # Księgarnia Akademicka, Spółdzielnia z odp. udz. #  # 3 # Poznań # 1949 #  #  # 
+418 # Mickiewicz Adam # Dzieła poetyckie #  # Nakładem Komitetu Mickiewiczowskiego #  # 2, zupełne, z portretami i podobiznami autografów poety # Nowogródek # 1933 #  #  # Wydał i objaśnił Tadeusz Pini
+419 # Beyer Otto # Haft Richelieu #  # Nakładem firmy Ottona Beyera w Lipsku #  #  # Lipsk # 1936 > (?) # Beyera podręczniki do robótek ręcznych #  # Spolszczyła Hanka
+420 # Janowski Bronisław, prof. # Jak zakładać pastwiska trwałe #  # Nakładem S-ki Wydawniczej "Biblioteka Rolnicza", skład główny w Księgarni Gebethnera i Wolffa #  #  # Warszawa-Lwów # 1913 #  #  # 
+421 # Kondracki Jerzy # Pomorze # Szkic geograficzny # Państwowe Zakłady Wydawnictw Szkolnych #  #  # Warszwa # 1946 #  #  # 
+422 # Pawłowski Stanisław # Wskazówki metodyczne do podręcznika "Geografja Polski" dla I klasy gimnazjalnej #  # Książnica - Atlas, S.A. Zjednocz. Zakłady Kartogr. i Wydawn. T.N.S.W. #  #  # Lwów-Warszawa # 1933 #  #  # 
+423 # Orzeszkowa E. # "Daleko; Karyfery" #  # Nakład Gebethnera i Wolffa #  # nowe # Warszawa-Kraków-Lublin-Łódź-Poznań-Wilno-Zakopane # 1939 > (?) # Biblioteczka Uniwersytetów Ludowych i Młodzieży Szkolnej # 135 # 
+424 # Szmyd Gerard, ks. dr # Życie chrześcijanina z Chrystusem w Kościele i liturgii # Podręcznik do nauki religii rzymskokatolickiej dla I klasy gimnazjalnej # Wydanictwo Zakładu Narodowego im. Ossolińskich #  #  # Lwów # 1937 #  #  # 
+425 #  # Przewodnik po Poznaniu #  # Nakładem Powszechnej Wystawy Krajowej w Poznaniu #  #  # Poznań # 1929 (?) #  #  # 
+426 # Sinko Tadeusz # Antologia klasyczna dla liceów ogólnokształcących # Zeszyt 1 z poezji greckiej # Książnica - Atlas, S.A. Zjednocz. Zakłady Kartogr. i Wydawn. T.N.S.W. #  #  # Lwów-Warszawa # 1937 #  #  # 
+427 #  # Płomyk # tygodnik ilustrowany dla dzieci i młodzieży # "Związek Polskiego Nauczycielstwa Szkół Powszechnych; Związek Nauczycielstwa Polskiego" # 13, 15, 27-35, 37-39 #  # Warszawa # 1930-1931 #  #  # 
+428 #  # Eroticon #  #  # 9 #  #  # 2 (?) #  #  # 
+429 #  # Basic English # Podstawowy kurs języka angielskiego oparty na 850 słowach dających 20.000 pojęć - dla uczących się samodzielnie #  # 1-6 #  # Wilno # 1934 #  #  # Serja II z osobnym słownikiem-gramatyką; Brak ostatniej strony
+430 #  # Basic English # Kompletny kurs nauki Języka Angielskiego oparty na 850 słowach ze słownikiem #  # 1 (1932), 1-9 (1933) #  # Wilno # 1932-1933 #  #  # 
+431 #  # Melodyje... (?) #  #  #  #  #  # 1914 > (?) #  #  # Nuty pieśni kościelnych
+432 # Słowacki Juljusz # Genezis z Ducha. Modlitwa. #  # Nakładem i drukiem księgarni Wilhelma Zukerkandla #  #  # Złoczów # 1939 > (?) # Biblioteka Powszechna # 1029 # 
+433 # Słowacki Juljusz # Podróż na wschód #  # Nakładem i drukiem księgarni Wilhelma Zukerkandla #  #  # Złoczów # 1939 > (?) # Biblioteka Powszechna # 1071-1072 # 
+434 # Słowacki Juliusz # Sen srebrny Salomei #  # Nakładem i drukiem księgarni Wilhelma Zukerkandla #  #  # Złoczów #  # Biblioteka Powszechna # 618-619 # 
+435 # Chleboradzki Antoni # Na kurpiowskim szlaku # Powieść historyczna x XVII w. # Nakładem Redakcyi "Gazety Polskiej" #  #  # Warszawa # 1900 # Gazeta Polska # 12 (ogólnego zbioru tom 77) # 
+436 #  # Program studiów na rok akademicki 1945/1946 #  # Nakładem Politechniki Łódzkiej #  #  # Łódź # 1945 #  #  # 
+437 # ? # (Książka o J. Piłsudskim) #  # ? #  #  # ? # 1935-1939 (?) #  #  # Brak okładek, dużo fotografii
 438 # ? # (Książka o J. Piłsudskim) #  # ? #  #  # ? # 1935-1939 (?) #  #  # Brak okładek, dużo fotografii
-439 # ? # (Książka o J. Piłsudskim) #  # ? #  #  # ? # 1935-1939 (?) #  #  # Brak okładek, dużo fotografii
-440 # Kowalewski T., ks. # Obszerniejsza Historja Święta albo Biblijna Nowego Testamentu #  # Nakładem i drukiem firmy "B-cia Detrychowie" #  # 21 # Płock # 1931-1939 (?) #  #  # 
-441 # Klemensiewicz Zenon # Język polski. Najważniejsze wiadomości gramatyczne z ćwiczeniami i wybór tekstów gwarowych # Dla VII kl. szkoły powszechnej # Książnica - Atlas, S.A. Zjednocz. Zakłady Kartogr. i Wydawn. T.N.S.W. #  #  # Lwów-Warszawa # 1935 #  #  # 
-442 # Bogucka C.; Niewiadomska C.; Warnkówna J. # Podręcznik do ćwiczeń ortograficznych i systematycznego dyktanda według pisowni Akademii Umiejętności w Krakowie z dodaniem uchwał Zjazdu Reyowskiego #  # Nakład Gebethnera i Wolffa (Warszawa), G. Gebethner i Spółka (Kraków) #  # 10 # Warszawa-Kraków # 1918 > (?) #  #  # 
-443 # Klecki Leon # Popularny wykład gry w szachy #  # Księgarnia Powszechna, Wydawnictwo "Młody szachista" #  # 5, uzupełnione # Warszawa # 1930 #  #  # 
-444 # Makowski P. # Wypisy polskie na klasę pierwszą. Część II. # Z zastosowaniem prawideł uchwalonych dn. 5 stycznia 1918 r. przez Akademię Umiejętności w Krakowie # Nakład i własność autora. Skład główny w księgarni Ludwika Fiszera w Łodzi, Warszawa - E. Wende i S-ka, Lublin - w księgarni Zakł. Nauk. im. Ossolińskich # 2 # 2 # Łódź-Warszawa-Lublin # 1918 #  #  # 
-445 #  # Historja Święta dla katolickich szkół ludowych #  # Księgarnia św. Wojciecha #  #  # Poznań-Warszawa-Wilno-Lublin # 1935 #  #  # 
-446 #  # 50 lat sportu. Jubileusz Łódzkiego Klubu Sportowego #  # Nakładem "Wydawnictwa Łódzkiego" #  #  #  # 1958 #  #  # 
-447 # Reymont Władysław St. # Chłopi # Wiosna # Nakład Gebethnera i Wolffa #  # 4 # Warszawa-Kraków-Lublin-Łódź-Poznań-Wilno-Zakopane # 1925 > (?) # Władysław St. Reymont, Pisma, wydanie zbiorowe zupełne ze wstępem Adama Grzymały-Siedleckiego i portretem autora # 4 # 
-448 # Niemcewicz Juljan Ursyn # Śpiewy historyczne #  # Instytut Wydawniczy "Bibljoteka Polska" #  #  # Warszawa # 1939 > (?) #  #  # 
-449 # Nitsch Kazimierz # Głosownia języka polskiego II # Dzisiejszy system głosowy # Gebethner i Wolff #  #  # Kraków, Warszawa, Lublin, Łódź, Poznań, Zakopane, Wilno # 1925 # Bibljoteczka Towarzystwa Miłośników Języka Polskiego # 7 # 
-450 # Wojnowski Oskar # Jak leczyć choroby ziołami leczniczemi # Broszurka propagandowa # Zioła lecznicze Oskar Wojnowski #  #  # Warszawa # 1931 (?) #  #  # 
-451 # Fredro Aleksander, hr. # Komedye # "Wielki człowiek do małych interesów; Ożenić się nie mogę; Pan Banet; Lita et Compagnie; Wychowanka; Ostatnia wola; Jestem zabójcą; Godzien litości; Rewolwer; Z Przemyśla do Przeszowy; Teraz; Świeczka zgasła; Z Jakim się wdajesz, takim się stajesz; Rymond; Brytan-Bryś" # Nakład i druk S. Lewentala # 3 # zupełne poprzedzone wstępem przez Piotra Chmielowskiego # Warszawa # 1898 #  #  # 
-452 # Balzac Honoryusz # Komedya ludzka # "Jaszczur (La peau de chagrin); Arcydzieło nieznane" # Nakład i druk S. Lewentala # 7 #  # Warszawa # 1884 # "Biblioteka najcelniejszych utworów literatury europejskiéj; Literatura Francuska" #  # "Exlibris A. Krupski; Przekład Antoniego Sygietyńskiego"
-453 # Reichsstelle für Naturschutz (Hrg.) # Taschenbuch der in Deutschland geschützten Pflanzen. #  # Hugo Bermühler Verlag #  #  # Berlin-Lichterfelde # 1938 #  #  # 
-454 # Pelczar Józef Sebastjan # Życie duchowne, czyli doskonałość chrześcijańska według najcelniejszych mistrzów duchownych #  # Nakładem Zgromadzenia Służebnic Najśw. Serca Jezusowego # 1 #  # Przemyśl # 1924 #  #  # 
-455 # Brewer, Moigno # Wiedza. Wytłumaczenie zjawisk codziennych # "Tom I. Mechanika-astronomia-akustyka-ciepło-optyka-meteorologia; Tom II. Magnetyzm-elektryczność-chemia" # Nakładem Biesiady Literackiej # 1, 2 # dopełnione przez Hneryka de Parville i ozdobione licznemi rysunkami # Warszawa # 1890-1891 (?) #  #  # 
-456 # Doński Ryszard # Promienie Roentgena i ich zastosowanie #  # Spółdzielnia wydawniczo-oświatowa "Czytelnik"; Wydawnictwo popularno-naukowe #  #  # Warszawa # 1951 # Wiedza Powszechna, Biblioteczka dla każdego #  # 
-457 # Anonim Jolanta # Co mam ugotować? #  #  #  #  # Poznań (?) # 1930 (?) #  #  # 
-458 # Florczyk Henryk # Trygonometria w zakresie szkoły średniej #  # Wydawnictwo "Universum" #  # 4 # Katowice # ? #  #  # 
-459 # Szemplińska Elżbieta # Warszawa w ogniu #  # Nakładem Spółdz. Wydawniczej "Nowa Epoka" #  # 2 # Warszawa # 1946 (?) #  #  # 
-460 # Falkiewicz J.; Thugutt M. # Kalendarz Techniczno-Warsztatowy na rok 1937 #  # Nakładem Księgarni Technicznej Przeglądu Technicznego #  #  # Warszawa # 1937 #  #  # 
-461 # Koneczny Feliks, dr. # Dzieje Polski # z ilustracyami L. Ilinicza Zajdla w dwóch tomach # Wydawnictwo Dziennika "Rozwój", Łódź # 1, 2 #  # Łódź # 1902 (?) #  #  # 
-462 # Putzgers F.W. # Historischer Schul-Atlas #  # Verlag von Velhagen & Klasing #  #  # Bielefeld und Leipzig # 1914 #  #  # 
-463 #  # Zbiorowa wystawa prac Wojciecha Kossaka #  # Miejska Galerja Sztuki w Łodzi #  #  #  # 1928 #  #  # 
-464 # Nansen Fridtjof # Podróżna do Bieguna Północnego #  # Biblioteka Dzieł Wyborowych # 1 #  #  # 1898 # Biblioteka Dzieł Wyborowych # 38 # W przekładzie i z przedmową Stanisława Janiszewskiego
-465 # Nansen Fridtjof # Podróżna do Bieguna Północnego #  # Biblioteka Dzieł Wyborowych # 2 #  #  # 1898 # Biblioteka Dzieł Wyborowych # 39 # W przekładzie i z przedmową Stanisława Janiszewskiego
-466 # Smoleński Jerzy # Wielkopolska #  # Wydawnictwo Polskie <R. Wegner> #  #  # Poznań # 1930 (?) # Cuda Polski #  # 
-467 # Dynowska M. # Nasze rocznice # Wybór poezyj i prozy na obchody narodowe # Wydawnictwo Towarzystwa Szkoły Ludowej w Krakowie #  # 2, zmienione i powiększone # Kraków # 1925 (?) #  #  # 
-468 # Żebrowska-Kacprzakowa W. # Książka gospodyni wiejskiej #  # Ministerstwo Rolnictwa i Reform Rolnych, Związek Samopomocy Chłopskiej #  #  #  # 1947 #  #  # Brak strony tytułowej
-469 # Smolarski Mieczysław # Dawna Polska w opisach podróżników #  # Książnica-Atlas #  #  # Lwów-Warszawa # 1936 #  #  # 
-470 # Przeborski Antoni, dr. # Wykłady mechaniki teoretycznej #  # Wydawnictwo Kasy im. Mianowskiego Instytutu Popierania Nauki # 1, 2 #  # Warszawa # 1930/1935 #  #  # 
-471 # Gomulicki Wiktor # Poezje #  # Nakładem Księgarni A. Gruszeckiego #  #  # Warszawa # 1866 (?) #  #  # 
-472 # Naleśniak Teodor Jakób, o. # Za przyczyną Marji # Przykładu opieki Królwej Różańca św. Przedruk z roczników Róży Duchownej (1898-1925) # Wydawnictwo oo. Dominikanów # 1 (przykłady na maj) #  # Lwów # 1926 #  #  # 
-473 # Smoleński Władysław # Dzieje narodu polskiego #  # Nakład Gebethnera i Wolffa (Warszawa-Lublin-Łódź), G. Gebethner i Spółka (Kraków) (?) #  # 5 (?) # Warszawa-Lublin-Łódź-Kraków (?) # 1919 (?) #  #  # Brak strony tytułowej i przedmowy
-474 # Konopnicka Marya # Helenica #  # Gebethner i Wolff (Warszawa), G. Gebethner i Spółka (Kraków) #  # nowe # Warszawa-Kraków # 1911 (?) # Poezye w nowym układzie # 2 # 
-476 # Sienkiewicz Henryk # Krzyżacy # Powieść w czterech tomach # Wydawnictwo Zakładu Narodowego im. Ossolińskich # 1-4 #  # Lwów-Warszawa-Kraków # 1922 #  #  # 
-477 # Oppman Edmund, dr. # Wodzowie Polski # Szlakami chwały oręża polskiego # Główna Księgarnia Wojskowa #  # 3 # Warszawa # 1938 #  #  # 
-478 # Dyakowski Bohdan # Z naszej przyrody # Obrazy z życia zwierząt i roślin krajowych # Wydawnictwo M. Arcta w Warszawie #  # 3 # Warszawa # 1915 #  #  # 
-479 # Froń J. # Wiadomości z nauk przyrodnicznych (chemja, fizyka, botanika i zoologja) # Podręcznik dla szkół rolniczych niższych # Nakładem Pomorskiej Izby Rolniczej #  #  # Toruń # 1923 #  #  # 
-480 # Skowronek Ludwik, ks. # Droga do Nieba # Książka parafialna do nabożeństwa dla katolików każdego stanu i wieku # Wydawnictwo dzieł katolickich Reinh. Meyera w Raciborzu #  # 10 # Racibórz # 1914 (?) #  #  # 
-481 # J.F._Sodalis_Marianus # Kwiatek seraficzny # Boskiemu więźniowi miłości w Eucharystii Jezusowi Chrystusowi, Panu i Bogu naszemu na większą chwałę i uwielbienie # Nakładem Józefa Angrabajtisa #  # 6 # Kraków # 1912 (?) #  #  # 
-482 # Nitmann T.M., dr # Mały Piłsudczyk #  # Nakładem Głównej Księgarni Wojskowej #  #  # Warszawa # 1935 #  #  # 
-483 # W.Ł. # Co wolno w małżeństwie #  #  #  #  # Warszawa # 1937 #  #  # 
+439 # Kowalewski T., ks. # Obszerniejsza Historja Święta albo Biblijna Nowego Testamentu #  # Nakładem i drukiem firmy "B-cia Detrychowie" #  # 21 # Płock # 1931-1939 (?) #  #  # 
+440 # Klemensiewicz Zenon # Język polski. Najważniejsze wiadomości gramatyczne z ćwiczeniami i wybór tekstów gwarowych # Dla VII kl. szkoły powszechnej # Książnica - Atlas, S.A. Zjednocz. Zakłady Kartogr. i Wydawn. T.N.S.W. #  #  # Lwów-Warszawa # 1935 #  #  # 
+441 # Bogucka C.; Niewiadomska C.; Warnkówna J. # Podręcznik do ćwiczeń ortograficznych i systematycznego dyktanda według pisowni Akademii Umiejętności w Krakowie z dodaniem uchwał Zjazdu Reyowskiego #  # Nakład Gebethnera i Wolffa (Warszawa), G. Gebethner i Spółka (Kraków) #  # 10 # Warszawa-Kraków # 1918 > (?) #  #  # 
+442 # Klecki Leon # Popularny wykład gry w szachy #  # Księgarnia Powszechna, Wydawnictwo "Młody szachista" #  # 5, uzupełnione # Warszawa # 1930 #  #  # 
+443 # Makowski P. # Wypisy polskie na klasę pierwszą. Część II. # Z zastosowaniem prawideł uchwalonych dn. 5 stycznia 1918 r. przez Akademię Umiejętności w Krakowie # Nakład i własność autora. Skład główny w księgarni Ludwika Fiszera w Łodzi, Warszawa - E. Wende i S-ka, Lublin - w księgarni Zakł. Nauk. im. Ossolińskich # 2 # 2 # Łódź-Warszawa-Lublin # 1918 #  #  # 
+444 #  # Historja Święta dla katolickich szkół ludowych #  # Księgarnia św. Wojciecha #  #  # Poznań-Warszawa-Wilno-Lublin # 1935 #  #  # 
+445 #  # 50 lat sportu. Jubileusz Łódzkiego Klubu Sportowego #  # Nakładem "Wydawnictwa Łódzkiego" #  #  #  # 1958 #  #  # 
+446 # Reymont Władysław St. # Chłopi # Wiosna # Nakład Gebethnera i Wolffa #  # 4 # Warszawa-Kraków-Lublin-Łódź-Poznań-Wilno-Zakopane # 1925 > (?) # Władysław St. Reymont, Pisma, wydanie zbiorowe zupełne ze wstępem Adama Grzymały-Siedleckiego i portretem autora # 4 # 
+447 # Niemcewicz Juljan Ursyn # Śpiewy historyczne #  # Instytut Wydawniczy "Bibljoteka Polska" #  #  # Warszawa # 1939 > (?) #  #  # 
+448 # Nitsch Kazimierz # Głosownia języka polskiego II # Dzisiejszy system głosowy # Gebethner i Wolff #  #  # Kraków, Warszawa, Lublin, Łódź, Poznań, Zakopane, Wilno # 1925 # Bibljoteczka Towarzystwa Miłośników Języka Polskiego # 7 # 
+449 # Wojnowski Oskar # Jak leczyć choroby ziołami leczniczemi # Broszurka propagandowa # Zioła lecznicze Oskar Wojnowski #  #  # Warszawa # 1931 (?) #  #  # 
+450 # Fredro Aleksander, hr. # Komedye # "Wielki człowiek do małych interesów; Ożenić się nie mogę; Pan Banet; Lita et Compagnie; Wychowanka; Ostatnia wola; Jestem zabójcą; Godzien litości; Rewolwer; Z Przemyśla do Przeszowy; Teraz; Świeczka zgasła; Z Jakim się wdajesz, takim się stajesz; Rymond; Brytan-Bryś" # Nakład i druk S. Lewentala # 3 # zupełne poprzedzone wstępem przez Piotra Chmielowskiego # Warszawa # 1898 #  #  # 
+451 # Balzac Honoryusz # Komedya ludzka # "Jaszczur (La peau de chagrin); Arcydzieło nieznane" # Nakład i druk S. Lewentala # 7 #  # Warszawa # 1884 # "Biblioteka najcelniejszych utworów literatury europejskiéj; Literatura Francuska" #  # "Exlibris A. Krupski; Przekład Antoniego Sygietyńskiego"
+452 # Reichsstelle für Naturschutz (Hrg.) # Taschenbuch der in Deutschland geschützten Pflanzen. #  # Hugo Bermühler Verlag #  #  # Berlin-Lichterfelde # 1938 #  #  # 
+453 # Pelczar Józef Sebastjan # Życie duchowne, czyli doskonałość chrześcijańska według najcelniejszych mistrzów duchownych #  # Nakładem Zgromadzenia Służebnic Najśw. Serca Jezusowego # 1 #  # Przemyśl # 1924 #  #  # 
+454 # Brewer, Moigno # Wiedza. Wytłumaczenie zjawisk codziennych # "Tom I. Mechanika-astronomia-akustyka-ciepło-optyka-meteorologia; Tom II. Magnetyzm-elektryczność-chemia" # Nakładem Biesiady Literackiej # 1, 2 # dopełnione przez Hneryka de Parville i ozdobione licznemi rysunkami # Warszawa # 1890-1891 (?) #  #  # 
+455 # Doński Ryszard # Promienie Roentgena i ich zastosowanie #  # Spółdzielnia wydawniczo-oświatowa "Czytelnik"; Wydawnictwo popularno-naukowe #  #  # Warszawa # 1951 # Wiedza Powszechna, Biblioteczka dla każdego #  # 
+456 # Anonim Jolanta # Co mam ugotować? #  #  #  #  # Poznań (?) # 1930 (?) #  #  # 
+457 # Florczyk Henryk # Trygonometria w zakresie szkoły średniej #  # Wydawnictwo "Universum" #  # 4 # Katowice # ? #  #  # 
+458 # Szemplińska Elżbieta # Warszawa w ogniu #  # Nakładem Spółdz. Wydawniczej "Nowa Epoka" #  # 2 # Warszawa # 1946 (?) #  #  # 
+459 # Falkiewicz J.; Thugutt M. # Kalendarz Techniczno-Warsztatowy na rok 1937 #  # Nakładem Księgarni Technicznej Przeglądu Technicznego #  #  # Warszawa # 1937 #  #  # 
+460 # Koneczny Feliks, dr. # Dzieje Polski # z ilustracyami L. Ilinicza Zajdla w dwóch tomach # Wydawnictwo Dziennika "Rozwój", Łódź # 1, 2 #  # Łódź # 1902 (?) #  #  # 
+461 # Putzgers F.W. # Historischer Schul-Atlas #  # Verlag von Velhagen & Klasing #  #  # Bielefeld und Leipzig # 1914 #  #  # 
+462 #  # Zbiorowa wystawa prac Wojciecha Kossaka #  # Miejska Galerja Sztuki w Łodzi #  #  #  # 1928 #  #  # 
+463 # Nansen Fridtjof # Podróżna do Bieguna Północnego #  # Biblioteka Dzieł Wyborowych # 1 #  #  # 1898 # Biblioteka Dzieł Wyborowych # 38 # W przekładzie i z przedmową Stanisława Janiszewskiego
+464 # Nansen Fridtjof # Podróżna do Bieguna Północnego #  # Biblioteka Dzieł Wyborowych # 2 #  #  # 1898 # Biblioteka Dzieł Wyborowych # 39 # W przekładzie i z przedmową Stanisława Janiszewskiego
+465 # Smoleński Jerzy # Wielkopolska #  # Wydawnictwo Polskie <R. Wegner> #  #  # Poznań # 1930 (?) # Cuda Polski #  # 
+466 # Dynowska M. # Nasze rocznice # Wybór poezyj i prozy na obchody narodowe # Wydawnictwo Towarzystwa Szkoły Ludowej w Krakowie #  # 2, zmienione i powiększone # Kraków # 1925 (?) #  #  # 
+467 # Żebrowska-Kacprzakowa W. # Książka gospodyni wiejskiej #  # Ministerstwo Rolnictwa i Reform Rolnych, Związek Samopomocy Chłopskiej #  #  #  # 1947 #  #  # Brak strony tytułowej
+468 # Smolarski Mieczysław # Dawna Polska w opisach podróżników #  # Książnica-Atlas #  #  # Lwów-Warszawa # 1936 #  #  # 
+469 # Przeborski Antoni, dr. # Wykłady mechaniki teoretycznej #  # Wydawnictwo Kasy im. Mianowskiego Instytutu Popierania Nauki # 1, 2 #  # Warszawa # 1930/1935 #  #  # 
+470 # Gomulicki Wiktor # Poezje #  # Nakładem Księgarni A. Gruszeckiego #  #  # Warszawa # 1866 (?) #  #  # 
+471 # Naleśniak Teodor Jakób, o. # Za przyczyną Marji # Przykładu opieki Królwej Różańca św. Przedruk z roczników Róży Duchownej (1898-1925) # Wydawnictwo oo. Dominikanów # 1 (przykłady na maj) #  # Lwów # 1926 #  #  # 
+472 # Smoleński Władysław # Dzieje narodu polskiego #  # Nakład Gebethnera i Wolffa (Warszawa-Lublin-Łódź), G. Gebethner i Spółka (Kraków) (?) #  # 5 (?) # Warszawa-Lublin-Łódź-Kraków (?) # 1919 (?) #  #  # Brak strony tytułowej i przedmowy
+473 # Konopnicka Marya # Helenica #  # Gebethner i Wolff (Warszawa), G. Gebethner i Spółka (Kraków) #  # nowe # Warszawa-Kraków # 1911 (?) # Poezye w nowym układzie # 2 # 
+474 # Sienkiewicz Henryk # Krzyżacy # Powieść w czterech tomach # Wydawnictwo Zakładu Narodowego im. Ossolińskich # 1-4 #  # Lwów-Warszawa-Kraków # 1922 #  #  # 
+475 # Oppman Edmund, dr. # Wodzowie Polski # Szlakami chwały oręża polskiego # Główna Księgarnia Wojskowa #  # 3 # Warszawa # 1938 #  #  # 
+476 # Dyakowski Bohdan # Z naszej przyrody # Obrazy z życia zwierząt i roślin krajowych # Wydawnictwo M. Arcta w Warszawie #  # 3 # Warszawa # 1915 #  #  # 
+477 # Froń J. # Wiadomości z nauk przyrodnicznych (chemja, fizyka, botanika i zoologja) # Podręcznik dla szkół rolniczych niższych # Nakładem Pomorskiej Izby Rolniczej #  #  # Toruń # 1923 #  #  # 
+478 # Skowronek Ludwik, ks. # Droga do Nieba # Książka parafialna do nabożeństwa dla katolików każdego stanu i wieku # Wydawnictwo dzieł katolickich Reinh. Meyera w Raciborzu #  # 10 # Racibórz # 1914 (?) #  #  # 
+479 # J.F._Sodalis_Marianus # Kwiatek seraficzny # Boskiemu więźniowi miłości w Eucharystii Jezusowi Chrystusowi, Panu i Bogu naszemu na większą chwałę i uwielbienie # Nakładem Józefa Angrabajtisa #  # 6 # Kraków # 1912 (?) #  #  # 
+480 # Nitmann T.M., dr # Mały Piłsudczyk #  # Nakładem Głównej Księgarni Wojskowej #  #  # Warszawa # 1935 #  #  # 
+481 # W.Ł. # Co wolno w małżeństwie #  #  #  #  # Warszawa # 1937 #  #  # 
 484 # Henneking E. # Książka Kucharska D-ra Oetkera #  # Nakładem Fabryki Środków Spożywczych D-ra Augusta Oetkera #  # C # Oliwa # 1939 > (?) #  #  # 
-485 # Dr. A. Wander S.A. # Przepisy do pieczenia Dawa #  # Dr. A. Wander S.A. #  #  # Kraków # 1938 #  #  # Brak stron 1-4
-486 #  # D-ra Oetkera Przepisy #  # Dr. A. Oetker #  #  # Oliwa # 1939 > (?) #  #  # 
-487 # Lewicki Anatol, prof. dr. # Zarys historyi Polski i krajów ruskich z nią połączonych # Podręcznik szkolny # Nakładem Księgarni G. Gebethnera i Sp. #  # 6, skrócone # Kraków # 1916 #  #  # 
-488 # Dąbrowska Marja # U północnych sąsiadów #  # Wydawnictwo Dzieł Literatury Europejskiej #  #  # Warszawa # 1929 #  #  # 
-489 # Sienkiewicz Henryk # Światła i kwiaty # Myśli zebrane z utworów Henryka Sienkiewicza # Nakładem K. Kozłowskiego #  # 3, pomnożone # Poznań # 1912 #  #  # 
-490 # Mickiewicz Adam # Dziady Wileńskie, Dziady Drezdeńskie #  # Instytut Wydawniczy "Bibljoteka Polska" #  #  # Warszawa # 1929 #  #  # Opracował Henryk Schipper
-491 # Śliwiński Artur # Powstanie listopadowe #  # Wydawnictwo M. Arcta w Warszawie (Wilno. Księgarnia Stow. Nauczycielstwa Polskiego) #  # 5 # Warszawa-Poznań-Łódź-Lublin-Wilno # 1920 #  #  # 
-492 # Przyborowski Walery # Reduta Woli # Powieść historyczna z 1831 roku dla młodzieży # Wydawnictwo M. Arcta w Warszawie #  # 4 # Warszawa # 1930 #  #  # 
-493 # Barszczewski Stefan # Na szlaku sławy, krwi i złota # Szkice z dziejów odkrycia Ameryki # Nakładem Gebethnera i Wolffa #  #  # Warszawa-Kraków-Lublin-Łódź-Paryż-Poznań-Wilno-Zakopane # 1928 #  #  # 
-494 # Galle H., Krasnowolski A. # Słownik frazeologiczny # Poradnik dla piszących # Wydawnictwo M. Arcta w Warszawie #  # 3, poprawione i uzupełnione # Warszawa # 1928 #  #  # 
-495 # Korczak Janusz # Król Maciuś na wyspie bezludnej #  # Towarzystwo Wydawnicze w Warszawie #  #  # Warszawa-Kraków # 1923 #  #  # 
-496 # Rosenzweig Józef # Crescendo # Na tle podróży # Księgarnia Jana Fiszera #  #  # Warszawa # 1901 #  #  # 
-497 #  # Wiedza i życie #  # Wydawnictwo Powszechnego Uniwersytetu Korespondencyjnego i Związku Polskiego Nauczycielstwa Szkół Powszechnych #  #  # Warszawa # 1927 maj # Wiedza i życie # 5(15) # 
-498 #  # Wiedza i życie #  # Wydawnictwo Powszechnego Uniwersytetu Korespondencyjnego i Związku Polskiego Nauczycielstwa Szkół Powszechnych #  #  # Warszawa # 1930 styczeń # Wiedza i życie # 1 # 
-499 # Mędyński Aleksander # Ilustrowany przewodnik po Lwowie # Przewodnik dla zwiedzających miasto # Nakłdem autora #  #  # Lwów # 1936 #  #  # 
-500 # Tatomir Lucjan # Dzieje Polski # Z 10 mapami i tablicami genealogicznemi, wykazującemi rozległość państwa w rozmaitych okresach czasu # Nakład Księgarni Teodora Paprockiego i S-ki #  #  # Warszawa # 1898 #  #  # 
-501 # Mondalski Wiktor # Z trzecim pułkiem Legionów #  # Nakładem Centralnego Biura Wydawnictw N.K.N. #  #  # Kraków # 1916 #  #  # 
-502 # Stemler Józef # Konstytucja Rzeczypospolitej Polskiej #  # Wydawnictwo Polskiej Macierzy Szkolnej #  # 3 # Warszawa # 1924 #  #  # 
-503 # Czechowski Aleksander # Historya XIX stulecia od r. 1815 - 1848 #  #  #  #  # Warszawa # 1907 #  #  # 
-504 # Łoziński Władysław # Życie polskie w dawnych wiekach #  # H. Altenberg - Gubrynowicz & Syn #  # 4 # Lwów # 1921 #  #  # 
-505 # Chrzanowski Ign. # Historya literatury niepodległej Polski (z wypisami) #  # Nakład Gebethnera i Wolffa (Warsdzawa), G. Gebethner i Spółka (Kraków) #  #  # Warszawa-Kraków # 1911 (?) #  #  # 
-506 # Piasecki # Kochanek Wielkiej Niedźwiedzicy #  #  #  #  #  #  #  #  # Brak strony tytułowej
-507 # Lam Stanisław, dr # Encyklopedja Powszechna w dwu tomach #  # Nakładem Księgarni Trzaski, Everta i Michalskiego #  #  #  # 1939 > (?) #  #  # 
-508 # Koziński L.; Moycho S. # Fizyka i chemja cz. I dla oddziału VI #  # Nakład Gebethnera i Wolffa #  # 3 # Warszawa-Kraków-Lublin-Łódź-Poznań-Wilno-Zakopane # 1924 # Szkoła Powszechna #  # 
-509 # Kaden-Bandrowski Juliusz # Piłsudczycy #  # Główna Księgarnia Wojskowa #  # nowe # Warszawa # 1936 #  #  # 
-510 # Reymont Wł. St. # Chłopi # Jesień # Nakład Gebethnera i Wolffa; G. Gebethner i Spółka # 1 #  # Warszawa-Lublin-Łódź-Poznań, Kraków (G. Gebethner i Spółka) # 1939 > (?) #  #  # 
-511 # Chrząszczewska Jadwiga; Warnkówna Jadwiga # Z biegiem Wisły # Obrazki i opwiadania o kraju # Nakład Gebethnera i Wolffa; G. Gebethner i Spółka; The Polish Book Import. Co, Inc. #  # 3 # Warszawa-Lublin-Łódź-Poznań, Kraków (G. Gebethner i Spółka), New York (The Polish Book Import.Co,Inc.) # 1913 #  #  # 
-512 # Arct Michał # Słownik ilustrowany języka polskiego #  # Wydawnictwo M. Arcta w Warszawie # 2 # 3 # Warszawa # 1929 #  #  # 
-513 # Lutosławski Wincenty # Jeden łatwy żywot #  # F. Hoesick #  #  # Warszawa # 1933 #  #  # 
-514 # Owl Grey (Szara Sowa) # Historia opuszczonego szałasu #  # Towarzystwo Wydawnicze "Rój" #  #  # Warszawa # 1939 #  #  # 
-515 # Gołąbowa Marja # Umiejętność zachowania się w domu i w świecie #  # Towarzystwo Wydawnicze "Bluszcz" #  #  # Warszawa # 1928 (?) # Życie praktyczne # 36 # 
-516 # Sienkiewicz Henryk # Ogniem i mieczem (wersja skrócona) # Powieść historyczna dla dojrzalszej młodzieży, ułożył W. Grzymałowski # Gebethner i Wolff (Warszawa), G. Gebethner i Sp. (Kraków) #  #  # Warszawa-Kraków # 1920 >= (?) #  #  # Brak 3 ilustracji
-517 #  # Rozmówki polsko-hiszpańskie #  # Nakładem Towarzystwa Okrętowego Królewsko-Holenderski Lloyd #  #  # Warszawa # 1939 > (?) #  #  # 
-518 # Wojnicz-Sianożęcki Z., ppłk; Drogosław Z., inż. # Samoobrona kraju w świetle stosunków przemysłowych i społecznych #  # Wydanie Towarzystwa Obrony Przeciwgazowej #  #  # Warszawa # 1926 #  #  # 
-519 # Jakubisiak Augustyn, ks. dr. # O wolność synów Bożych # Rozważania na tle Ewangelji # Nakładem T-wa Kultury Katolickiej #  #  # Łódź # 1936 #  #  # 
-520 # Sporzyński Ksawery # Fizyka # Do użytku szkół średnich # Wydawnictwo M. Arcta w Warszawie #  # 5, poprawione i uzgodnione z nowymi programami # Warszawa, (Poznań?) # 1919 #  #  # 
-521 # Buddenbrock W. # Świat zmysłów #  # Trzaska, Evert, Michalski S.A. #  # 2 # Warszawa # 1925-1929 (?) # Bibljoteka Wiedzy # 7 # 
-522 # Reussner Plato, v. # Najlepsza metoda języka niemieckiego # "do nauczenia się czytać, pisać i rozmawiać po niemiecku w trzech miesiącach, bez pomocy, lub z pomocą nauczyciela; kurs wyższy" # Nakład i własność autora #  # 7 # Warszawa # 1895 #  #  # 
-523 # Zwoliński Tadeusz; Zwoliński Stefan # Przewodnik po Tatrach i Zakopanem #  # Nakład i własność księgarni L. Zwolińskiego w Zakopanem #  # 4, przejrzane i uzupełnione # Zakopane # 1930 #  #  # Brak mapki, pierwsze strony wydrukowane
-524 # Praca zbiorowa # M. Arcta Nowoczesna Encyklopedia Ilustrowana #  # Nakładem Zakładów Wydawniczych M. Arct, Sp. akc. w Warszawie #  #  # Warszawa # 1936-1939 (?) #  #  # Brak ostatnich stron w suplemencie
-525 # Żelazowski Karol, ks. # Bądźcie doskonałymi # Na podstawie dzieła Scaramelli'ego pod tytułem "Direttorio ascetico" # Skład główny w Księgarni Sort. dawniej Maurycego Orgelbranda, obecnie M Machwitz # 1, 2 #  # Warszawa # 1898 #  #  # 
-526 # Sienkiewicz Henryk # Ogniem i mieczem # Powieść z lat dawnych # Nakład Gebethnera i Wolffa # 3 # czwarte, przejrzane i poprawione # Warszawa # 1889 # Pisma Henryka Sienkiewicza # 8 # 
-527 # Szpyrkówna M. H. # Godzina bije! #  # Wydawnictwo Zakładu Narodowego im. Ossolińskich #  #  # Lwów-Warszawa-Kraków # 1927 #  #  # 
+483 # Dr. A. Wander S.A. # Przepisy do pieczenia Dawa #  # Dr. A. Wander S.A. #  #  # Kraków # 1938 #  #  # Brak stron 1-4
+484 #  # D-ra Oetkera Przepisy #  # Dr. A. Oetker #  #  # Oliwa # 1939 > (?) #  #  # 
+485 # Lewicki Anatol, prof. dr. # Zarys historyi Polski i krajów ruskich z nią połączonych # Podręcznik szkolny # Nakładem Księgarni G. Gebethnera i Sp. #  # 6, skrócone # Kraków # 1916 #  #  # 
+486 # Dąbrowska Marja # U północnych sąsiadów #  # Wydawnictwo Dzieł Literatury Europejskiej #  #  # Warszawa # 1929 #  #  # 
+487 # Sienkiewicz Henryk # Światła i kwiaty # Myśli zebrane z utworów Henryka Sienkiewicza # Nakładem K. Kozłowskiego #  # 3, pomnożone # Poznań # 1912 #  #  # 
+488 # Mickiewicz Adam # Dziady Wileńskie, Dziady Drezdeńskie #  # Instytut Wydawniczy "Bibljoteka Polska" #  #  # Warszawa # 1929 #  #  # Opracował Henryk Schipper
+489 # Śliwiński Artur # Powstanie listopadowe #  # Wydawnictwo M. Arcta w Warszawie (Wilno. Księgarnia Stow. Nauczycielstwa Polskiego) #  # 5 # Warszawa-Poznań-Łódź-Lublin-Wilno # 1920 #  #  # 
+490 # Przyborowski Walery # Reduta Woli # Powieść historyczna z 1831 roku dla młodzieży # Wydawnictwo M. Arcta w Warszawie #  # 4 # Warszawa # 1930 #  #  # 
+491 # Barszczewski Stefan # Na szlaku sławy, krwi i złota # Szkice z dziejów odkrycia Ameryki # Nakładem Gebethnera i Wolffa #  #  # Warszawa-Kraków-Lublin-Łódź-Paryż-Poznań-Wilno-Zakopane # 1928 #  #  # 
+492 # Galle H., Krasnowolski A. # Słownik frazeologiczny # Poradnik dla piszących # Wydawnictwo M. Arcta w Warszawie #  # 3, poprawione i uzupełnione # Warszawa # 1928 #  #  # 
+493 # Korczak Janusz # Król Maciuś na wyspie bezludnej #  # Towarzystwo Wydawnicze w Warszawie #  #  # Warszawa-Kraków # 1923 #  #  # 
+494 # Rosenzweig Józef # Crescendo # Na tle podróży # Księgarnia Jana Fiszera #  #  # Warszawa # 1901 #  #  # 
+495 #  # Wiedza i życie #  # Wydawnictwo Powszechnego Uniwersytetu Korespondencyjnego i Związku Polskiego Nauczycielstwa Szkół Powszechnych #  #  # Warszawa # 1927 maj # Wiedza i życie # 5(15) # 
+496 #  # Wiedza i życie #  # Wydawnictwo Powszechnego Uniwersytetu Korespondencyjnego i Związku Polskiego Nauczycielstwa Szkół Powszechnych #  #  # Warszawa # 1930 styczeń # Wiedza i życie # 1 # 
+497 # Mędyński Aleksander # Ilustrowany przewodnik po Lwowie # Przewodnik dla zwiedzających miasto # Nakłdem autora #  #  # Lwów # 1936 #  #  # 
+498 # Tatomir Lucjan # Dzieje Polski # Z 10 mapami i tablicami genealogicznemi, wykazującemi rozległość państwa w rozmaitych okresach czasu # Nakład Księgarni Teodora Paprockiego i S-ki #  #  # Warszawa # 1898 #  #  # 
+499 # Mondalski Wiktor # Z trzecim pułkiem Legionów #  # Nakładem Centralnego Biura Wydawnictw N.K.N. #  #  # Kraków # 1916 #  #  # 
+500 # Stemler Józef # Konstytucja Rzeczypospolitej Polskiej #  # Wydawnictwo Polskiej Macierzy Szkolnej #  # 3 # Warszawa # 1924 #  #  # 
+501 # Czechowski Aleksander # Historya XIX stulecia od r. 1815 - 1848 #  #  #  #  # Warszawa # 1907 #  #  # 
+502 # Łoziński Władysław # Życie polskie w dawnych wiekach #  # H. Altenberg - Gubrynowicz & Syn #  # 4 # Lwów # 1921 #  #  # 
+503 # Chrzanowski Ign. # Historya literatury niepodległej Polski (z wypisami) #  # Nakład Gebethnera i Wolffa (Warsdzawa), G. Gebethner i Spółka (Kraków) #  #  # Warszawa-Kraków # 1911 (?) #  #  # 
+504 # Piasecki # Kochanek Wielkiej Niedźwiedzicy #  #  #  #  #  #  #  #  # Brak strony tytułowej
+505 # Lam Stanisław, dr # Encyklopedja Powszechna w dwu tomach #  # Nakładem Księgarni Trzaski, Everta i Michalskiego #  #  #  # 1939 > (?) #  #  # 
+506 # Koziński L.; Moycho S. # Fizyka i chemja cz. I dla oddziału VI #  # Nakład Gebethnera i Wolffa #  # 3 # Warszawa-Kraków-Lublin-Łódź-Poznań-Wilno-Zakopane # 1924 # Szkoła Powszechna #  # 
+507 # Kaden-Bandrowski Juliusz # Piłsudczycy #  # Główna Księgarnia Wojskowa #  # nowe # Warszawa # 1936 #  #  # 
+508 # Reymont Wł. St. # Chłopi # Jesień # Nakład Gebethnera i Wolffa; G. Gebethner i Spółka # 1 #  # Warszawa-Lublin-Łódź-Poznań, Kraków (G. Gebethner i Spółka) # 1939 > (?) #  #  # 
+509 # Chrząszczewska Jadwiga; Warnkówna Jadwiga # Z biegiem Wisły # Obrazki i opwiadania o kraju # Nakład Gebethnera i Wolffa; G. Gebethner i Spółka; The Polish Book Import. Co, Inc. #  # 3 # Warszawa-Lublin-Łódź-Poznań, Kraków (G. Gebethner i Spółka), New York (The Polish Book Import.Co,Inc.) # 1913 #  #  # 
+510 # Arct Michał # Słownik ilustrowany języka polskiego #  # Wydawnictwo M. Arcta w Warszawie # 2 # 3 # Warszawa # 1929 #  #  # 
+511 # Lutosławski Wincenty # Jeden łatwy żywot #  # F. Hoesick #  #  # Warszawa # 1933 #  #  # 
+512 # Owl Grey (Szara Sowa) # Historia opuszczonego szałasu #  # Towarzystwo Wydawnicze "Rój" #  #  # Warszawa # 1939 #  #  # 
+513 # Gołąbowa Marja # Umiejętność zachowania się w domu i w świecie #  # Towarzystwo Wydawnicze "Bluszcz" #  #  # Warszawa # 1928 (?) # Życie praktyczne # 36 # 
+514 # Sienkiewicz Henryk # Ogniem i mieczem (wersja skrócona) # Powieść historyczna dla dojrzalszej młodzieży, ułożył W. Grzymałowski # Gebethner i Wolff (Warszawa), G. Gebethner i Sp. (Kraków) #  #  # Warszawa-Kraków # 1920 >= (?) #  #  # Brak 3 ilustracji
+515 #  # Rozmówki polsko-hiszpańskie #  # Nakładem Towarzystwa Okrętowego Królewsko-Holenderski Lloyd #  #  # Warszawa # 1939 > (?) #  #  # 
+516 # Wojnicz-Sianożęcki Z., ppłk; Drogosław Z., inż. # Samoobrona kraju w świetle stosunków przemysłowych i społecznych #  # Wydanie Towarzystwa Obrony Przeciwgazowej #  #  # Warszawa # 1926 #  #  # 
+517 # Jakubisiak Augustyn, ks. dr. # O wolność synów Bożych # Rozważania na tle Ewangelji # Nakładem T-wa Kultury Katolickiej #  #  # Łódź # 1936 #  #  # 
+518 # Sporzyński Ksawery # Fizyka # Do użytku szkół średnich # Wydawnictwo M. Arcta w Warszawie #  # 5, poprawione i uzgodnione z nowymi programami # Warszawa, (Poznań?) # 1919 #  #  # 
+519 # Buddenbrock W. # Świat zmysłów #  # Trzaska, Evert, Michalski S.A. #  # 2 # Warszawa # 1925-1929 (?) # Bibljoteka Wiedzy # 7 # 
+520 # Reussner Plato, v. # Najlepsza metoda języka niemieckiego # "do nauczenia się czytać, pisać i rozmawiać po niemiecku w trzech miesiącach, bez pomocy, lub z pomocą nauczyciela; kurs wyższy" # Nakład i własność autora #  # 7 # Warszawa # 1895 #  #  # 
+521 # Zwoliński Tadeusz; Zwoliński Stefan # Przewodnik po Tatrach i Zakopanem #  # Nakład i własność księgarni L. Zwolińskiego w Zakopanem #  # 4, przejrzane i uzupełnione # Zakopane # 1930 #  #  # Brak mapki, pierwsze strony wydrukowane
+522 # Praca zbiorowa # M. Arcta Nowoczesna Encyklopedia Ilustrowana #  # Nakładem Zakładów Wydawniczych M. Arct, Sp. akc. w Warszawie #  #  # Warszawa # 1936-1939 (?) #  #  # Brak ostatnich stron w suplemencie
+523 # Żelazowski Karol, ks. # Bądźcie doskonałymi # Na podstawie dzieła Scaramelli'ego pod tytułem "Direttorio ascetico" # Skład główny w Księgarni Sort. dawniej Maurycego Orgelbranda, obecnie M Machwitz # 1, 2 #  # Warszawa # 1898 #  #  # 
+524 # Sienkiewicz Henryk # Ogniem i mieczem # Powieść z lat dawnych # Nakład Gebethnera i Wolffa # 3 # czwarte, przejrzane i poprawione # Warszawa # 1889 # Pisma Henryka Sienkiewicza # 8 # 
+525 # Szpyrkówna M. H. # Godzina bije! #  # Wydawnictwo Zakładu Narodowego im. Ossolińskich #  #  # Lwów-Warszawa-Kraków # 1927 #  #  # 
+526 # Gołębiowski F. S. # Rowerem do Azji Mniejszej #  # Skład Główny: Dom Książki Polskiej, Sp. akc. #  #  # Warszawa # 1932 #  #  # 
+527 # Nourse M. A. # Dzieje 400,000.000 narodu #  # Trzaska, Evert, Michalski S.A. #  #  # Warszawa # 1936-1939 (?) # Biblioteka Wiedzy # 29 # 
+528 # Beebe William # 923 metry w głąb oceanu #  # Trzaska, Evert, Michalski S.A. #  #  # Warszawa # 1936-1939 (?) # Biblioteka Wiedzy # 20 # 
+529 # Nachtwey Robert, dr # Świat w kropli wody #  # Trzaska, Evert, Michalski S.A. #  #  # Warszawa # 1936-1939 (?) # Biblioteka Wiedzy # 45 # 
+530 # Weyssenhoff J.; Białobrzeski C.; Wertenstein L.; Szczeniowski S. # Od gwiazdy do atomu #  # Trzaska, Evert, Michalski S.A. #  #  # Warszawa # 1936-1939 (?) # Biblioteka Wiedzy # 12 # 
+531 # Glover T. R. # Świat starożytny #  # Trzaska, Evert, Michalski S.A. #  #  # Warszawa	1936-1939 (?) # Biblioteka Wiedzy # 33 # 
+532 # Beebe William # Kraina wód (Nonsuch) #  # Trzaska, Evert, Michalski S.A. #  #  # Warszawa	1936-1939 (?) # Biblioteka Wiedzy # 23 # 
+533 # Haas Artur, dr. # Zasady fizyki #  # Trzaska, Evert, Michalski S.A. #  #  # Warszawa	1936-1939 (?) # Biblioteka Wiedzy # 18 # 
+534 # Goldschmidt R., prof. dr. # Wstęp do nauki o życiu #  # Trzaska, Evert, Michalski S.A. #  #  # Warszawa # 1936 > (?) # Bibljoteka Wiedzy # 25 # 
+535 # Eddington Arthur, sir # Nauka na nowych drogach #  # Trzaska, Evert, Michalski S.A. #  #  # Warszawa # 1936-1939 (?) # Biblioteka Wiedzy # 30 # 
+536 # Gross Ludwik, dr. # Ludzkość w walce o zdrowie #  # Trzaska, Evert, Michalski S.A. #  #  # Warszawa # 1936-1939 (?) # Biblioteka Wiedzy # 21 # 
+537 # Jeans James, sir # Nowy świat fizyki #  # Trzaska, Evert, Michalski S.A. #  #  # Warszawa # 1936 > (?) # Bibljoteka Wiedzy # 3 # 
+538 # Loon H. W., van # Geografja w kalejdoskopie #  # Trzaska, Evert, Michalski S.A. #  #  # Warszawa	1936 > (?) # Bibljoteka Wiedzy # 24 # 
+539 # Chant Clarence August # Cuda Wszechświata # Łatwy wstęp do poznawania nieba # Trzaska, Evert, Michalski S.A. #  #  # Warszawa # 1936 > (?) # Bibljoteka Wiedzy # 1 # 
+540 # Fournier-d'Albe Edmund Edward # Cuda fizyki #  # Książnica - Atlas, Zjednoczone Zakłady Kartograficzne i Wydawnicze, Towarzystwo Nauczania Szkół Średnich i Wyższych - Sp. Akc. #  #  # Lwów-Warszawa # 1930 # Bibljoteka "Iskier" #  # 
+541 # Burzyński Stanisław # Radjo a życie #  # Księgarnia Bibljoteki Dzieł Wyborowych #  #  # Warszawa # 1936 > (?) #  #  # 	
+542 # Przerwa-Tetmajer Włodzimierz # O naczelniku Kościuszce i o polskich chłopie #  # Nakład Gebethnera i Wolffa (Warszawa-Lublin-Łódź); G. Gebethner i Spółka (Kraków); Księgania M. Niemierkiewicza (Poznań) #  #  # Warszawa-Lublin-Łódź-Kraków-Poznań # 1917 (?) #  #  # 
+543 # Marczewski Bolesław # Samouczek rachunkowy #  # A. A. Paryski #  #  # Toledo, Ohio # 1913	 #  #  # 	
+544 # Gumplowicz Władysław # Australja i Oceanja #  # Nakładem Księgarni Geograficznej "Orbis" #  #  # Kraków # 1927 # Bibljoteczka Geograficzna "Orbis" 2, Geografia regionalna # 1 # 
+545 # Lutosławski Wincenty # Wojna wszechświatowa # Jej odległe przyczyny i skutki. Zarys filozofji historji. Wiekowe walki ludów. # Bibljoteka Domu Polskiego #  #  # Warszawa # 1925 #  #  # 			
+546 # Plankiewicz Roman # Kształcenie młodzieży # Nauczanie początkowe i średnie # Biblioteka Dzieł Wyborowych #  #  # Warszawa # 1898 # Biblioteka Dzieł Wyborowych # 24 # 
+547 # Chrząszczewska Jadwiga # Pogadanki z dziećmi i metodyczne wskazówki # Podręcznik dla matek, nauczycielek i wychowawczyń # Nakład Gebethnera i Wolffa (Warszawa), G. Gebethner i Spółka (Kraków) #  # 2, znacznie rozszerzone i poprawione # Warszawa-Kraków # 1904 #  #  # 	
+548 # Rygier Leon # Główne zasady pisowni polskiej ze słowniczkiem #  # Nakładem Towrzystwa Wydawniczego "Książka Polska" #  #  # Warszawa # 1919 #  #  # 
+549 # Stanisława Marja, siostra od Jezusa # Listy Polki z Wyspy Św. Trójcy #  # Nakładem Wydawnictwa Księży Jezuitów #  # 2 # Kraków # 1927	 #  #  # 
+550 # Radliński T.; Wuttke G. # Geografja. Ziemia i jej mieszkańcy # Kurs klasy szóstej szkoły powszechnej # Nakładem Tadeusza Radlińskiego #  #  # Warszawa # 1936 > (?) #  #  # 
+551 # Potocki Antoni # O Krzysztofie Kolumbie i odkryciu Ameryki #  # "Księgarnia Polska" Towarzystwo Polskiej Macierzy Szkolnej #  # 7 # Warszawa # 1925 # Wydawnictwo imienia Mieczysława Brzezińskiego #  # 	
+552 # Jodłowski Stansiław; Taszycki Witold # Zasady pisowni polskiej i interpunkcji ze słownikiem ortograficznym #  # Wydawnictwo Zakładu Narodowego Imienia Ossolińskich #  # 2, rozszerzone # Lwów # 1936	 #  #  # 		

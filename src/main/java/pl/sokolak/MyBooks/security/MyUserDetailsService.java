@@ -22,15 +22,10 @@ public class MyUserDetailsService {
                         .build();
         UserDetails admin =
                 User.withUsername("admin")
-                        .password("{bcrypt}$2b$10$nBiEgDUOjw.MVP6GNDoC6u0cKmQWVWFjU1Rv/oROhs4kqv6c2vwe.")
+                        .password("{bcrypt}$2b$10$o.HzHB6YPvP6walqhlL94.edSMF5Vo0hLlVqVsH5r01XGL4I1JuHa")
                         .roles("ADMIN")
                         .build();
-        UserDetails darek =
-                User.withUsername("darek")
-                        .password("{bcrypt}$2b$10$D1YkX18Ism7XPhEu2PtWaO0OjEY1Nj6esQI0cXUQrTCkcSyQyXHsC")
-                        .roles("GUEST")
-                        .build();
-        return new InMemoryUserDetailsManager(List.of(admin, guest, darek));
+        return new InMemoryUserDetailsManager(List.of(admin, guest));
     }
 
     @Bean

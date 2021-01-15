@@ -42,13 +42,13 @@ public class AuthorDto implements Dto {
                 stringBuilder.append(StringUtils.getInitial(firstName));
         }
 
-//        if (!middleName.isBlank()) {
-//            stringBuilder.append(" ");
-//            if (!shortNotation)
-//                stringBuilder.append(middleName);
-//            else
-//                stringBuilder.append(StringUtils.getInitial(middleName));
-//        }
+        if (!middleName.isBlank()) {
+            stringBuilder.append(" ");
+            if (!shortNotation)
+                stringBuilder.append(middleName);
+            else
+                stringBuilder.append(StringUtils.getInitial(middleName));
+        }
 
         if (!prefix.isBlank()) {
             if (!shortNotation)
