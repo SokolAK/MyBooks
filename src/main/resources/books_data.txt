@@ -492,7 +492,7 @@
 489 # Śliwiński Artur # Powstanie listopadowe #  # Wydawnictwo M. Arcta w Warszawie (Wilno. Księgarnia Stow. Nauczycielstwa Polskiego) #  # 5 # Warszawa-Poznań-Łódź-Lublin-Wilno # 1920 #  #  # 
 490 # Przyborowski Walery # Reduta Woli # Powieść historyczna z 1831 roku dla młodzieży # Wydawnictwo M. Arcta w Warszawie #  # 4 # Warszawa # 1930 #  #  # 
 491 # Barszczewski Stefan # Na szlaku sławy, krwi i złota # Szkice z dziejów odkrycia Ameryki # Nakładem Gebethnera i Wolffa #  #  # Warszawa-Kraków-Lublin-Łódź-Paryż-Poznań-Wilno-Zakopane # 1928 #  #  # 
-492 # Galle H., Krasnowolski A. # Słownik frazeologiczny # Poradnik dla piszących # Wydawnictwo M. Arcta w Warszawie #  # 3, poprawione i uzupełnione # Warszawa # 1928 #  #  # 
+492 # Galle H.; Krasnowolski A. # Słownik frazeologiczny # Poradnik dla piszących # Wydawnictwo M. Arcta w Warszawie #  # 3, poprawione i uzupełnione # Warszawa # 1928 #  #  # 
 493 # Korczak Janusz # Król Maciuś na wyspie bezludnej #  # Towarzystwo Wydawnicze w Warszawie #  #  # Warszawa-Kraków # 1923 #  #  # 
 494 # Rosenzweig Józef # Crescendo # Na tle podróży # Księgarnia Jana Fiszera #  #  # Warszawa # 1901 #  #  # 
 495 #  # Wiedza i życie #  # Wydawnictwo Powszechnego Uniwersytetu Korespondencyjnego i Związku Polskiego Nauczycielstwa Szkół Powszechnych #  #  # Warszawa # 1927 maj # Wiedza i życie # 5(15) # 

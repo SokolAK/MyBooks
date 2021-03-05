@@ -6,9 +6,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -18,9 +15,6 @@ public class BookFilterImpl implements BookFilter {
 
     @PersistenceContext
     private EntityManager em;
-    private CriteriaBuilder cb;
-    private CriteriaQuery<Book> cq;
-    private Root<Book> book;
 
     @Override
     public List<Book> findAllContainingPhrase(String phrase, Map<String, Boolean> columnList, Pageable pageable) {
@@ -92,7 +86,6 @@ public class BookFilterImpl implements BookFilter {
                 " OFFSET " + pageable.getPageSize() * pageable.getPageNumber();
 
         Query query = em.createNativeQuery(sql, Book.class);
-
         return new ArrayList<Book>(query.getResultList());
     }
 
@@ -154,51 +147,4 @@ public class BookFilterImpl implements BookFilter {
         TypedQuery<Book> query = em.createQuery(sql, Book.class);
         return query.getResultList();
     }
-
-/*
-    //Multi author problem
-    public List<Book> findAllContainingPhraseOld(String phrase, Map<String, Boolean> columnList) {
-        init();
-        Subquery<Long> sq = getIdsOfBooksContainingPhrase(phrase, columnList);
-        cq.where(cb.in(book.get("id")).value(sq)).distinct(true);
-        TypedQuery<Book> query = em.createQuery(cq);
-        return query.getResultList();
-    }
-
-    //Multi author problem
-    private Subquery<Long> getIdsOfBooksContainingPhrase(String phrase, Map<String, Boolean> columnList) {
-        Set<String> subPhrases = convertPhraseToSubPhrases(phrase);
-
-        Join<Book, Author> bookAuthors = book.join(
-                "authors",
-                JoinType.LEFT);
-
-        List<Predicate> predicates = new ArrayList<>();
-        for (String subPhrase : subPhrases) {
-            List<Predicate> subPredicates = new ArrayList<>();
-            Stream.of("title", "subtitle", "year", "volume", "edition")
-                    .filter(columnList::containsKey)
-                    .filter(columnList::get)
-                    .forEach(columnName -> subPredicates.add(columnTextContainsPhrase(columnName, subPhrase, book))
-                    );
-
-            if (columnList.get("authors")) {
-                Stream.of("prefix", "firstName", "middleName", "lastName")
-                        .forEach(columnName -> subPredicates.add(columnTextContainsPhrase(columnName, subPhrase, bookAuthors)));
-            }
-            Predicate predicate = cb.or(subPredicates.toArray(Predicate[]::new));
-            predicates.add(predicate);
-        }
-        Predicate finalPredicate = cb.and(predicates.toArray(Predicate[]::new));
-        Subquery<Long> sq = cq.subquery(Long.class);
-        sq.select(book.get("id"))
-                .where(finalPredicate)
-                .from(Book.class);
-        return sq;
-    }
-
-    private Predicate columnTextContainsPhrase(String columnName, String phrase, Path<?> path) {
-        Expression<String> columnText = cb.lower(path.get(columnName).as(String.class));
-        return cb.like(columnText, "%" + phrase.toLowerCase() + "%");
-    }*/
 }
