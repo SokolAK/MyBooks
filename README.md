@@ -1,6 +1,6 @@
 # MyBooks
 A web application designed to manage private book collection.  <br />
-Check out the live demo on Heroku: https://my-books-sokolak-demo.herokuapp.com/
+Check out the live demo on Heroku: https://my-books-sokolak-demo.herokuapp.com/ <br />
 Lite version: [MyBooksLite](https://github.com/SokolAK/MyBooksLite)
 
 
