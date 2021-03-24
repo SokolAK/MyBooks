@@ -36,4 +36,4 @@ To take advantage of Jaspyt encryption capabilities, add the VM argument: <br />
 
 
 ## Status
-Project is: _in progress_
+Project is: _finished_
