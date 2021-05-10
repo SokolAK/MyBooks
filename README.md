@@ -13,7 +13,7 @@ Lite version: [MyBooksLite](https://github.com/SokolAK/MyBooksLite)
 * [Vaadin 14.3.7](https://vaadin.com/)
 * [Lombok 1.18.14](https://projectlombok.org/)
 * [AspectJ 1.9.6](https://www.eclipse.org/aspectj/)
-* [Jaspyt 3.0.3](http://www.jasypt.org/)
+* [Jasypt 3.0.3](http://www.jasypt.org/)
 
 
 ## Building
