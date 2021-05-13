@@ -17,7 +17,7 @@
 	<properties>
 		<aspectj.version>1.9.6</aspectj.version>
 		<java.version>15</java.version>
-		<vaadin.version>14.3.7</vaadin.version>
+		<vaadin.version>14.5.3</vaadin.version>
 	</properties>
 
 	<dependencies>
